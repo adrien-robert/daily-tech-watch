@@ -469,6 +469,9 @@
         categories.forEach(cat => {
             const visibleItems = cat.querySelectorAll('article.item:not(.filtered-out)');
             cat.classList.toggle('category-empty', visibleItems.length === 0);
+            if (activeTag !== null && visibleItems.length > 0) {
+                cat.open = true;
+            }
             const subtitle = cat.querySelector('.category-subtitle');
             if (subtitle) {
                 const total = cat.querySelectorAll('article.item').length;
