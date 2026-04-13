@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Tech Watch · Monday, April 13, 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background-color: #0c0e14; color: #e8e9ed; line-height: 1.6; font-size: 16px; }
+        h1 { font-family: 'Merriweather', serif; font-size: 2.5rem; font-weight: 700; line-height: 1.2; margin-bottom: 0.5rem; }
+        h2 { font-family: 'Merriweather', serif; font-size: 1.5rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.75rem; }
+        h3 { font-size: 1.125rem; font-weight: 700; line-height: 1.4; margin-bottom: 0.5rem; }
+        p { margin-bottom: 1rem; }
+        a { color: #5eadf6; text-decoration: none; transition: color 0.2s ease; }
+        a:hover { color: #8b7cf6; }
+        .container { max-width: 960px; margin: 0 auto; padding: 3rem 2rem; }
+        @media (max-width: 640px) { .container { padding: 2rem 1.5rem; } h1 { font-size: 2rem; } h2 { font-size: 1.25rem; } }
+        .header { margin-bottom: 3rem; position: relative; }
+        .header::after { content: ''; position: absolute; bottom: -1.5rem; left: 0; width: 60px; height: 3px; background: linear-gradient(90deg, #8b7cf6, #5eadf6); border-radius: 2px; }
+        .branding { font-size: 0.875rem; font-weight: 600; color: #a4a7b3; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 1rem; }
+        .header-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 2rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #1f2330; }
+        .meta-date { font-size: 0.95rem; color: #a4a7b3; font-weight: 500; }
+        @media (max-width: 640px) { .header-meta { flex-direction: column; gap: 1rem; } }
+        .stats-strip { display: flex; gap: 1.5rem; margin-top: 1.25rem; flex-wrap: wrap; }
+        .stat { display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; }
+        .stat-value { font-weight: 700; font-family: 'Fira Mono', monospace; font-size: 1.125rem; color: #e8e9ed; }
+        .stat-label { color: #a4a7b3; text-transform: uppercase; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.04em; }
+        .stat-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+        .stat-dot.high-priority { background-color: #f66b6b; }
+        @media (max-width: 640px) { .stats-strip { gap: 1rem; } }
+        .filter-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #1f2330; }
+        .filter-bar-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #a4a7b3; margin-right: 0.5rem; }
+        .filter-btn { display: inline-flex; align-items: center; gap: 4px; padding: 0.35rem 0.75rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; cursor: pointer; border: 1px solid transparent; transition: all 0.2s ease; opacity: 0.5; background: transparent; }
+        .filter-btn:hover { opacity: 0.8; }
+        .filter-btn.active { opacity: 1; }
+        .filter-btn-all { color: #e8e9ed; background: #1f2330; opacity: 1; border-color: #2a3142; }
+        .filter-btn-all.active { background: #8b7cf6; border-color: #8b7cf6; color: #fff; }
+        .filter-btn[data-tag="new"] { color: #3dd9a0; border-color: rgba(61, 217, 160, 0.4); }
+        .filter-btn[data-tag="new"].active { background: rgba(61, 217, 160, 0.15); }
+        .filter-btn[data-tag="security"] { color: #f69b47; border-color: rgba(246, 155, 71, 0.4); }
+        .filter-btn[data-tag="security"].active { background: rgba(246, 155, 71, 0.15); }
+        .filter-btn[data-tag="update"] { color: #5eadf6; border-color: rgba(94, 173, 246, 0.4); }
+        .filter-btn[data-tag="update"].active { background: rgba(94, 173, 246, 0.15); }
+        .filter-btn[data-tag="breaking"] { color: #f66b6b; border-color: rgba(246, 107, 107, 0.4); }
+        .filter-btn[data-tag="breaking"].active { background: rgba(246, 107, 107, 0.15); }
+        .filter-btn[data-tag="important"] { color: #f6c547; border-color: rgba(246, 197, 71, 0.4); }
+        .filter-btn[data-tag="important"].active { background: rgba(246, 197, 71, 0.15); }
+        .filter-btn[data-tag="milestone"] { color: #8b7cf6; border-color: rgba(139, 124, 246, 0.4); }
+        .filter-btn[data-tag="milestone"].active { background: rgba(139, 124, 246, 0.15); }
+        .filter-btn[data-tag="tool"] { color: #2ec9b6; border-color: rgba(46, 201, 182, 0.4); }
+        .filter-btn[data-tag="tool"].active { background: rgba(46, 201, 182, 0.15); }
+        .filter-btn[data-tag="trend"] { color: #5eadf6; border-color: rgba(94, 173, 246, 0.4); }
+        .filter-btn[data-tag="trend"].active { background: rgba(94, 173, 246, 0.15); }
+        .filter-btn[data-tag="tutorial"] { color: #2ec9b6; border-color: rgba(46, 201, 182, 0.4); }
+        .filter-btn[data-tag="tutorial"].active { background: rgba(46, 201, 182, 0.15); }
+        .filter-btn[data-tag="deadline"] { color: #f66b6b; border-color: rgba(246, 107, 107, 0.4); }
+        .filter-btn[data-tag="deadline"].active { background: rgba(246, 107, 107, 0.15); }
+        .filter-btn[data-tag="delayed"] { color: #a4a7b3; border-color: rgba(164, 167, 179, 0.4); }
+        .filter-btn[data-tag="delayed"].active { background: rgba(164, 167, 179, 0.15); }
+        .filter-btn[data-tag="key"] { color: #f6c547; border-color: rgba(246, 197, 71, 0.4); }
+        .filter-btn[data-tag="key"].active { background: rgba(246, 197, 71, 0.15); }
+        .item.filtered-out { display: none; }
+        .category.category-empty { display: none; }
+        .filter-count { font-family: 'Fira Mono', monospace; font-size: 0.65rem; background: rgba(255, 255, 255, 0.1); padding: 1px 5px; border-radius: 3px; margin-left: 2px; }
+        @media print { .filter-bar { display: none; } }
+        .category { margin-bottom: 2.5rem; }
+        .category-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid #1f2330; cursor: pointer; user-select: none; transition: border-color 0.2s ease; }
+        .category-header:hover { border-color: #2a3142; }
+        .category-toggle { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; color: #8b7cf6; flex-shrink: 0; }
+        .category-toggle::before { content: '▼'; font-size: 0.75rem; transition: transform 0.2s ease; }
+        details[open] .category-toggle::before { transform: rotate(-180deg); }
+        .category-title-text { flex: 1; }
+        .category-title-text h2 { margin-bottom: 0.25rem; }
+        .category-subtitle { font-size: 0.875rem; color: #a4a7b3; }
+        .items-list { display: flex; flex-direction: column; gap: 1.5rem; }
+        .item { background: #13161f; border: 1px solid #1f2330; border-radius: 8px; padding: 1.5rem; transition: all 0.2s ease; border-left: 4px solid transparent; }
+        .item:hover { border-color: #2a3142; background: #171a24; }
+        .item.priority-breaking { border-left-color: #f66b6b; background: linear-gradient(135deg, #13161f 0%, rgba(246, 107, 107, 0.05) 100%); }
+        .item.priority-security { border-left-color: #f69b47; background: linear-gradient(135deg, #13161f 0%, rgba(246, 155, 71, 0.05) 100%); }
+        .item.priority-breaking:hover, .item.priority-security:hover { box-shadow: 0 0 20px rgba(246, 107, 107, 0.1); }
+        .item-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.75rem; }
+        .item-title { flex: 1; font-size: 1.125rem; font-weight: 700; line-height: 1.4; color: #e8e9ed; }
+        .item-tag { flex-shrink: 0; padding: 0.375rem 0.75rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+        .item-tag::before { margin-right: 0.25rem; font-size: 0.65rem; }
+        .tag-new::before { content: "🆕"; }
+        .tag-new { background: rgba(61, 217, 160, 0.15); color: #3dd9a0; }
+        .tag-security::before { content: "🔒"; }
+        .tag-security { background: rgba(246, 155, 71, 0.15); color: #f69b47; }
+        .tag-update::before { content: "🔄"; }
+        .tag-update { background: rgba(94, 173, 246, 0.15); color: #5eadf6; }
+        .tag-breaking::before { content: "⚠️"; }
+        .tag-breaking { background: rgba(246, 107, 107, 0.15); color: #f66b6b; font-weight: 700; }
+        .tag-important::before { content: "❗"; }
+        .tag-important { background: rgba(246, 197, 71, 0.15); color: #f6c547; }
+        .tag-milestone::before { content: "🎯"; }
+        .tag-milestone { background: rgba(139, 124, 246, 0.15); color: #8b7cf6; }
+        .tag-tool::before { content: "🔧"; }
+        .tag-tool { background: rgba(46, 201, 182, 0.15); color: #2ec9b6; }
+        .tag-trend::before { content: "📈"; }
+        .tag-trend { background: rgba(94, 173, 246, 0.15); color: #5eadf6; }
+        .tag-tutorial::before { content: "📚"; }
+        .tag-tutorial { background: rgba(46, 201, 182, 0.15); color: #2ec9b6; }
+        .tag-deadline::before { content: "⏰"; }
+        .tag-deadline { background: rgba(246, 107, 107, 0.15); color: #f66b6b; }
+        .tag-delayed::before { content: "⏳"; }
+        .tag-delayed { background: rgba(164, 167, 179, 0.15); color: #a4a7b3; }
+        .tag-key::before { content: "🔑"; }
+        .tag-key { background: rgba(246, 197, 71, 0.15); color: #f6c547; }
+        .item-summary { font-size: 0.95rem; color: #a4a7b3; margin-bottom: 1rem; line-height: 1.6; }
+        .item-why { background: rgba(139, 124, 246, 0.08); border-left: 3px solid #8b7cf6; padding: 0.75rem 1rem; border-radius: 4px; font-size: 0.9rem; color: #d4d5db; margin-bottom: 1rem; line-height: 1.5; }
+        .item-source { font-size: 0.85rem; color: #5eadf6; font-weight: 500; }
+        .item-source::before { content: '⤷ '; margin-right: 0.25rem; }
+        @media (max-width: 640px) { .item { padding: 1.25rem; } .item-header { flex-direction: column; align-items: flex-start; } .item-tag { align-self: flex-start; } .item-title { font-size: 1rem; } }
+        .closing-sections { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 4rem; }
+        @media (max-width: 768px) { .closing-sections { grid-template-columns: 1fr; } }
+        .closing-section { background: #13161f; border: 1px solid #1f2330; border-radius: 8px; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; transition: all 0.2s ease; }
+        .closing-section:hover { border-color: #2a3142; background: #171a24; }
+        .closing-section.full-width { grid-column: 1 / -1; }
+        .closing-header { display: flex; align-items: center; gap: 1rem; font-weight: 600; font-size: 1rem; }
+        .closing-icon { font-size: 1.25rem; display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; background: #1f2330; border-radius: 8px; }
+        .closing-header .closing-label-action { color: #f66b6b; }
+        .closing-header .closing-label-quickwin { color: #3dd9a0; }
+        .closing-header .closing-label-idea { color: #8b7cf6; }
+        .closing-content { font-size: 0.95rem; color: #a4a7b3; line-height: 1.6; }
+        .closing-content code { background: #1f2330; padding: 2px 6px; border-radius: 3px; font-family: 'Fira Mono', monospace; font-size: 0.85rem; color: #e8e9ed; }
+        .footer { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #1f2330; text-align: center; font-size: 0.85rem; color: #a4a7b3; }
+        @media print {
+            body { background: white; color: #1a1a1a; }
+            .container { max-width: 100%; padding: 2rem; }
+            .header::after { background: #333; }
+            .branding { color: #666; }
+            .header-meta { border-top-color: #e0e0e0; }
+            .meta-date, .category-subtitle, .item-summary { color: #666; }
+            .item { background: white; border-color: #e0e0e0; }
+            .item.priority-breaking, .item.priority-security { background: white; }
+            .closing-section { background: white; border-color: #e0e0e0; }
+            .closing-icon { background: #f0f0f0; }
+            .item-why { background: #f5f5f5; border-left-color: #999; color: #333; }
+            .item-source { color: #0066cc; }
+            a { color: #0066cc; }
+            .footer { border-top-color: #e0e0e0; }
+            * { box-shadow: none !important; transition: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="branding">Stellar Web Solutions</div>
+            <h1>Daily Tech Watch</h1>
+            <div class="header-meta">
+                <span class="meta-date">Monday, April 13, 2026</span>
+            </div>
+            <div class="stats-strip">
+                <div class="stat">
+                    <span class="stat-value">10</span>
+                    <span class="stat-label">Items</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">5</span>
+                    <span class="stat-label">Categories</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-dot high-priority"></span>
+                    <span class="stat-value">1</span>
+                    <span class="stat-label">Critical</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="filter-bar" id="filterBar">
+            <span class="filter-bar-label">Filter</span>
+        </div>
+
+        <details class="category" open>
+            <summary class="category-header">
+                <div class="category-toggle"></div>
+                <div class="category-title-text">
+                    <h2>🤖 AI & LLM Ecosystem</h2>
+                    <span class="category-subtitle">3 items</span>
+                </div>
+            </summary>
+            <div class="items-list">
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">HumanX 2026 confirms Claude as the dominant agentic AI in enterprise</h3>
+                        <span class="item-tag tag-trend">Trend</span>
+                    </div>
+                    <p class="item-summary">At the HumanX AI conference in San Francisco this week, Claude was consistently cited as the most popular chatbot driving agentic deployments across industries. Agents that automate business and coding tasks are now front-and-center in enterprise pipelines, well ahead of competitors.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> Enterprise mindshare around Claude strengthens the positioning argument for agencies selling Claude-powered automations and integrations to French clients. Lean into it in proposals.
+                    </div>
+                    <a href="https://techcrunch.com/2026/04/12/at-the-humanx-conference-everyone-was-talking-about-claude/" class="item-source">via TechCrunch</a>
+                </article>
+
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">Anthropic delays public release of Claude Mythos, keeps it inside Project Glasswing</h3>
+                        <span class="item-tag tag-delayed">Delayed</span>
+                    </div>
+                    <p class="item-summary">On April 12, Anthropic reaffirmed Claude Mythos Preview will not ship to general users. The model autonomously found thousands of zero-days (including a 17-year-old FreeBSD RCE) and will instead stay gated inside Project Glasswing with AWS, Apple, Google, Microsoft and others, backed by $100M in usage credits for defensive security work.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> Anthropic signals that next-gen capability will ship gradually with stronger safeguards. Expect the upcoming Claude Opus release to carry Mythos-class features with new guardrails — plan client roadmaps accordingly.
+                    </div>
+                    <a href="https://www.rte.ie/news/business/2026/0412/1567631-anthropic-claude-ai/" class="item-source">via RTÉ News</a>
+                </article>
+
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">Claude Managed Agents in public beta + new ant CLI</h3>
+                        <span class="item-tag tag-new">New</span>
+                    </div>
+                    <p class="item-summary">Anthropic's Managed Agents (still rolling out this week) provides a hosted harness with sandboxed execution, checkpointing, credential management, scoped permissions and end-to-end tracing. Paired with the new <code>ant</code> CLI for YAML-versioned API resources and native Claude Code integration.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> You can now run long-horizon Claude agents for clients (content pipelines, SEO audits, data cleanup) without building your own sandboxed infra. A potential premium "AI automation" retainer offering for Stellar Web Solutions.
+                    </div>
+                    <a href="https://www.anthropic.com/engineering/managed-agents" class="item-source">via Anthropic Engineering</a>
+                </article>
+            </div>
+        </details>
+
+        <details class="category" open>
+            <summary class="category-header">
+                <div class="category-toggle"></div>
+                <div class="category-title-text">
+                    <h2>🔧 Claude Code × WordPress</h2>
+                    <span class="category-subtitle">2 items</span>
+                </div>
+            </summary>
+            <div class="items-list">
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">"9 Underutilized Claude Code Features That Transform Your Workflow"</h3>
+                        <span class="item-tag tag-tutorial">Tutorial</span>
+                    </div>
+                    <p class="item-summary">Fresh blog post (April 10) walking through Claude Code capabilities developers aren't using enough: sub-agents for parallel refactors, MCP hooks, session continuation, custom slash commands, and advanced CLAUDE.md patterns. Directly applicable to scaffolding Bricks/Gutenberg components faster.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> Most of these patterns translate 1:1 to WordPress agency work — e.g. one sub-agent writing the Bricks component while another writes the matching ACF field group, then a third writes the PHP callback. Worth a 20-minute read.
+                    </div>
+                    <a href="https://atalupadhyay.wordpress.com/2026/04/10/claude-code-9-underutilized-features-that-will-transform-your-development-workflow/" class="item-source">via atalupadhyay.wordpress.com</a>
+                </article>
+
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">Claude WordPress Skills: a growing repo of professional engineering skills</h3>
+                        <span class="item-tag tag-tool">Tool</span>
+                    </div>
+                    <p class="item-summary">The <code>elvismdev/claude-wordpress-skills</code> repo packages Claude Code skills for WordPress performance optimization, security auditing, Gutenberg block development, and theme/plugin best practices. Combined with the WordPress.com Claude Cowork plugin, the ecosystem of Claude-native WP tooling is maturing fast.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> You can drop these skills into your Claude Code setup to immediately raise the quality of generated WP code — fewer bad sanitize_* calls, fewer N+1 queries, fewer insecure nonces.
+                    </div>
+                    <a href="https://github.com/elvismdev/claude-wordpress-skills" class="item-source">via GitHub (elvismdev)</a>
+                </article>
+            </div>
+        </details>
+
+        <details class="category">
+            <summary class="category-header">
+                <div class="category-toggle"></div>
+                <div class="category-title-text">
+                    <h2>📦 WordPress Ecosystem</h2>
+                    <span class="category-subtitle">3 items</span>
+                </div>
+            </summary>
+            <div class="items-list">
+                <article class="item priority-security">
+                    <div class="item-header">
+                        <h3 class="item-title">CVE-2026-4664 — Auth bypass in "Customer Reviews for WooCommerce" (≤ 5.103.0)</h3>
+                        <span class="item-tag tag-security">Security</span>
+                    </div>
+                    <p class="item-summary">Disclosed today (April 13). Unauthenticated attackers can submit arbitrary product reviews by abusing a poorly validated key parameter. Fix: update to <code>5.104.0</code> immediately across any client site using this plugin.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> Fake reviews kill e-commerce trust overnight and can trigger SEO penalties. Run a plugin audit across all WooCommerce clients today and patch.
+                    </div>
+                    <a href="https://managed-wp.com/blogs/authentication-vulnerability-in-woocommerce-reviews-cve20264664-2026-04-13" class="item-source">via Managed-WP</a>
+                </article>
+
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">WordPress 7.0 release officially pushed to mid/late May</h3>
+                        <span class="item-tag tag-delayed">Delayed</span>
+                    </div>
+                    <p class="item-summary">The original April 9 target for WP 7.0 has slipped — the core team wants more time to stabilise real-time collaboration and the new JavaScript Abilities API (<code>@wordpress/abilities</code>, <code>@wordpress/core-abilities</code>), which lays the groundwork for provider-agnostic AI integrations (Claude, GPT, Gemini, local).</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> Extra runway to test Beta on client staging. The Abilities API is the big story — expect a wave of AI-enabled blocks within 6 months, and agencies that understand it first will win positioning.
+                    </div>
+                    <a href="https://make.wordpress.org/core/2026/03/31/extending-the-7-0-cycle/" class="item-source">via Make WordPress Core</a>
+                </article>
+
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">Bricks 2.2 — unified Style Manager + Components as Gutenberg blocks</h3>
+                        <span class="item-tag tag-update">Update</span>
+                    </div>
+                    <p class="item-summary">Bricks 2.2 centralises design tokens, classes, CSS variables, color palettes, typography and spacing scales in a single Style Manager. Components can now be registered as Gutenberg blocks (custom icon, category, preview image) with variant dropdowns surfaced directly in the block editor.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> The Bricks/Gutenberg bridge is the strategic move — you can now ship Bricks-built components into editors used by less-technical clients without losing design-system integrity.
+                    </div>
+                    <a href="https://bricksbuilder.io/release/bricks-2-2/" class="item-source">via Bricks Builder</a>
+                </article>
+            </div>
+        </details>
+
+        <details class="category">
+            <summary class="category-header">
+                <div class="category-toggle"></div>
+                <div class="category-title-text">
+                    <h2>⚡ Web Development & Performance</h2>
+                    <span class="category-subtitle">1 item</span>
+                </div>
+            </summary>
+            <div class="items-list">
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">INP is now the most-failed Core Web Vital — 43% of sites break the 200ms bar</h3>
+                        <span class="item-tag tag-important">Important</span>
+                    </div>
+                    <p class="item-summary">Fresh 2026 analyses confirm Interaction to Next Paint (replacing FID) is where most WordPress sites fail. Only ~47% of mobile sites and ~56% of desktop sites pass Core Web Vitals overall. Heavy block editor JS, bloated page builders, and third-party scripts are the usual culprits.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> INP directly affects Google rankings. Audit client sites with PageSpeed Insights (Field Data) and prioritise defer/async + removing unused Bricks elements on critical paths.
+                    </div>
+                    <a href="https://www.digitalapplied.com/blog/core-web-vitals-2026-inp-lcp-cls-optimization-guide" class="item-source">via DigitalApplied</a>
+                </article>
+            </div>
+        </details>
+
+        <details class="category">
+            <summary class="category-header">
+                <div class="category-toggle"></div>
+                <div class="category-title-text">
+                    <h2>💼 Agency Business & France</h2>
+                    <span class="category-subtitle">1 item</span>
+                </div>
+            </summary>
+            <div class="items-list">
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">French AI automation consulting rates hit €800–€1,860/day in 2026</h3>
+                        <span class="item-tag tag-trend">Trend</span>
+                    </div>
+                    <p class="item-summary">Paris-based freelance AI consultants (n8n + Claude workflows, agentic pipelines) now bill €800–€1,860/day or €120–€240/hr. Gartner projects 40% of enterprise apps will embed task-specific AI agents by end of 2026, creating durable demand for agencies that already ship these integrations.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> Positioning Stellar Web Solutions as "WordPress + AI automation" (not just "WordPress") unlocks a price tier well above standard dev rates. Consider a dedicated landing page + offer.
+                    </div>
+                    <a href="https://nicolalazzari.ai/ai-consultant-europe" class="item-source">via Nicola Lazzari</a>
+                </article>
+            </div>
+        </details>
+
+        <div class="closing-sections">
+            <div class="closing-section">
+                <div class="closing-header">
+                    <div class="closing-icon">⚡</div>
+                    <span class="closing-label-action">Action</span>
+                </div>
+                <div class="closing-content">
+                    <strong>Patch "Customer Reviews for WooCommerce" to 5.104.0 today.</strong> CVE-2026-4664 (disclosed April 13) allows unauthenticated attackers to submit arbitrary product reviews on versions ≤ 5.103.0. Run <code>wp plugin list --fields=name,version,status</code> across all WooCommerce client sites and upgrade anywhere the plugin is active.
+                </div>
+            </div>
+
+            <div class="closing-section">
+                <div class="closing-header">
+                    <div class="closing-icon">✨</div>
+                    <span class="closing-label-quickwin">Quick Win</span>
+                </div>
+                <div class="closing-content">
+                    Install the <code>elvismdev/claude-wordpress-skills</code> repo into your Claude Code setup this morning. It drops in ready-made skills for WP performance, security auditing, and Gutenberg block scaffolding — an immediate quality lift on every generated PHP file, zero effort.
+                </div>
+            </div>
+
+            <div class="closing-section full-width">
+                <div class="closing-header">
+                    <div class="closing-icon">💡</div>
+                    <span class="closing-label-idea">Idea</span>
+                </div>
+                <div class="closing-content">
+                    <strong>Build a "Bricks Component Scaffolder" Claude Code skill.</strong> Pipe a natural-language spec ("testimonial carousel, 3 variants, autoplay, Schema.org markup") into a sub-agent that produces: (1) a Bricks component JSON export, (2) an ACF field group registration, and (3) a matching <code>sws_render_testimonial()</code> PHP callback with nonce-protected REST endpoint. Wrap it as a reusable slash command (<code>/sws-scaffold-bricks-component</code>). With Bricks 2.2's Components-as-Blocks feature, the same component then auto-surfaces in Gutenberg for editors — a complete pipeline from prompt to client-editable block in under two minutes.
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>Generated by <a href="https://adrien-robert.github.io/daily-tech-watch/">Daily Tech Watch</a> · Stellar Web Solutions</p>
+        </footer>
+    </div>
+
+    <script>
+    const SWS_TAG_LABELS = {
+        'new': '🆕 New',
+        'security': '🔒 Security',
+        'update': '🔄 Update',
+        'breaking': '⚠️ Breaking',
+        'important': '❗ Important',
+        'milestone': '🎯 Milestone',
+        'tool': '🔧 Tool',
+        'trend': '📈 Trend',
+        'tutorial': '📚 Tutorial',
+        'deadline': '⏰ Deadline',
+        'delayed': '⏳ Delayed',
+        'key': '🔑 Key'
+    };
+
+    function sws_getItemTag(item) {
+        const tagEl = item.querySelector('[class*="tag-"]');
+        if (!tagEl) return null;
+        const match = tagEl.className.match(/tag-(\w+)/);
+        return match ? match[1] : null;
+    }
+
+    function sws_initFilters() {
+        const filterBar = document.getElementById('filterBar');
+        const items = document.querySelectorAll('article.item');
+
+        const tagCounts = {};
+        items.forEach(item => {
+            const tag = sws_getItemTag(item);
+            if (tag) tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+        });
+
+        if (Object.keys(tagCounts).length === 0) {
+            filterBar.style.display = 'none';
+            return;
+        }
+
+        const allBtn = document.createElement('button');
+        allBtn.className = 'filter-btn filter-btn-all active';
+        allBtn.textContent = 'All';
+        allBtn.addEventListener('click', () => sws_filterByTag(null));
+        filterBar.appendChild(allBtn);
+
+        Object.keys(tagCounts).forEach(tag => {
+            const btn = document.createElement('button');
+            btn.className = 'filter-btn';
+            btn.setAttribute('data-tag', tag);
+            const label = SWS_TAG_LABELS[tag] || tag;
+            btn.innerHTML = label + '<span class="filter-count">' + tagCounts[tag] + '</span>';
+            btn.addEventListener('click', () => sws_filterByTag(tag));
+            filterBar.appendChild(btn);
+        });
+    }
+
+    function sws_filterByTag(activeTag) {
+        const items = document.querySelectorAll('article.item');
+        const categories = document.querySelectorAll('details.category');
+        const allBtn = document.querySelector('.filter-btn-all');
+        const tagBtns = document.querySelectorAll('.filter-btn[data-tag]');
+
+        if (activeTag === null) {
+            allBtn.classList.add('active');
+            tagBtns.forEach(btn => btn.classList.remove('active'));
+        } else {
+            allBtn.classList.remove('active');
+            tagBtns.forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-tag') === activeTag);
+            });
+        }
+
+        items.forEach(item => {
+            if (activeTag === null) {
+                item.classList.remove('filtered-out');
+            } else {
+                const tag = sws_getItemTag(item);
+                item.classList.toggle('filtered-out', tag !== activeTag);
+            }
+        });
+
+        categories.forEach(cat => {
+            const visibleItems = cat.querySelectorAll('article.item:not(.filtered-out)');
+            cat.classList.toggle('category-empty', visibleItems.length === 0);
+            const subtitle = cat.querySelector('.category-subtitle');
+            if (subtitle) {
+                const total = cat.querySelectorAll('article.item').length;
+                const visible = visibleItems.length;
+                subtitle.textContent = activeTag === null
+                    ? total + ' item' + (total !== 1 ? 's' : '')
+                    : visible + ' of ' + total + ' item' + (total !== 1 ? 's' : '');
+            }
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', sws_initFilters);
+    </script>
+</body>
+</html>
