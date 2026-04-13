@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Tech Watch · {{DATE_LONG}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0e14;
+    --card: #13161f;
+    --text: #e8e9ed;
+    --text-secondary: #a4a7b3;
+    --border: #1f2330;
+
+    --purple: #8b7cf6;
+    --blue: #5eadf6;
+    --green: #3dd9a0;
+    --yellow: #f6c547;
+    --red: #f66b6b;
+    --orange: #f69b47;
+
+    --purple-dim: rgba(139, 124, 246, 0.12);
+    --blue-dim: rgba(94, 173, 246, 0.12);
+    --green-dim: rgba(61, 217, 160, 0.12);
+    --yellow-dim: rgba(246, 197, 71, 0.12);
+    --red-dim: rgba(246, 107, 107, 0.10);
+    --orange-dim: rgba(246, 155, 71, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 24px 64px;
+  }
+
+  /* Header */
+  header.report-header {
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .brand {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 16px;
+  }
+
+  h1.report-title {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+
+  .report-date {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+  }
+
+  .report-meta {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  /* Category sections
+     NOTE FOR CLAUDE: Duplicate the <details class="category"> block below
+     for each category you want to include. Change the icon, title, count,
+     and the inner <article class="item"> entries. */
+  details.category {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+
+  details.category > summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    user-select: none;
+  }
+
+  details.category > summary::-webkit-details-marker { display: none; }
+
+  .category-icon {
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  .category-title {
+    font-size: 18px;
+    font-weight: 600;
+    flex: 1;
+  }
+
+  .category-count {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--purple-dim);
+    color: var(--purple);
+  }
+
+  .category-chevron {
+    color: var(--text-secondary);
+    font-size: 14px;
+    transition: transform 0.2s ease;
+  }
+
+  details.category[open] .category-chevron {
+    transform: rotate(90deg);
+  }
+
+  .category-body {
+    padding: 0 24px 8px;
+  }
+
+  /* Items
+     NOTE FOR CLAUDE: Duplicate <article class="item"> for each news item
+     within a category. Use the appropriate tag-* class on the span. */
+  article.item {
+    padding: 18px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  article.item:first-child { border-top: none; }
+
+  .item-header {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .item-name {
+    color: var(--blue);
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+
+  .tag-new       { background: var(--green-dim);  color: var(--green);  }
+  .tag-security  { background: var(--red-dim);    color: var(--red);    }
+  .tag-update    { background: var(--blue-dim);   color: var(--blue);   }
+  .tag-breaking  { background: var(--red-dim);    color: var(--red);    }
+  .tag-important { background: var(--orange-dim); color: var(--orange); }
+  .tag-milestone { background: var(--purple-dim); color: var(--purple); }
+  .tag-tool      { background: var(--blue-dim);   color: var(--blue);   }
+  .tag-trend     { background: var(--purple-dim); color: var(--purple); }
+  .tag-tutorial  { background: var(--green-dim);  color: var(--green);  }
+  .tag-deadline  { background: var(--yellow-dim); color: var(--yellow); }
+  .tag-delayed   { background: var(--orange-dim); color: var(--orange); }
+  .tag-key       { background: var(--purple-dim); color: var(--purple); }
+
+  .item-summary {
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .item-why {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+  }
+
+  .item-source {
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  .item-source a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--text-secondary);
+  }
+
+  .item-source a:hover {
+    color: var(--blue);
+    border-bottom-color: var(--blue);
+  }
+
+  /* Closing sections — always present */
+  .closing {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-top: 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .closing-icon {
+    font-size: 20px;
+    line-height: 1.4;
+  }
+
+  .closing-body {
+    flex: 1;
+  }
+
+  .closing-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .closing-content {
+    font-size: 14px;
+    color: var(--text);
+  }
+
+  .closing-action   { border-left: 3px solid var(--red);    }
+  .closing-action   .closing-label { color: var(--red);    }
+  .closing-quickwin { border-left: 3px solid var(--yellow); }
+  .closing-quickwin .closing-label { color: var(--yellow); }
+  .closing-idea     { border-left: 3px solid var(--green);  }
+  .closing-idea     .closing-label { color: var(--green);  }
+
+  /* Footer */
+  footer.report-footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-align: center;
+    line-height: 1.8;
+  }
+
+  footer.report-footer a {
+    color: var(--purple);
+    text-decoration: none;
+  }
+
+  footer.report-footer a:hover {
+    text-decoration: underline;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .container { padding: 32px 16px 48px; }
+    h1.report-title { font-size: 28px; }
+    details.category > summary { padding: 16px 18px; }
+    .category-body { padding: 0 18px 6px; }
+    .closing { padding: 16px 18px; }
+  }
+
+  /* Print */
+  @media print {
+    html, body { background: #fff; color: #000; }
+    .container { max-width: none; padding: 16px; }
+    details.category, .closing {
+      background: #fff;
+      border: 1px solid #ccc;
+      break-inside: avoid;
+    }
+    details.category[open] .category-chevron,
+    .category-chevron { display: none; }
+    .item-name { color: #000; }
+    a { color: #000; text-decoration: underline; }
+    footer.report-footer { color: #555; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ============================================================
+       HEADER
+       ============================================================ -->
+  <header class="report-header">
+    <div class="brand">Stellar Web Solutions</div>
+    <h1 class="report-title">Daily Tech Watch</h1>
+    <div class="report-date">{{DATE_LONG}}</div>
+    <div class="report-meta">{{ITEM_COUNT}} items · Readable in ~3 min</div>
+  </header>
+
+  <!-- ============================================================
+       CATEGORY SECTIONS
+       Claude: Duplicate the <details class="category"> block below
+       for each category in the daily report. Common categories
+       include: AI & ML, Web Dev, Security, DevOps, Tools, etc.
+       Inside each, duplicate <article class="item"> for each news
+       item. Pick the tag-* class that best matches the item.
+       ============================================================ -->
+  <details class="category" open>
+    <summary>
+      <span class="category-icon">🧠</span>
+      <span class="category-title">{{CATEGORY_TITLE}}</span>
+      <span class="category-count">{{COUNT}}</span>
+      <span class="category-chevron">▸</span>
+    </summary>
+    <div class="category-body">
+
+      <!-- Claude: duplicate this <article> block per item in the category -->
+      <article class="item">
+        <div class="item-header">
+          <span class="item-name">{{ITEM_NAME}}</span>
+          <span class="tag tag-new">{{TAG_LABEL}}</span>
+        </div>
+        <div class="item-summary">{{ITEM_SUMMARY}}</div>
+        <div class="item-why">{{ITEM_WHY}}</div>
+        <div class="item-source">Source: <a href="{{ITEM_SOURCE_URL}}">{{ITEM_SOURCE_NAME}}</a></div>
+      </article>
+
+    </div>
+  </details>
+
+  <!-- ============================================================
+       CLOSING SECTIONS — always render all three
+       ============================================================ -->
+  <section class="closing closing-action">
+    <div class="closing-icon">⚡</div>
+    <div class="closing-body">
+      <div class="closing-label">Action</div>
+      <div class="closing-content">{{ACTION_CONTENT}}</div>
+    </div>
+  </section>
+
+  <section class="closing closing-quickwin">
+    <div class="closing-icon">💡</div>
+    <div class="closing-body">
+      <div class="closing-label">Quick Win</div>
+      <div class="closing-content">{{QUICKWIN_CONTENT}}</div>
+    </div>
+  </section>
+
+  <section class="closing closing-idea">
+    <div class="closing-icon">🔧</div>
+    <div class="closing-body">
+      <div class="closing-label">Idea</div>
+      <div class="closing-content">{{IDEA_CONTENT}}</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="report-footer">
+    <div>Generated by <a href="#">Daily Tech Watch · Stellar Web Solutions</a></div>
+    <div>Powered by Claude · {{DATE_SHORT}}</div>
+  </footer>
+
+</div>
+</body>
+</html>
