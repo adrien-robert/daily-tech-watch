@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Tech Watch · Tuesday, October 13, 2026</title>
+    <title>Daily Tech Watch · Wednesday, October 14, 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
@@ -770,18 +770,16 @@
 </head>
 <body>
     <div class="container">
-        <!-- ============================================================
-             HEADER
-             ============================================================ -->
+        <!-- HEADER -->
         <header class="header">
             <div class="branding">Stellar Web Solutions</div>
             <h1>Daily Tech Watch</h1>
             <div class="header-meta">
-                <span class="meta-date">Tuesday, October 13, 2026</span>
+                <span class="meta-date">Wednesday, October 14, 2026</span>
             </div>
             <div class="stats-strip">
                 <div class="stat">
-                    <span class="stat-value">9</span>
+                    <span class="stat-value">8</span>
                     <span class="stat-label">Items</span>
                 </div>
                 <div class="stat">
@@ -796,22 +794,20 @@
             </div>
         </header>
 
-        <!-- ============================================================
-             TAG FILTER BAR
-             ============================================================ -->
+        <!-- TAG FILTER BAR -->
         <div class="filter-bar" id="filterBar">
             <span class="filter-bar-label">Filter</span>
         </div>
 
-        <!-- ============================================================
+        <!-- ════════════════════════════════════════════════════════════════
              CATEGORY 1: AI & LLM Ecosystem
-             ============================================================ -->
+             ════════════════════════════════════════════════════════════════ -->
         <details class="category" open>
             <summary class="category-header">
                 <div class="category-toggle"></div>
                 <div class="category-title-text">
                     <h2>🤖 AI &amp; LLM Ecosystem</h2>
-                    <span class="category-subtitle">5 items</span>
+                    <span class="category-subtitle">4 items</span>
                 </div>
             </summary>
 
@@ -819,70 +815,87 @@
 
                 <article class="item">
                     <div class="item-header">
-                        <h3 class="item-title">Meta Ships Muse Wonder Model Family at Premium Pricing</h3>
+                        <h3 class="item-title">Google Gemini 4 Argon Now Generally Available</h3>
+                        <span class="item-tag tag-milestone">Milestone</span>
+                    </div>
+                    <p class="item-summary">Google's most capable model, Gemini 4 Argon, is now available in the Gemini app, AI Mode in Search, and the Gemini API (model ID: <code>gemini-4-argon</code>). It leads Google's benchmarks in 13 of 18 categories, scoring 77.9% on DeepSWE v1.1 and 91.7% on LVBench. Artificial Analysis reports it matches GPT-6 Astra's capability at roughly 60% of the cost per task. Pricing is reported at $2/$10 per million input/output tokens.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> A strong new competitor to Claude Opus 5.5 and GPT-6 Astra at a lower price point. Worth evaluating for AI-assisted coding and content generation tasks where cost is a factor. It trails on Terminal-Bench 4.0 (57.4% vs Opus 5.5 at 66.4%), so Claude remains stronger for complex terminal/CLI workflows.
+                    </div>
+                    <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/" class="item-source">via Google AI Blog</a>
+                </article>
+
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">Mistral Large 4 Enters Public Preview</h3>
                         <span class="item-tag tag-new">New</span>
                     </div>
-                    <p class="item-summary">Meta Superintelligence Labs released the Muse Wonder model family on October 12, priced at $4/$20 per million input/output tokens — roughly double GPT-6.1 Sol. No parameter counts or independent benchmark scores have been published yet.</p>
+                    <p class="item-summary">Mistral launched Large 4, a 1.05T-parameter mixture-of-experts model (49B active parameters) with a 1M token context window. Available through Mistral Studio and the Mistral API, with open weights promised by end of October. Trained from scratch on 3,800 Grace Blackwell GPUs in European data centers. Scores 61.7% on DeepSWE v1.1 in agentic coding benchmarks.</p>
                     <div class="item-why">
-                        <strong>Why it matters:</strong> Meta entering the premium API market at 2x competitor pricing signals confidence in differentiation. For agency work, wait for independent benchmarks before committing — Claude and GPT-6 remain better-documented choices.
+                        <strong>Why it matters:</strong> When weights drop, this becomes the most capable open-weight model available. For agency work, a self-hosted frontier model could power internal tools (content pipelines, code review) without per-token API costs. European training is also a GDPR compliance talking point for EU clients.
                     </div>
-                    <a href="https://aitoolsrecap.com/Blog/ai-news-october-13-2026" class="item-source">via AI Tools Recap</a>
+                    <a href="https://letsdatascience.com/news/mistral-debuts-large-4-open-weight-model-preview-cbf9e0b5" class="item-source">via Let's Data Science</a>
                 </article>
 
                 <article class="item">
                     <div class="item-header">
-                        <h3 class="item-title">Claude Haiku 5.5: Up to 90% Cheaper, 1M Context Window</h3>
-                        <span class="item-tag tag-important">Important</span>
+                        <h3 class="item-title">Claude Haiku 5.5 Released with ~90% Price Cut</h3>
+                        <span class="item-tag tag-key">Key</span>
                     </div>
-                    <p class="item-summary">Anthropic released Claude Haiku 5.5 on October 7 at $0.10/$0.50 per million tokens (input/output) for prompts under 100K tokens — down from $1/$5 on Haiku 4.5. Features adjustable effort levels (a first for Haiku-class models), 1M-token context window, and 128K max output.</p>
+                    <p class="item-summary">Anthropic released Claude Haiku 5.5 at $0.10/$0.50 per million input/output tokens (up to 100K context), roughly one-tenth the cost of Haiku 4.5. Features include configurable effort levels (low to max), adaptive thinking on by default, 1M token context, up to 128K output tokens, and browser-use support in beta. Knowledge cutoff is June 2026.</p>
                     <div class="item-why">
-                        <strong>Why it matters:</strong> At these prices, bulk tasks like content summaries, subagent calls, and code linting become dramatically cheaper. Switch your Claude Code workflow subagents to <code>claude-haiku-5-5</code> for immediate savings on repetitive tasks.
+                        <strong>Why it matters:</strong> At this price point, Haiku 5.5 is ideal for high-volume agency tasks: content classification, metadata extraction, SEO audits, bulk summarization, and subagent work. The effort control lets you dial cost vs. quality per task. Consider migrating batch API workflows from Haiku 4.5 immediately.
                     </div>
-                    <a href="https://venturebeat.com/technology/anthropic-launches-claude-haiku-5-5-with-90-api-price-reduction-matching-gpt-6-luna" class="item-source">via VentureBeat</a>
+                    <a href="https://letsdatascience.com/news/anthropic-releases-claude-haiku-55-with-lower-prices-and-eff-f698c663" class="item-source">via Let's Data Science</a>
                 </article>
 
                 <article class="item">
                     <div class="item-header">
-                        <h3 class="item-title">OpenAI GPT-6 Sol &amp; Luna Roll Out to All ChatGPT Tiers</h3>
-                        <span class="item-tag tag-update">Update</span>
+                        <h3 class="item-title">OpenAI Hits $50B Annualized Revenue, Targets $70B by Year-End</h3>
+                        <span class="item-tag tag-trend">Trend</span>
                     </div>
-                    <p class="item-summary">GPT-6 Sol (reasoning-focused) and Luna (speed-optimized) are now available across ChatGPT paid and free tiers, replacing GPT-5.6. Sol API pricing halved to $2/$10 per million tokens; Luna matches Haiku 5.5 at $0.10/$0.50. The rollout includes "Intelligent UI" — interactive charts, forms, and mini-tools within ChatGPT responses.</p>
+                    <p class="item-summary">OpenAI disclosed to investors that its annualized revenue reached approximately $50 billion at end of September, with a $70 billion target for year-end. The company is reportedly pushing its IPO to 2027 and raising about $30B at a $1.4T valuation. Meanwhile, Anthropic is reportedly targeting a mega-IPO before Thanksgiving.</p>
                     <div class="item-why">
-                        <strong>Why it matters:</strong> The price war between Claude Haiku 5.5 and GPT-6 Luna at identical $0.10/$0.50 pricing means the cheapest tier is now a feature battle, not a price battle. Test both for your content pipelines.
+                        <strong>Why it matters:</strong> The AI provider landscape is consolidating fast. Both OpenAI and Anthropic moving toward public markets signals long-term stability but also potential pricing changes. Worth monitoring for any API pricing shifts that could affect agency operating costs.
                     </div>
-                    <a href="https://datanorth.ai/news/openai-brings-new-gpt-6-sol-and-luna-snapshots-to-chatgpt" class="item-source">via DataNorth</a>
-                </article>
-
-                <article class="item">
-                    <div class="item-header">
-                        <h3 class="item-title">Mistral Large 4 Preview: 1T-Parameter Open-Weight Model</h3>
-                        <span class="item-tag tag-new">New</span>
-                    </div>
-                    <p class="item-summary">Mistral released a public API preview of Large 4 on October 6 — a mixture-of-experts model with 1 trillion total parameters (49B active). Trained on 3,800 Nvidia Grace Blackwell GPUs in European datacenters. Open weights expected by end of October. 524K-token context window.</p>
-                    <div class="item-why">
-                        <strong>Why it matters:</strong> When weights drop, self-hosting a frontier-class model becomes viable for privacy-sensitive client projects. Track the October 27 estimated release date if you want to evaluate local deployment.
-                    </div>
-                    <a href="https://mistral.ai/news/mistral-large-4/" class="item-source">via Mistral AI</a>
-                </article>
-
-                <article class="item">
-                    <div class="item-header">
-                        <h3 class="item-title">Claude Code Adds "Mods" — Custom Plugins &amp; UI Extensions</h3>
-                        <span class="item-tag tag-tool">Tool</span>
-                    </div>
-                    <p class="item-summary">Claude Code's October 10 update introduced "mods" — small TypeScript functions that plugins can use to modify prompts, tool behavior, and UI elements. The same release added hook failure blocking, terminal status protocol support, and reliability fixes.</p>
-                    <div class="item-why">
-                        <strong>Why it matters:</strong> Mods let you build agency-specific tooling directly into Claude Code — custom slash commands for Bricks Builder scaffolding, WordPress deployment checks, or client-specific coding standards enforcement.
-                    </div>
-                    <a href="https://releasebot.io/updates/anthropic/claude-code" class="item-source">via Releasebot</a>
+                    <a href="https://implicator.ai/llm-meter-week-of-oct-13-2026" class="item-source">via Implicator AI / LLM Meter</a>
                 </article>
 
             </div>
         </details>
 
-        <!-- ============================================================
-             CATEGORY 2: WordPress Ecosystem
-             ============================================================ -->
+        <!-- ════════════════════════════════════════════════════════════════
+             CATEGORY 2: Claude Code × WordPress
+             ════════════════════════════════════════════════════════════════ -->
+        <details class="category" open>
+            <summary class="category-header">
+                <div class="category-toggle"></div>
+                <div class="category-title-text">
+                    <h2>🔧 Claude Code &times; WordPress</h2>
+                    <span class="category-subtitle">1 item</span>
+                </div>
+            </summary>
+
+            <div class="items-list">
+
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">WordPress MCP Ecosystem Matures: 5+ Connection Methods Now Available</h3>
+                        <span class="item-tag tag-tool">Tool</span>
+                    </div>
+                    <p class="item-summary">The WordPress-to-Claude-Code bridge ecosystem has expanded significantly. Options now include: the official WordPress MCP Adapter (v0.6.1, requires WP 6.9+, connects via WP-CLI), InstaWP InstaMCP (43 typed tools, 2-minute setup), the WordPress.com MCP Server (OAuth 2.1, single endpoint), and third-party plugins like AI Engine, WPVibe (v1.20.3, updated this month), and Easy MCP AI (supports the 2026-07-28 MCP spec). Each offers different trade-offs between setup complexity, access scope, and hosting flexibility.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> For a Bricks Builder agency workflow, the official WordPress MCP Adapter offers the most control — register custom abilities to let Claude Code read/write Bricks templates, ACF field groups, and WPCodeBox snippets directly. InstaWP InstaMCP is the fastest option for staging sites. Worth testing the official adapter on a dev site this week.
+                    </div>
+                    <a href="https://instawp.com/connect-claude-with-wordpress/" class="item-source">via InstaWP</a>
+                </article>
+
+            </div>
+        </details>
+
+        <!-- ════════════════════════════════════════════════════════════════
+             CATEGORY 3: WordPress Ecosystem
+             ════════════════════════════════════════════════════════════════ -->
         <details class="category">
             <summary class="category-header">
                 <div class="category-toggle"></div>
@@ -894,77 +907,46 @@
 
             <div class="items-list">
 
-                <article class="item priority-security">
+                <article class="item priority-breaking">
                     <div class="item-header">
-                        <h3 class="item-title">CRITICAL: Bricksforge RCE Vulnerability Under Active Exploitation</h3>
-                        <span class="item-tag tag-security">Security</span>
+                        <h3 class="item-title">Bricksforge Critical RCE Actively Exploited (CVE-2026-85097)</h3>
+                        <span class="item-tag tag-breaking">Breaking</span>
                     </div>
-                    <p class="item-summary">CVE-2026-85097 (CVSS 9.8–10.0) in Bricksforge allows unauthenticated arbitrary file upload and PHP execution. Versions up to 3.1.8.9 are affected. Patchstack detected active exploitation from 63+ IP addresses starting October 7. A public exploit exists. Update to 3.1.8.10 or later (current: 4.0.1) immediately.</p>
+                    <p class="item-summary">A critical unauthenticated file upload vulnerability in Bricksforge (the popular Bricks Builder add-on) allows remote code execution. CVSS 9.8-10.0. Versions 3.1.8.9 and earlier are affected. Patchstack confirmed in-the-wild exploitation since October 7. Attackers can upload and execute arbitrary PHP files without authentication. Patched in version 3.1.8.10.</p>
                     <div class="item-why">
-                        <strong>Why it matters:</strong> Bricksforge is a popular companion plugin for Bricks Builder. If any of your client sites use it, this is a drop-everything-and-patch situation. Check for unexpected PHP files in uploads directories — patching alone won't clean a compromised site.
+                        <strong>Why it matters:</strong> If you or any client sites use Bricksforge, update to 3.1.8.10 immediately and audit for signs of compromise (unexpected PHP files in uploads, new admin accounts, modified .htaccess). This is actively being exploited in the wild — treat all unpatched sites as potentially compromised.
                     </div>
-                    <a href="https://patchstack.com/articles/critical-unauthenticated-arbitrary-file-upload-vulnerability-exploited-in-bricksforge-plugin/" class="item-source">via Patchstack</a>
+                    <a href="https://www.securityweek.com/bricksforge-wordpress-plugin-vulnerability-exploited-in-the-wild/" class="item-source">via SecurityWeek</a>
                 </article>
 
                 <article class="item priority-security">
                     <div class="item-header">
-                        <h3 class="item-title">WordPress 7.1.3: 7 Security Fixes Including Stored XSS</h3>
+                        <h3 class="item-title">Bricks Builder 2.4.3 Security Release</h3>
                         <span class="item-tag tag-security">Security</span>
                     </div>
-                    <p class="item-summary">WordPress 7.1.3 shipped October 6 with seven security fixes, including a stored XSS vulnerability on the Comments administration page exploitable via pending comments, plus SQL injection and information disclosure patches. Four additional bug fixes included. Immediate update recommended.</p>
+                    <p class="item-summary">Bricks Builder released version 2.4.3 with security fixes addressing form uploads, submission validation, and form actions. While the vendor has not confirmed active exploitation of these specific issues, the update is recommended for all sites using Bricks forms. The release also includes stability improvements across the Builder, CSS Sync, and WooCommerce integration.</p>
                     <div class="item-why">
-                        <strong>Why it matters:</strong> The stored XSS in comments is particularly dangerous for sites with open commenting. Update all client sites to 7.1.3 and verify your hosting auto-update policies are working.
+                        <strong>Why it matters:</strong> As a Bricks-first agency, apply this update across all client sites. Form handling is a common attack vector, and these fixes address submission validation — critical for any site with contact forms, quote requests, or user-facing inputs built in Bricks.
                     </div>
-                    <a href="https://patchstack.com/articles/wordpress-7-1-3-security-release/" class="item-source">via Patchstack</a>
+                    <a href="https://bricksbuilder.io/release/bricks-2-4-3/" class="item-source">via Bricks Builder</a>
                 </article>
 
-                <article class="item">
+                <article class="item priority-security">
                     <div class="item-header">
-                        <h3 class="item-title">WordPress 7.2 Beta 1 Scheduled for October 20–22</h3>
-                        <span class="item-tag tag-update">Update</span>
+                        <h3 class="item-title">WordPress 7.1.3 Maintenance and Security Release</h3>
+                        <span class="item-tag tag-security">Security</span>
                     </div>
-                    <p class="item-summary">WordPress 7.2 Beta 1 is targeted for the week of October 20–22, with the final release expected December 8–10. Gutenberg 24.2.0 RC introduces Meter and Progress UI components, an updated Interactivity API directive, and SearchableSelectControl. Earlier Gutenberg releases (23.8–23.9) added declarable block keyboard shortcuts and theme.json schema fixes.</p>
+                    <p class="item-summary">WordPress 7.1.3 shipped on October 6 with 7 security fixes and 4 bug fixes. Notable patches include a stored XSS on the Comments administration page exploitable via pending comments, and a second-order SQL injection in WXR export. The WordPress project recommends updating immediately.</p>
                     <div class="item-why">
-                        <strong>Why it matters:</strong> Start testing your Bricks Builder and custom Gutenberg block setups against the beta when it drops next week. The new Interactivity API changes may affect dynamic block behavior.
+                        <strong>Why it matters:</strong> The stored XSS via pending comments is particularly relevant for sites that receive public comments. The SQL injection in WXR export could be exploited if an attacker gains editor-level access. Apply this update on all managed sites as part of your regular maintenance cycle.
                     </div>
-                    <a href="https://make.wordpress.org/updates/2026/10/09/test-team-update-09-october-2026/" class="item-source">via WordPress.org</a>
+                    <a href="https://wordpress.org/news/2026/10/wordpress-7-1-3-maintenance-and-security-release/" class="item-source">via WordPress.org</a>
                 </article>
 
             </div>
         </details>
 
-        <!-- ============================================================
-             CATEGORY 3: Web Development & Performance
-             ============================================================ -->
-        <details class="category">
-            <summary class="category-header">
-                <div class="category-toggle"></div>
-                <div class="category-title-text">
-                    <h2>⚡ Web Development &amp; Performance</h2>
-                    <span class="category-subtitle">1 items</span>
-                </div>
-            </summary>
-
-            <div class="items-list">
-
-                <article class="item">
-                    <div class="item-header">
-                        <h3 class="item-title">Google Completes September 2026 Spam Update</h3>
-                        <span class="item-tag tag-update">Update</span>
-                    </div>
-                    <p class="item-summary">Google's September spam update finished rolling out on October 8. The update targeted link spam, cloaking, and thin/auto-generated content. SEO roundups emphasize that technical crawlability, internal linking, and original content remain the primary ranking factors — especially important as AI-generated content faces increased scrutiny.</p>
-                    <div class="item-why">
-                        <strong>Why it matters:</strong> If client sites saw traffic shifts in the past two weeks, the spam update may be the cause. Review Search Console for any manual actions, and ensure AI-generated content on client sites adds genuine value beyond what's freely available.
-                    </div>
-                    <a href="https://news.designrush.com/seo-news-update-recap-google-spam-update-ai-overviews-ugc-gpt6" class="item-source">via DesignRush</a>
-                </article>
-
-            </div>
-        </details>
-
-        <!-- ============================================================
-             CLOSING SECTIONS
-             ============================================================ -->
+        <!-- CLOSING SECTIONS -->
         <div class="closing-sections">
             <div class="closing-section">
                 <div class="closing-header">
@@ -972,7 +954,7 @@
                     <span class="closing-label-action">Action</span>
                 </div>
                 <div class="closing-content">
-                    <strong>Bricksforge users: update immediately.</strong> CVE-2026-85097 (CVSS 10.0) allows unauthenticated RCE and is being actively exploited. Update to version 3.1.8.10+ on all client sites that use Bricksforge. Audit for compromise: check <code>wp-content/uploads/</code> for unexpected <code>.php</code> files. Also update WordPress core to 7.1.3 (stored XSS + SQL injection fixes).
+                    <strong>URGENT:</strong> Update Bricksforge to v3.1.8.10+ on all client sites immediately — CVE-2026-85097 is actively exploited and allows unauthenticated RCE. Also update Bricks Builder to 2.4.3 (form security fixes) and WordPress core to 7.1.3 (stored XSS + SQL injection fixes). Audit any Bricksforge sites that were running v3.1.8.9 or earlier for signs of compromise: check for unexpected files in <code>wp-content/uploads</code>, rogue admin accounts, and modified <code>.htaccess</code> files.
                 </div>
             </div>
 
@@ -982,7 +964,7 @@
                     <span class="closing-label-quickwin">Quick Win</span>
                 </div>
                 <div class="closing-content">
-                    Switch Claude Code subagent tasks to <code>claude-haiku-5-5</code> for an instant cost reduction. At $0.10/M input tokens (down from $1.00), routine tasks like content summarization, code linting, and SEO meta-description generation cost 90% less. Add <code>"model": "claude-haiku-5-5"</code> to your workflow agent configurations today.
+                    Switch high-volume Claude API tasks to Haiku 5.5 — at <code>$0.10/$0.50</code> per million tokens, it's ~90% cheaper than Haiku 4.5. Use the <code>effort: "low"</code> setting for bulk classification (e.g., categorizing support tickets, tagging blog posts for SEO) and <code>effort: "high"</code> for content summarization. This single change could cut your monthly API costs by 75%+ on batch workloads.
                 </div>
             </div>
 
@@ -992,14 +974,12 @@
                     <span class="closing-label-idea">Idea</span>
                 </div>
                 <div class="closing-content">
-                    <strong>Claude Code × WordPress: Automated Client Site Security Audit.</strong> Use Claude Code with the WordPress MCP connector to build a one-command security check across all client sites. Create a workflow that connects to each site via MCP, runs <code>sws_check_plugin_versions()</code> to flag outdated plugins (especially Bricksforge!), <code>sws_scan_uploads_for_php()</code> to detect injected files, and <code>sws_verify_core_version()</code> to confirm WordPress 7.1.3. Output a per-site security report as a formatted HTML card. With Claude Code's new mods feature, wrap this as a custom slash command: <code>/sws-security-audit</code>.
+                    <strong>Claude Code × WordPress:</strong> Build a <code>sws_audit_bricks_security()</code> function using Claude Code connected to the WordPress MCP Adapter. Have it scan all Bricks templates across your managed sites for: (1) forms without CSRF token validation, (2) file upload elements without proper mime-type restrictions, (3) form actions pointing to non-whitelisted URLs, and (4) custom PHP in Bricks code blocks that uses <code>$_POST</code>/<code>$_GET</code> without sanitization. Given the Bricksforge RCE and Bricks 2.4.3 form security fixes, a proactive audit script could catch similar patterns before they become vulnerabilities. Run it as a scheduled Claude Code task across all client sites.
                 </div>
             </div>
         </div>
 
-        <!-- ============================================================
-             FOOTER
-             ============================================================ -->
+        <!-- FOOTER -->
         <footer class="footer">
             <p>Generated by <a href="#">Daily Tech Watch</a> · Stellar Web Solutions</p>
         </footer>
