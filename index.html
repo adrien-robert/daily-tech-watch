@@ -3,8 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Tech Watch · Thursday, October 15, 2026</title>
+    <title>Daily Tech Watch · Friday, October 16, 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
+    <!--
+    DESIGN PHILOSOPHY — Version A: Editorial Newsletter
+
+    This template takes inspiration from premium morning newsletters (Morning Brew, The Hustle, TLDR)
+    with a dark-theme, editorial-first approach designed for busy WordPress agency owners.
+
+    Key design principles:
+    1. Generous whitespace — breathing room between sections, not cluttered
+    2. Typography hierarchy — headlines dominate, body copy supports, metadata whispers
+    3. Editorial voice — "via TechCrunch" feels more intentional than "Source: techcrunch.com"
+    4. Priority visualization — colored left-border for breaking/security items, subtle glow effect
+    5. Card-based layout — each item is a distinct editorial block, not a list item
+    6. Curated closing sections — action, quickwin, idea feel like editor's picks
+    7. Fully responsive — comfortable on mobile (44px+ touch targets), elegant on desktop
+    8. Print-ready — light theme automatically applied when printing
+
+    Color system:
+    Dark theme: #0c0e14 (bg), #13161f (card), #e8e9ed (text), #a4a7b3 (secondary)
+    Accent colors: purple (#8b7cf6), blue (#5eadf6), green (#3dd9a0), teal (#2ec9b6),
+                   yellow (#f6c547), orange (#f69b47), red (#f66b6b)
+
+    Template tokens (shown in HTML comments, rendered with sample content):
+    Friday, October 16, 2026, 1, {{CATEGORY_TITLE}}, {{COUNT}},
+    {{ITEM_NAME}}, {{TAG_LABEL}}, {{ITEM_SUMMARY}}, {{ITEM_WHY}},
+    {{ITEM_SOURCE_URL}}, {{ITEM_SOURCE_NAME}},
+    Carry-over, no new alert: the Bricksforge plugin flaw reported Oct 13 is being exploited in the wild. If any client site runs Bricksforge, confirm it is on 3.1.8.10 or later., Quiet news day, so use it: add a <code>CLAUDE.md</code> to your starter theme listing the <code>sws_</code> prefix convention, your Bricks element naming and ACF field-group rules, so Claude Code follows them on every session., Ask Claude Code to scaffold an audit script: a WP-CLI command <code>sws_audit_plugin_versions()</code> that loops over your client sites, compares installed plugin versions against a watch-list (Bricksforge, Kirki, etc.) and outputs a Markdown report of outdated or vulnerable versions.
+    -->
 
     <style>
         /* ═══════════════════════════════════════════════════════════════════
@@ -140,6 +168,8 @@
             font-weight: 500;
         }
 
+        /* meta-count removed — replaced by stats-strip */
+
         @media (max-width: 640px) {
             .header-meta {
                 flex-direction: column;
@@ -259,6 +289,7 @@
             color: #fff;
         }
 
+        /* Filter-btn colors mirror the tag colors */
         .filter-btn[data-tag="new"] { color: #3dd9a0; border-color: rgba(61, 217, 160, 0.4); }
         .filter-btn[data-tag="new"].active { background: rgba(61, 217, 160, 0.15); }
 
@@ -295,6 +326,7 @@
         .filter-btn[data-tag="key"] { color: #f6c547; border-color: rgba(246, 197, 71, 0.4); }
         .filter-btn[data-tag="key"].active { background: rgba(246, 197, 71, 0.15); }
 
+        /* Hidden items and empty categories when filtering */
         .item.filtered-out {
             display: none;
         }
@@ -399,6 +431,7 @@
             background: #171a24;
         }
 
+        /* Priority indicators for breaking/security items */
         .item.priority-breaking {
             border-left-color: #f66b6b;
             background: linear-gradient(135deg, #13161f 0%, rgba(246, 107, 107, 0.05) 100%);
@@ -441,6 +474,7 @@
             white-space: nowrap;
         }
 
+        /* Tag color system — all 12 tags with emoji prefixes */
         .item-tag::before {
             margin-right: 0.25rem;
             font-size: 0.65rem;
@@ -761,6 +795,7 @@
                 border-top-color: #e0e0e0;
             }
 
+            /* Remove shadows and transitions for print */
             * {
                 box-shadow: none !important;
                 transition: none !important;
@@ -770,178 +805,88 @@
 </head>
 <body>
     <div class="container">
-        <!-- HEADER -->
+        <!-- ============================================================
+             HEADER
+             ============================================================ -->
         <header class="header">
             <div class="branding">Stellar Web Solutions</div>
             <h1>Daily Tech Watch</h1>
             <div class="header-meta">
-                <span class="meta-date">Thursday, October 15, 2026</span>
+                <span class="meta-date">Friday, October 16, 2026</span>
             </div>
             <div class="stats-strip">
                 <div class="stat">
-                    <span class="stat-value">7</span>
+                    <span class="stat-value">1</span>
                     <span class="stat-label">Items</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-value">3</span>
+                    <span class="stat-value">1</span>
                     <span class="stat-label">Categories</span>
                 </div>
                 <div class="stat">
                     <span class="stat-dot high-priority"></span>
-                    <span class="stat-value">1</span>
+                    <span class="stat-value">0</span>
                     <span class="stat-label">Critical</span>
                 </div>
             </div>
         </header>
 
-        <!-- TAG FILTER BAR -->
+        <!-- ============================================================
+             TAG FILTER BAR
+             Auto-populated by JavaScript on page load.
+             Only shows tags actually present in the report.
+             ============================================================ -->
         <div class="filter-bar" id="filterBar">
             <span class="filter-bar-label">Filter</span>
+            <!-- Buttons are injected by sws_initFilters() -->
         </div>
 
-        <!-- ════════════════════════════════════════════════════════════════
-             CATEGORY 1: AI & LLM Ecosystem
-             ════════════════════════════════════════════════════════════════ -->
+        <!-- ============================================================
+             CATEGORY SECTIONS
+             Claude: Duplicate the <details class="category"> block below
+             for each category in the daily report. Common categories
+             include: AI & ML, Web Dev, Security, DevOps, Tools, etc.
+             Inside each, duplicate <article class="item"> for each news
+             item. Pick the tag-* class that best matches the item.
+             For breaking/security items, also add class priority-breaking
+             or priority-security on the <article>.
+             ============================================================ -->
         <details class="category" open>
             <summary class="category-header">
                 <div class="category-toggle"></div>
                 <div class="category-title-text">
                     <h2>🤖 AI &amp; LLM Ecosystem</h2>
-                    <span class="category-subtitle">5 items</span>
+                    <span class="category-subtitle">1 items</span>
                 </div>
             </summary>
 
             <div class="items-list">
-
                 <article class="item">
                     <div class="item-header">
-                        <h3 class="item-title">Google Gemini 4 Argon Rolls Out to All AI Pro &amp; Ultra Subscribers</h3>
-                        <span class="item-tag tag-milestone">Milestone</span>
+                        <h3 class="item-title">Anthropic publishes "An update on independent evaluators"</h3>
+                        <span class="item-tag tag-update">Update</span>
                     </div>
-                    <p class="item-summary">Google's frontier model Gemini 4 Argon is now broadly available via the Gemini app, AI Studio, and Antigravity. The model features a 1M-token context window, three thinking levels, and introductory pricing of $2/$10 per million tokens (input/output) through November 30. It excels at coding (77.9% on DeepSWE v1.1), financial research, legal drafting, and autonomous cybersecurity vulnerability patching.</p>
+                    <p class="item-summary">Anthropic posted a new newsroom entry on Oct 15 about its work with outside evaluators. Only the title was verifiable today; no details on scope or impact were confirmed.</p>
                     <div class="item-why">
-                        <strong>Why it matters:</strong> A serious new competitor to Claude Opus 5.5 with aggressive introductory pricing. The built-in Antigravity agentic coding interface could attract developers currently using Claude Code or Cursor for multi-step tasks. Worth benchmarking against your current workflows.
+                        <strong>Why it matters:</strong> Low direct impact on agency work. Worth a skim only if evaluator access or model-safety policy affects your Claude usage.
                     </div>
-                    <a href="https://9to5google.com/2026/10/13/gemini-app-4-argon/" class="item-source">via 9to5Google</a>
+                    <a href="https://www.anthropic.com/news" class="item-source">via Anthropic Newsroom</a>
                 </article>
-
-                <article class="item">
-                    <div class="item-header">
-                        <h3 class="item-title">OpenAI Engineer Arrested for Planting Spy Device in Executive Conference Room</h3>
-                        <span class="item-tag tag-important">Important</span>
-                    </div>
-                    <p class="item-summary">FBI arrested OpenAI engineer Abdulrahman Alfozan after the company found an encrypted audio recorder hidden behind a TV in an executive conference room. The device was discovered September 30; a second device was found in his bag on October 5. Prosecutors allege he used his wife's ChatGPT account to research meeting room locations. OpenAI says its own AI models helped identify the suspect. No evidence of model weight or source code exfiltration so far.</p>
-                    <div class="item-why">
-                        <strong>Why it matters:</strong> A stark reminder of insider threat risks at AI companies. FBI Director Kash Patel framed this as a counterintelligence priority tied to superintelligence work. The case underscores that physical security matters as much as digital security in the AI race.
-                    </div>
-                    <a href="https://www.bleepingcomputer.com/news/artificial-intelligence/openai-engineer-arrested-for-allegedly-planting-spy-device-in-office/" class="item-source">via BleepingComputer</a>
-                </article>
-
-                <article class="item">
-                    <div class="item-header">
-                        <h3 class="item-title">Radware Launches MCP Server Protection for Agentic AI</h3>
-                        <span class="item-tag tag-new">New</span>
-                    </div>
-                    <p class="item-summary">Radware released a dedicated security product for Model Context Protocol (MCP) servers, addressing the growing attack surface as enterprises connect AI agents to internal systems. The product shields MCP servers from protocol-specific attacks and DDoS, adding visibility and governance. A Stacklok survey found nearly half of software companies now use MCP in production.</p>
-                    <div class="item-why">
-                        <strong>Why it matters:</strong> If you run MCP servers connecting Claude Code to WordPress or other tools, this is the first dedicated security product for that layer. Earlier in 2026, researchers found 492 MCP servers exposed with zero authentication. As MCP adoption grows, so does the need for proper security.
-                    </div>
-                    <a href="https://helpnetsecurity.com/2026/10/14/radware-mcp-server-protection" class="item-source">via Help Net Security</a>
-                </article>
-
-                <article class="item">
-                    <div class="item-header">
-                        <h3 class="item-title">Digits Launches Write MCP — AI Agents Can Now Do Accounting</h3>
-                        <span class="item-tag tag-new">New</span>
-                    </div>
-                    <p class="item-summary">Digits released Write MCP, enabling AI agents to create, update, and delete general ledger records with built-in safeguards. Locked Periods protect closed books from accidental changes. Write MCP is available at no extra cost for existing Digits customers, marking a shift from read-only AI integrations to full write access in financial tools.</p>
-                    <div class="item-why">
-                        <strong>Why it matters:</strong> For agency owners managing invoicing and bookkeeping, this opens up agent-driven financial workflows. Imagine Claude Code closing out a project, generating the invoice, and logging the revenue entry — all through MCP. The Locked Periods safeguard is a smart pattern for sensitive write operations.
-                    </div>
-                    <a href="https://manilatimes.net/2026/10/13/tmt-newswire/globenewswire/digits-launches-write-mcp-the-safe-way-for-ai-agents-to-do-accounting/2444706" class="item-source">via GlobeNewsWire</a>
-                </article>
-
-                <article class="item">
-                    <div class="item-header">
-                        <h3 class="item-title">Scytale MCP Gives AI Tools Read-Only Access to Compliance Data</h3>
-                        <span class="item-tag tag-tool">Tool</span>
-                    </div>
-                    <p class="item-summary">Scytale launched an MCP server that gives Claude, ChatGPT, and other AI tools scoped, read-only access to compliance data. This allows AI agents to query audit status, check control frameworks, and surface compliance gaps without the risk of modifying sensitive records.</p>
-                    <div class="item-why">
-                        <strong>Why it matters:</strong> Part of the growing wave of enterprise MCP servers. For agencies handling client data, having AI-readable compliance status could streamline SOC 2 or GDPR reporting. The read-only pattern is the right default for sensitive data.
-                    </div>
-                    <a href="https://helpnetsecurity.com/2026/10/14/scytale-mcp" class="item-source">via Help Net Security</a>
-                </article>
-
             </div>
         </details>
 
-        <!-- ════════════════════════════════════════════════════════════════
-             CATEGORY 2: WordPress Ecosystem
-             ════════════════════════════════════════════════════════════════ -->
-        <details class="category">
-            <summary class="category-header">
-                <div class="category-toggle"></div>
-                <div class="category-title-text">
-                    <h2>📦 WordPress Ecosystem</h2>
-                    <span class="category-subtitle">1 item</span>
-                </div>
-            </summary>
-
-            <div class="items-list">
-
-                <article class="item priority-security">
-                    <div class="item-header">
-                        <h3 class="item-title">Bricksforge Critical Vulnerability Actively Exploited (CVE-2026-85097)</h3>
-                        <span class="item-tag tag-security">Security</span>
-                    </div>
-                    <p class="item-summary">A critical unauthenticated file upload vulnerability (CVSS 9.8–10.0) in the Bricksforge plugin for Bricks Builder is being actively exploited in the wild. Versions 3.1.8.9 and earlier are affected. The flaw allows attackers to upload and execute arbitrary PHP files by manipulating the file destination URL at form submission. Patchstack telemetry shows automated exploitation using rotating proxies since October 7.</p>
-                    <div class="item-why">
-                        <strong>Why it matters:</strong> If you use Bricksforge with Bricks Builder, this is a drop-everything update. Update to version 3.1.8.10 immediately. The patch stops new attacks but does not remove files already planted — check your uploads folder and server logs for suspicious PHP files after updating. Note: sites running Bricks Builder without the Bricksforge add-on are not affected.
-                    </div>
-                    <a href="https://patchstack.com/articles/wordpress-7-1-3-security-release/" class="item-source">via Patchstack</a>
-                </article>
-
-            </div>
-        </details>
-
-        <!-- ════════════════════════════════════════════════════════════════
-             CATEGORY 3: Web Development & Performance
-             ════════════════════════════════════════════════════════════════ -->
-        <details class="category">
-            <summary class="category-header">
-                <div class="category-toggle"></div>
-                <div class="category-title-text">
-                    <h2>⚡ Web Development &amp; Performance</h2>
-                    <span class="category-subtitle">1 item</span>
-                </div>
-            </summary>
-
-            <div class="items-list">
-
-                <article class="item">
-                    <div class="item-header">
-                        <h3 class="item-title">Cloudflare Adds Core Web Vitals Sub-Part Diagnostics for LCP &amp; INP</h3>
-                        <span class="item-tag tag-tool">Tool</span>
-                    </div>
-                    <p class="item-summary">Cloudflare's Web Analytics now breaks down LCP into four stages (TTFB, resource load delay, resource download time, element render delay) and INP into three stages (interaction wait, handling, rendering) in its Real User Monitoring dashboard. This lets you pinpoint exactly where the bottleneck is instead of staring at a single aggregate number.</p>
-                    <div class="item-why">
-                        <strong>Why it matters:</strong> For WordPress agencies optimizing client sites, this is a free diagnostic upgrade. If LCP is slow, you can now see whether it's the server (TTFB), the image download, or the render — each has a completely different fix. Pair this with Perfmatters or LiteSpeed Cache for targeted optimization.
-                    </div>
-                    <a href="https://developers.cloudflare.com/changelog/post/2026-10-13-core-web-vital-subparts/" class="item-source">via Cloudflare Changelog</a>
-                </article>
-
-            </div>
-        </details>
-
-        <!-- CLOSING SECTIONS -->
+        <!-- ============================================================
+             CLOSING SECTIONS — always render all three.
+             Two-column grid on desktop, single column on mobile.
+             "Idea" spans full width.
+             ============================================================ -->
         <div class="closing-sections">
             <div class="closing-section">
                 <div class="closing-header">
                     <div class="closing-icon">⚡</div>
                     <span class="closing-label-action">Action</span>
                 </div>
-                <div class="closing-content"><strong>Bricksforge CVE-2026-85097</strong> — Critical unauthenticated file upload vulnerability (CVSS 9.8) is being actively exploited since October 7. If you use Bricksforge with Bricks Builder, update to version 3.1.8.10 immediately. After updating, scan your <code>wp-content/uploads/</code> directory for suspicious <code>.php</code> files and review server access logs for unusual POST requests to form endpoints.</div>
+                <div class="closing-content">Carry-over, no new alert: the Bricksforge plugin flaw reported Oct 13 is being exploited in the wild. If any client site runs Bricksforge, confirm it is on 3.1.8.10 or later.</div>
             </div>
 
             <div class="closing-section">
@@ -949,7 +894,7 @@
                     <div class="closing-icon">✨</div>
                     <span class="closing-label-quickwin">Quick Win</span>
                 </div>
-                <div class="closing-content">Enable Cloudflare's new CWV sub-part metrics in Web Analytics. Instead of a single LCP or INP number, you'll see the exact breakdown — TTFB vs. resource load vs. render delay. Pick one client site, check the sub-parts, and fix the biggest bottleneck. A high TTFB means server/caching; a high resource download means image optimization; a high render delay means DOM complexity or render-blocking scripts.</div>
+                <div class="closing-content">Quiet news day, so use it: add a <code>CLAUDE.md</code> to your starter theme listing the <code>sws_</code> prefix convention, your Bricks element naming and ACF field-group rules, so Claude Code follows them on every session.</div>
             </div>
 
             <div class="closing-section full-width">
@@ -957,17 +902,26 @@
                     <div class="closing-icon">💡</div>
                     <span class="closing-label-idea">Idea</span>
                 </div>
-                <div class="closing-content">Use Claude Code to build a Bricksforge security audit script. Given the active CVE, create a WP-CLI command (<code>sws_audit_bricksforge_uploads</code>) that scans your uploads directory for PHP files that don't belong, checks file modification dates against the known exploitation window (Oct 7+), and generates a report of suspicious files with their contents previewed safely. Run it via Claude Code's WordPress MCP connection across all your client sites in one session: <code>claude mcp run wp-cli -- wp eval "sws_audit_bricksforge_uploads();"</code> per site. This turns a manual "check all sites" panic into a 5-minute automated sweep.</div>
+                <div class="closing-content">Ask Claude Code to scaffold an audit script: a WP-CLI command <code>sws_audit_plugin_versions()</code> that loops over your client sites, compares installed plugin versions against a watch-list (Bricksforge, Kirki, etc.) and outputs a Markdown report of outdated or vulnerable versions.</div>
             </div>
         </div>
 
-        <!-- FOOTER -->
+        <!-- ============================================================
+             FOOTER
+             ============================================================ -->
         <footer class="footer">
             <p>Generated by <a href="#">Daily Tech Watch</a> · Stellar Web Solutions</p>
         </footer>
     </div>
 
     <script>
+    /* ═══════════════════════════════════════════════════════════════════
+       TAG FILTER LOGIC
+       Scans the page for tag-* classes, builds filter buttons dynamically,
+       and toggles item visibility. Categories with no visible items are hidden.
+       All custom functions prefixed with sws_ per coding convention.
+       ═════════════════════════════════════════════════════════════════ */
+
     const SWS_TAG_LABELS = {
         'new': '🆕 New',
         'security': '🔒 Security',
@@ -995,6 +949,7 @@
         const items = document.querySelectorAll('article.item');
         const categories = document.querySelectorAll('details.category');
 
+        // Collect tags present in this report with counts
         const tagCounts = {};
         items.forEach(item => {
             const tag = sws_getItemTag(item);
@@ -1006,12 +961,14 @@
             return;
         }
 
+        // "All" button
         const allBtn = document.createElement('button');
         allBtn.className = 'filter-btn filter-btn-all active';
         allBtn.textContent = 'All';
         allBtn.addEventListener('click', () => sws_filterByTag(null));
         filterBar.appendChild(allBtn);
 
+        // One button per tag found
         Object.keys(tagCounts).forEach(tag => {
             const btn = document.createElement('button');
             btn.className = 'filter-btn';
@@ -1029,6 +986,7 @@
         const allBtn = document.querySelector('.filter-btn-all');
         const tagBtns = document.querySelectorAll('.filter-btn[data-tag]');
 
+        // Update button states
         if (activeTag === null) {
             allBtn.classList.add('active');
             tagBtns.forEach(btn => btn.classList.remove('active'));
@@ -1039,6 +997,7 @@
             });
         }
 
+        // Show/hide items
         items.forEach(item => {
             if (activeTag === null) {
                 item.classList.remove('filtered-out');
@@ -1048,9 +1007,11 @@
             }
         });
 
+        // Hide categories with no visible items
         categories.forEach(cat => {
             const visibleItems = cat.querySelectorAll('article.item:not(.filtered-out)');
             cat.classList.toggle('category-empty', visibleItems.length === 0);
+            // Update subtitle count
             const subtitle = cat.querySelector('.category-subtitle');
             if (subtitle) {
                 const total = cat.querySelectorAll('article.item').length;
@@ -1064,5 +1025,25 @@
 
     document.addEventListener('DOMContentLoaded', sws_initFilters);
     </script>
+
+    <!--
+    DUPLICATION INSTRUCTIONS FOR TEMPLATE MANAGEMENT:
+
+    To add a new category:
+    1. Copy the entire <details class="category"> block
+    2. Update the category title and item count
+    3. Duplicate item cards as needed within the <div class="items-list">
+
+    To add a new item:
+    1. Copy the <article class="item"> block
+    2. Update all content: title, tag, summary, "why it matters", source
+    3. For priority items, add classes: priority-breaking or priority-security
+    4. For tag colors, use one of: tag-new, tag-security, tag-update, tag-breaking,
+       tag-important, tag-milestone, tag-tool, tag-trend, tag-tutorial, tag-deadline,
+       tag-delayed, tag-key
+
+    Print this newsletter by pressing Ctrl+P / Cmd+P — print styles automatically
+    convert the dark theme to a light, print-friendly version.
+    -->
 </body>
 </html>
