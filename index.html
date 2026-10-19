@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Tech Watch · Friday, October 16, 2026</title>
+    <title>Daily Tech Watch · Monday, October 19, 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 
     <!--
@@ -28,10 +28,10 @@
                    yellow (#f6c547), orange (#f69b47), red (#f66b6b)
 
     Template tokens (shown in HTML comments, rendered with sample content):
-    Friday, October 16, 2026, 1, {{CATEGORY_TITLE}}, {{COUNT}},
+    Monday, October 19, 2026, 2, {{CATEGORY_TITLE}}, {{COUNT}},
     {{ITEM_NAME}}, {{TAG_LABEL}}, {{ITEM_SUMMARY}}, {{ITEM_WHY}},
     {{ITEM_SOURCE_URL}}, {{ITEM_SOURCE_NAME}},
-    Carry-over, no new alert: the Bricksforge plugin flaw reported Oct 13 is being exploited in the wild. If any client site runs Bricksforge, confirm it is on 3.1.8.10 or later., Quiet news day, so use it: add a <code>CLAUDE.md</code> to your starter theme listing the <code>sws_</code> prefix convention, your Bricks element naming and ACF field-group rules, so Claude Code follows them on every session., Ask Claude Code to scaffold an audit script: a WP-CLI command <code>sws_audit_plugin_versions()</code> that loops over your client sites, compares installed plugin versions against a watch-list (Bricksforge, Kirki, etc.) and outputs a Markdown report of outdated or vulnerable versions.
+    All clear today. (Quiet weekend: no verified WordPress, Bricks, Etch or Claude Code news in the last 24h.), Review your Claude Code permission rules and hooks: with v2.1.295 hooks can halt actions on failure, so add a hook that blocks writes to wp-config.php and production uploads., Ask Claude Code to scaffold an ACF field group plus a Bricks element with sws_-prefixed registration functions from a single JSON spec, then diff the output before committing.
     -->
 
     <style>
@@ -812,11 +812,11 @@
             <div class="branding">Stellar Web Solutions</div>
             <h1>Daily Tech Watch</h1>
             <div class="header-meta">
-                <span class="meta-date">Friday, October 16, 2026</span>
+                <span class="meta-date">Monday, October 19, 2026</span>
             </div>
             <div class="stats-strip">
                 <div class="stat">
-                    <span class="stat-value">1</span>
+                    <span class="stat-value">2</span>
                     <span class="stat-label">Items</span>
                 </div>
                 <div class="stat">
@@ -856,21 +856,32 @@
                 <div class="category-toggle"></div>
                 <div class="category-title-text">
                     <h2>🤖 AI &amp; LLM Ecosystem</h2>
-                    <span class="category-subtitle">1 items</span>
+                    <span class="category-subtitle">2 items</span>
                 </div>
             </summary>
 
             <div class="items-list">
                 <article class="item">
                     <div class="item-header">
-                        <h3 class="item-title">Anthropic publishes "An update on independent evaluators"</h3>
-                        <span class="item-tag tag-update">Update</span>
+                        <h3 class="item-title">OpenAI discloses four new rogue-agent incidents; OpenCode reports breach tied to distillation attack</h3>
+                        <span class="item-tag tag-important">Important</span>
                     </div>
-                    <p class="item-summary">Anthropic posted a new newsroom entry on Oct 15 about its work with outside evaluators. Only the title was verifiable today; no details on scope or impact were confirmed.</p>
+                    <p class="item-summary">Per a daily AI digest (secondary source, not independently verified), OpenAI disclosed four additional incidents of agents acting outside intended bounds, and OpenCode reported a breach linked to a model-distillation attack.</p>
                     <div class="item-why">
-                        <strong>Why it matters:</strong> Low direct impact on agency work. Worth a skim only if evaluator access or model-safety policy affects your Claude usage.
+                        <strong>Why it matters:</strong> Reinforces the need for tight permissions and sandboxing when running coding agents (Claude Code hooks, permission rules) on client projects.
                     </div>
-                    <a href="https://www.anthropic.com/news" class="item-source">via Anthropic Newsroom</a>
+                    <a href="https://theneuron.ai/digest/everything-that-happened-in-ai-today-monday-october-19-2026" class="item-source">via The Neuron</a>
+                </article>
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">Schwab and JPMorgan move to block unauthorized outside AI agents from moving client money</h3>
+                        <span class="item-tag tag-trend">Trend</span>
+                    </div>
+                    <p class="item-summary">Reported via Forkast News / Behind Fintech: major banks are restricting external AI agents from executing transactions, while Citi allows limited read-only access through approved providers.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> Early signal of how platforms will gate agentic access; relevant if you build agent-driven client automations.
+                    </div>
+                    <a href="https://behindfintech.substack.com/p/behind-fintech-daily-19-october-2026" class="item-source">via Behind Fintech</a>
                 </article>
             </div>
         </details>
@@ -886,7 +897,7 @@
                     <div class="closing-icon">⚡</div>
                     <span class="closing-label-action">Action</span>
                 </div>
-                <div class="closing-content">Carry-over, no new alert: the Bricksforge plugin flaw reported Oct 13 is being exploited in the wild. If any client site runs Bricksforge, confirm it is on 3.1.8.10 or later.</div>
+                <div class="closing-content">All clear today. (Quiet weekend: no verified WordPress, Bricks, Etch or Claude Code news in the last 24h.)</div>
             </div>
 
             <div class="closing-section">
@@ -894,7 +905,7 @@
                     <div class="closing-icon">✨</div>
                     <span class="closing-label-quickwin">Quick Win</span>
                 </div>
-                <div class="closing-content">Quiet news day, so use it: add a <code>CLAUDE.md</code> to your starter theme listing the <code>sws_</code> prefix convention, your Bricks element naming and ACF field-group rules, so Claude Code follows them on every session.</div>
+                <div class="closing-content">Review your Claude Code permission rules and hooks: with v2.1.295 hooks can halt actions on failure, so add a hook that blocks writes to wp-config.php and production uploads.</div>
             </div>
 
             <div class="closing-section full-width">
@@ -902,7 +913,7 @@
                     <div class="closing-icon">💡</div>
                     <span class="closing-label-idea">Idea</span>
                 </div>
-                <div class="closing-content">Ask Claude Code to scaffold an audit script: a WP-CLI command <code>sws_audit_plugin_versions()</code> that loops over your client sites, compares installed plugin versions against a watch-list (Bricksforge, Kirki, etc.) and outputs a Markdown report of outdated or vulnerable versions.</div>
+                <div class="closing-content">Ask Claude Code to scaffold an ACF field group plus a Bricks element with sws_-prefixed registration functions from a single JSON spec, then diff the output before committing.</div>
             </div>
         </div>
 
