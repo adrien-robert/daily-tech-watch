@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Tech Watch · Wednesday, October 21, 2026</title>
+    <title>Daily Tech Watch · Thursday, October 22, 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 
     <!--
@@ -28,10 +28,10 @@
                    yellow (#f6c547), orange (#f69b47), red (#f66b6b)
 
     Template tokens (shown in HTML comments, rendered with sample content):
-    Wednesday, October 21, 2026, 0, {{CATEGORY_TITLE}}, {{COUNT}},
+    Thursday, October 22, 2026, 2, {{CATEGORY_TITLE}}, {{COUNT}},
     {{ITEM_NAME}}, {{TAG_LABEL}}, {{ITEM_SUMMARY}}, {{ITEM_WHY}},
     {{ITEM_SOURCE_URL}}, {{ITEM_SOURCE_NAME}},
-    All clear today., Quiet day: audit your Claude Code setup. Add a project <code>CLAUDE.md</code> to each active client repo listing the theme prefix (<code>sws_</code>), Bricks/ACF conventions and WP-CLI commands, so every session starts with your agency standards., Have Claude Code scaffold an ACF field group plus a matching Bricks query-loop template from a JSON spec: ask it to generate <code>sws_register_field_groups()</code> that hooks <code>acf/init</code> and registers local field groups in PHP, so they are versioned in Git and deployable without database syncs.
+    <strong>Patch PHP on all client hosts today.</strong> Check the PHP version on each server (hosting panel or <code>php -v</code>), confirm with each host that the patched build is deployed, and prioritise sites with exposed admin or upload endpoints. Check the WordPress.org notice for the fixed PHP versions., Add a <code>sws_php_version_check</code> line to your maintenance checklist: show the PHP version in Site Health across all client sites (e.g. via MainWP or ManageWP) so the next PHP advisory takes minutes to triage., Ask Claude Code to scaffold a small mu-plugin that exposes <code>sws_report_runtime_versions()</code> through a REST endpoint (PHP, WP core, active plugins). A shell script can then poll every client site and flag servers still on a vulnerable PHP build.
     -->
 
     <style>
@@ -812,20 +812,20 @@
             <div class="branding">Stellar Web Solutions</div>
             <h1>Daily Tech Watch</h1>
             <div class="header-meta">
-                <span class="meta-date">Wednesday, October 21, 2026</span>
+                <span class="meta-date">Thursday, October 22, 2026</span>
             </div>
             <div class="stats-strip">
                 <div class="stat">
-                    <span class="stat-value">0</span>
+                    <span class="stat-value">2</span>
                     <span class="stat-label">Items</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-value">0</span>
+                    <span class="stat-value">2</span>
                     <span class="stat-label">Categories</span>
                 </div>
                 <div class="stat">
                     <span class="stat-dot high-priority"></span>
-                    <span class="stat-value">0</span>
+                    <span class="stat-value">1</span>
                     <span class="stat-label">Critical</span>
                 </div>
             </div>
@@ -851,11 +851,51 @@
              For breaking/security items, also add class priority-breaking
              or priority-security on the <article>.
              ============================================================ -->
-<div class="empty-state">
-            <div class="empty-state-icon">🔍</div>
-            <h3>No verified news in the last 24 hours</h3>
-            <p>Searches across AI/LLM, Claude Code × WordPress, WordPress, web performance and agency topics returned nothing confirmable from the last 24 hours (Europe/Paris). Nothing was included rather than risk unverified items.</p>
-        </div>
+        <details class="category" open>
+            <summary class="category-header">
+                <div class="category-toggle"></div>
+                <div class="category-title-text">
+                    <h2>🤖 AI &amp; LLM Ecosystem</h2>
+                    <span class="category-subtitle">1 item</span>
+                </div>
+            </summary>
+            <div class="items-list">
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">OpenAI models land on Google Cloud alongside Gemini and Claude</h3>
+                        <span class="item-tag tag-trend">Trend</span>
+                    </div>
+                    <p class="item-summary">The Decoder reports Google Cloud now offers OpenAI models (GPT-6 Astra, GPT-6.1 Sol, GPT-6 Luna) in private preview for enterprise customers, making it the only major provider hosting all three model families. Details come from aggregator coverage and are not yet confirmed against primary sources.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> Multi-model access through a single cloud platform keeps lowering switching costs between providers, which is useful context when choosing models for client AI integrations.
+                    </div>
+                    <a href="https://the-decoder.com/google-cloud-now-offers-openai-models-alongside-gemini-and-claude-becoming-the-only-major-provider-with-all-three/" class="item-source">via The Decoder</a>
+                </article>
+            </div>
+        </details>
+
+        <details class="category">
+            <summary class="category-header">
+                <div class="category-toggle"></div>
+                <div class="category-title-text">
+                    <h2>📦 WordPress Ecosystem</h2>
+                    <span class="category-subtitle">1 item</span>
+                </div>
+            </summary>
+            <div class="items-list">
+                <article class="item priority-security">
+                    <div class="item-header">
+                        <h3 class="item-title">Critical PHP security release: two RCE flaws, WordPress.org urges PHP updates</h3>
+                        <span class="item-tag tag-security">Security</span>
+                    </div>
+                    <p class="item-summary">WordPress.org published a notice about a security release fixing two critical vulnerabilities in PHP (reported as CVE-2026-109618 and CVE-2026-109619, nicknamed "PHP2Shell"). Patchstack describes attacks as ongoing. Affected platforms include WordPress, Drupal, Joomla and Magento.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> These are remote code execution flaws in the PHP runtime itself, so every client site is exposed regardless of WordPress or plugin versions until the host's PHP is patched.
+                    </div>
+                    <a href="https://wordpress.org/news/2026/10/critical-php-security-release/" class="item-source">via WordPress.org News</a>
+                </article>
+            </div>
+        </details>
 
         <!-- ============================================================
              CLOSING SECTIONS — always render all three.
@@ -868,7 +908,7 @@
                     <div class="closing-icon">⚡</div>
                     <span class="closing-label-action">Action</span>
                 </div>
-                <div class="closing-content">All clear today.</div>
+                <div class="closing-content"><strong>Patch PHP on all client hosts today.</strong> Check the PHP version on each server (hosting panel or <code>php -v</code>), confirm with each host that the patched build is deployed, and prioritise sites with exposed admin or upload endpoints. Check the WordPress.org notice for the fixed PHP versions.</div>
             </div>
 
             <div class="closing-section">
@@ -876,7 +916,7 @@
                     <div class="closing-icon">✨</div>
                     <span class="closing-label-quickwin">Quick Win</span>
                 </div>
-                <div class="closing-content">Quiet day: audit your Claude Code setup. Add a project <code>CLAUDE.md</code> to each active client repo listing the theme prefix (<code>sws_</code>), Bricks/ACF conventions and WP-CLI commands, so every session starts with your agency standards.</div>
+                <div class="closing-content">Add a <code>sws_php_version_check</code> line to your maintenance checklist: show the PHP version in Site Health across all client sites (e.g. via MainWP or ManageWP) so the next PHP advisory takes minutes to triage.</div>
             </div>
 
             <div class="closing-section full-width">
@@ -884,7 +924,7 @@
                     <div class="closing-icon">💡</div>
                     <span class="closing-label-idea">Idea</span>
                 </div>
-                <div class="closing-content">Have Claude Code scaffold an ACF field group plus a matching Bricks query-loop template from a JSON spec: ask it to generate <code>sws_register_field_groups()</code> that hooks <code>acf/init</code> and registers local field groups in PHP, so they are versioned in Git and deployable without database syncs.</div>
+                <div class="closing-content">Ask Claude Code to scaffold a small mu-plugin that exposes <code>sws_report_runtime_versions()</code> through a REST endpoint (PHP, WP core, active plugins). A shell script can then poll every client site and flag servers still on a vulnerable PHP build.</div>
             </div>
         </div>
 
