@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Tech Watch · Friday, October 23, 2026</title>
+    <title>Daily Tech Watch · Monday, October 26, 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 
     <!--
@@ -28,10 +28,10 @@
                    yellow (#f6c547), orange (#f69b47), red (#f66b6b)
 
     Template tokens (shown in HTML comments, rendered with sample content):
-    Friday, October 23, 2026, 0, {{CATEGORY_TITLE}}, {{COUNT}},
+    Monday, October 26, 2026, 0, {{CATEGORY_TITLE}}, {{COUNT}},
     {{ITEM_NAME}}, {{TAG_LABEL}}, {{ITEM_SUMMARY}}, {{ITEM_WHY}},
     {{ITEM_SOURCE_URL}}, {{ITEM_SOURCE_NAME}},
-    All clear today., Bricks 2.4 added AI-assisted editing and a Builder Browser (per a Sept 25 review) — if you have not tried it on a staging site yet, spend 15 minutes testing the Builder Browser for reusing templates and components across client projects., Ask Claude Code to scaffold an ACF field group plus a matching Bricks element from a single spec file: have it generate <code>sws_register_field_groups()</code> (ACF JSON via <code>acf_add_local_field_group</code>) and a custom Bricks element class, with <code>sws_</code>-prefixed render helpers, then review the diff before deploying. Store the prompt in a CLAUDE.md so every new project starts identically.
+    All clear today., Quiet day — good moment for a patch audit. Check client sites for <code>Bricksforge</code> (CVE-2026-85097, unauthenticated RCE exploited since Oct 7; affected up to 3.1.8.9, update to the latest release) and for Rank Math PRO / UpdraftCentral exposure reported last week., Ask Claude Code to scaffold a WP-CLI audit script: <code>sws_audit_plugins()</code> loops over your client sites via SSH, lists plugins with pending security updates, and flags unexpected PHP files in <code>wp-content/uploads</code>. Output a Markdown table you can paste into client maintenance reports.
     -->
 
     <style>
@@ -812,7 +812,7 @@
             <div class="branding">Stellar Web Solutions</div>
             <h1>Daily Tech Watch</h1>
             <div class="header-meta">
-                <span class="meta-date">Friday, October 23, 2026</span>
+                <span class="meta-date">Monday, October 26, 2026</span>
             </div>
             <div class="stats-strip">
                 <div class="stat">
@@ -854,7 +854,7 @@
         <div class="empty-state">
             <div class="empty-state-icon">🌙</div>
             <h3>Quiet day</h3>
-            <p>No verifiable news from the last 24 hours (Oct 22, 08:05 – Oct 23, 08:05 CEST) met the bar for this report. Nothing was fabricated to fill the gap.</p>
+            <p>No verifiable news in the last 24 hours (Europe/Paris) across the tracked categories. Nothing fabricated, nothing padded.</p>
         </div>
 
         <!-- ============================================================
@@ -876,7 +876,7 @@
                     <div class="closing-icon">✨</div>
                     <span class="closing-label-quickwin">Quick Win</span>
                 </div>
-                <div class="closing-content">Bricks 2.4 added AI-assisted editing and a Builder Browser (per a Sept 25 review) — if you have not tried it on a staging site yet, spend 15 minutes testing the Builder Browser for reusing templates and components across client projects.</div>
+                <div class="closing-content">Quiet day — good moment for a patch audit. Check client sites for <code>Bricksforge</code> (CVE-2026-85097, unauthenticated RCE exploited since Oct 7; affected up to 3.1.8.9, update to the latest release) and for Rank Math PRO / UpdraftCentral exposure reported last week.</div>
             </div>
 
             <div class="closing-section full-width">
@@ -884,7 +884,7 @@
                     <div class="closing-icon">💡</div>
                     <span class="closing-label-idea">Idea</span>
                 </div>
-                <div class="closing-content">Ask Claude Code to scaffold an ACF field group plus a matching Bricks element from a single spec file: have it generate <code>sws_register_field_groups()</code> (ACF JSON via <code>acf_add_local_field_group</code>) and a custom Bricks element class, with <code>sws_</code>-prefixed render helpers, then review the diff before deploying. Store the prompt in a CLAUDE.md so every new project starts identically.</div>
+                <div class="closing-content">Ask Claude Code to scaffold a WP-CLI audit script: <code>sws_audit_plugins()</code> loops over your client sites via SSH, lists plugins with pending security updates, and flags unexpected PHP files in <code>wp-content/uploads</code>. Output a Markdown table you can paste into client maintenance reports.</div>
             </div>
         </div>
 
