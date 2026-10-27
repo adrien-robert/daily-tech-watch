@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Tech Watch · Monday, October 26, 2026</title>
+    <title>Daily Tech Watch · Tuesday, October 27, 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 
     <!--
@@ -28,10 +28,10 @@
                    yellow (#f6c547), orange (#f69b47), red (#f66b6b)
 
     Template tokens (shown in HTML comments, rendered with sample content):
-    Monday, October 26, 2026, 0, {{CATEGORY_TITLE}}, {{COUNT}},
+    Tuesday, October 27, 2026, 2, {{CATEGORY_TITLE}}, {{COUNT}},
     {{ITEM_NAME}}, {{TAG_LABEL}}, {{ITEM_SUMMARY}}, {{ITEM_WHY}},
     {{ITEM_SOURCE_URL}}, {{ITEM_SOURCE_NAME}},
-    All clear today., Quiet day — good moment for a patch audit. Check client sites for <code>Bricksforge</code> (CVE-2026-85097, unauthenticated RCE exploited since Oct 7; affected up to 3.1.8.9, update to the latest release) and for Rank Math PRO / UpdraftCentral exposure reported last week., Ask Claude Code to scaffold a WP-CLI audit script: <code>sws_audit_plugins()</code> loops over your client sites via SSH, lists plugins with pending security updates, and flags unexpected PHP files in <code>wp-content/uploads</code>. Output a Markdown table you can paste into client maintenance reports.
+    <code>Nov 12</code>: OpenAI models stop working in Cursor. Check any project settings that rely on them. Nothing else urgent was found today., Spin up a staging copy and test WordPress 7.2 Beta 1 with your main Bricks site. Reporting issues early is cheap and the final release is December 8., Use Claude Code to write a small <code>sws_</code>-prefixed WP-CLI command that scans all client sites for plugins and themes with pending updates and prints a table. Run it each morning to prioritise maintenance.
     -->
 
     <style>
@@ -812,15 +812,15 @@
             <div class="branding">Stellar Web Solutions</div>
             <h1>Daily Tech Watch</h1>
             <div class="header-meta">
-                <span class="meta-date">Monday, October 26, 2026</span>
+                <span class="meta-date">Tuesday, October 27, 2026</span>
             </div>
             <div class="stats-strip">
                 <div class="stat">
-                    <span class="stat-value">0</span>
+                    <span class="stat-value">2</span>
                     <span class="stat-label">Items</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-value">0</span>
+                    <span class="stat-value">2</span>
                     <span class="stat-label">Categories</span>
                 </div>
                 <div class="stat">
@@ -851,11 +851,53 @@
              For breaking/security items, also add class priority-breaking
              or priority-security on the <article>.
              ============================================================ -->
-        <div class="empty-state">
-            <div class="empty-state-icon">🌙</div>
-            <h3>Quiet day</h3>
-            <p>No verifiable news in the last 24 hours (Europe/Paris) across the tracked categories. Nothing fabricated, nothing padded.</p>
-        </div>
+        <details class="category" open>
+            <summary class="category-header">
+                <div class="category-toggle"></div>
+                <div class="category-title-text">
+                    <h2>🤖 AI &amp; LLM Ecosystem</h2>
+                    <span class="category-subtitle">1 item</span>
+                </div>
+            </summary>
+
+            <div class="items-list">
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">Cursor loses OpenAI models on November 12</h3>
+                        <span class="item-tag tag-deadline">Deadline</span>
+                    </div>
+                    <p class="item-summary">Following SpaceX’s acquisition of Cursor’s parent company, OpenAI will end Cursor’s access to its models on November 12, 2026. Cursor says OpenAI models are about 5% of its traffic. Cursor also announced Computer Use for its agents on October 23.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> If any of your workflows pin an OpenAI model in Cursor, switch to another provider before the cutoff.
+                    </div>
+                    <a href="https://www.tomsguide.com/ai/openai-is-leaving-cursor-in-november-here-are-your-3-options" class="item-source">via Tom’s Guide</a>
+                </article>
+            </div>
+        </details>
+
+        <details class="category">
+            <summary class="category-header">
+                <div class="category-toggle"></div>
+                <div class="category-title-text">
+                    <h2>📦 WordPress Ecosystem</h2>
+                    <span class="category-subtitle">1 item</span>
+                </div>
+            </summary>
+
+            <div class="items-list">
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">WordPress 7.2 Beta 1 is out for testing</h3>
+                        <span class="item-tag tag-milestone">Milestone</span>
+                    </div>
+                    <p class="item-summary">Gutenberg Times’ latest Weekend Edition reports WordPress 7.2 Beta 1, with final release planned for December 8. Planned features include notes in the margin, a Secrets API for plugin API keys and text shadows. Notes suggestion mode moved to 7.3.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> Test the beta on a staging site now, especially if your Bricks or Etch sites depend on block editor behaviour.
+                    </div>
+                    <a href="https://gutenbergtimes.com/a-critical-php-fix-wordpress-7-2-beta-1-notes-in-the-margin-and-more-weekend-edition-378" class="item-source">via Gutenberg Times</a>
+                </article>
+            </div>
+        </details>
 
         <!-- ============================================================
              CLOSING SECTIONS — always render all three.
@@ -868,7 +910,7 @@
                     <div class="closing-icon">⚡</div>
                     <span class="closing-label-action">Action</span>
                 </div>
-                <div class="closing-content">All clear today.</div>
+                <div class="closing-content"><code>Nov 12</code>: OpenAI models stop working in Cursor. Check any project settings that rely on them. Nothing else urgent was found today.</div>
             </div>
 
             <div class="closing-section">
@@ -876,7 +918,7 @@
                     <div class="closing-icon">✨</div>
                     <span class="closing-label-quickwin">Quick Win</span>
                 </div>
-                <div class="closing-content">Quiet day — good moment for a patch audit. Check client sites for <code>Bricksforge</code> (CVE-2026-85097, unauthenticated RCE exploited since Oct 7; affected up to 3.1.8.9, update to the latest release) and for Rank Math PRO / UpdraftCentral exposure reported last week.</div>
+                <div class="closing-content">Spin up a staging copy and test WordPress 7.2 Beta 1 with your main Bricks site. Reporting issues early is cheap and the final release is December 8.</div>
             </div>
 
             <div class="closing-section full-width">
@@ -884,7 +926,7 @@
                     <div class="closing-icon">💡</div>
                     <span class="closing-label-idea">Idea</span>
                 </div>
-                <div class="closing-content">Ask Claude Code to scaffold a WP-CLI audit script: <code>sws_audit_plugins()</code> loops over your client sites via SSH, lists plugins with pending security updates, and flags unexpected PHP files in <code>wp-content/uploads</code>. Output a Markdown table you can paste into client maintenance reports.</div>
+                <div class="closing-content">Use Claude Code to write a small <code>sws_</code>-prefixed WP-CLI command that scans all client sites for plugins and themes with pending updates and prints a table. Run it each morning to prioritise maintenance.</div>
             </div>
         </div>
 
