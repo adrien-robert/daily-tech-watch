@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Tech Watch · Tuesday, October 27, 2026</title>
+    <title>Daily Tech Watch · Wednesday, October 28, 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 
     <!--
@@ -28,10 +28,10 @@
                    yellow (#f6c547), orange (#f69b47), red (#f66b6b)
 
     Template tokens (shown in HTML comments, rendered with sample content):
-    Tuesday, October 27, 2026, 2, {{CATEGORY_TITLE}}, {{COUNT}},
+    Wednesday, October 28, 2026, 1, {{CATEGORY_TITLE}}, {{COUNT}},
     {{ITEM_NAME}}, {{TAG_LABEL}}, {{ITEM_SUMMARY}}, {{ITEM_WHY}},
     {{ITEM_SOURCE_URL}}, {{ITEM_SOURCE_NAME}},
-    <code>Nov 12</code>: OpenAI models stop working in Cursor. Check any project settings that rely on them. Nothing else urgent was found today., Spin up a staging copy and test WordPress 7.2 Beta 1 with your main Bricks site. Reporting issues early is cheap and the final release is December 8., Use Claude Code to write a small <code>sws_</code>-prefixed WP-CLI command that scans all client sites for plugins and themes with pending updates and prints a table. Run it each morning to prioritise maintenance.
+    All clear today. No verified security patches, breaking changes or deadlines found in the last 24 hours (note: WordPress.org, Wordfence and Bricks sites were unreachable from this run, so WordPress-specific news was not checked)., Update Claude Code to v2.1.312 (<code>claude update</code>) and check your hooks: any setup spawning many prompt/agent hooks is now capped at 24 concurrent runs per session., Ask Claude Code to scaffold an ACF field group plus a Bricks-ready query loop for a "Case Studies" CPT: generate the PHP registration with <code>sws_register_case_study_cpt()</code>, the ACF JSON export, and a template partial using <code>sws_render_case_study_card()</code>, then diff against your existing theme conventions before committing.
     -->
 
     <style>
@@ -812,15 +812,15 @@
             <div class="branding">Stellar Web Solutions</div>
             <h1>Daily Tech Watch</h1>
             <div class="header-meta">
-                <span class="meta-date">Tuesday, October 27, 2026</span>
+                <span class="meta-date">Wednesday, October 28, 2026</span>
             </div>
             <div class="stats-strip">
                 <div class="stat">
-                    <span class="stat-value">2</span>
+                    <span class="stat-value">1</span>
                     <span class="stat-label">Items</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-value">2</span>
+                    <span class="stat-value">1</span>
                     <span class="stat-label">Categories</span>
                 </div>
                 <div class="stat">
@@ -863,38 +863,14 @@
             <div class="items-list">
                 <article class="item">
                     <div class="item-header">
-                        <h3 class="item-title">Cursor loses OpenAI models on November 12</h3>
-                        <span class="item-tag tag-deadline">Deadline</span>
+                        <h3 class="item-title">Claude Code v2.1.312: safer large-file edits, hook concurrency cap, telemetry change</h3>
+                        <span class="item-tag tag-update">Update</span>
                     </div>
-                    <p class="item-summary">Following SpaceX’s acquisition of Cursor’s parent company, OpenAI will end Cursor’s access to its models on November 12, 2026. Cursor says OpenAI models are about 5% of its traffic. Cursor also announced Computer Use for its agents on October 23.</p>
+                    <p class="item-summary">Released 27 Oct. Fixes Claude overwriting very large CLAUDE.md, rules, or @-included files in subdirectories (Write now reads the whole file or edits in place). Prompt and agent hooks now run at most 24 at a time per session, usage-limit messages say "5-hour limit", and the <code>claude_code.safety_event</code> OpenTelemetry event is no longer sent. Also adds <code>oidc.user_id_claim</code> to the Claude apps gateway.</p>
                     <div class="item-why">
-                        <strong>Why it matters:</strong> If any of your workflows pin an OpenAI model in Cursor, switch to another provider before the cutoff.
+                        <strong>Why it matters:</strong> If your WordPress project rules or large CLAUDE.md files are big, the overwrite fix removes a real risk. Heavy hook setups are now capped at 24 concurrent runs.
                     </div>
-                    <a href="https://www.tomsguide.com/ai/openai-is-leaving-cursor-in-november-here-are-your-3-options" class="item-source">via Tom’s Guide</a>
-                </article>
-            </div>
-        </details>
-
-        <details class="category">
-            <summary class="category-header">
-                <div class="category-toggle"></div>
-                <div class="category-title-text">
-                    <h2>📦 WordPress Ecosystem</h2>
-                    <span class="category-subtitle">1 item</span>
-                </div>
-            </summary>
-
-            <div class="items-list">
-                <article class="item">
-                    <div class="item-header">
-                        <h3 class="item-title">WordPress 7.2 Beta 1 is out for testing</h3>
-                        <span class="item-tag tag-milestone">Milestone</span>
-                    </div>
-                    <p class="item-summary">Gutenberg Times’ latest Weekend Edition reports WordPress 7.2 Beta 1, with final release planned for December 8. Planned features include notes in the margin, a Secrets API for plugin API keys and text shadows. Notes suggestion mode moved to 7.3.</p>
-                    <div class="item-why">
-                        <strong>Why it matters:</strong> Test the beta on a staging site now, especially if your Bricks or Etch sites depend on block editor behaviour.
-                    </div>
-                    <a href="https://gutenbergtimes.com/a-critical-php-fix-wordpress-7-2-beta-1-notes-in-the-margin-and-more-weekend-edition-378" class="item-source">via Gutenberg Times</a>
+                    <a href="https://github.com/anthropics/claude-code/releases" class="item-source">via Claude Code GitHub releases</a>
                 </article>
             </div>
         </details>
@@ -910,7 +886,7 @@
                     <div class="closing-icon">⚡</div>
                     <span class="closing-label-action">Action</span>
                 </div>
-                <div class="closing-content"><code>Nov 12</code>: OpenAI models stop working in Cursor. Check any project settings that rely on them. Nothing else urgent was found today.</div>
+                <div class="closing-content">All clear today. No verified security patches, breaking changes or deadlines found in the last 24 hours (note: WordPress.org, Wordfence and Bricks sites were unreachable from this run, so WordPress-specific news was not checked).</div>
             </div>
 
             <div class="closing-section">
@@ -918,7 +894,7 @@
                     <div class="closing-icon">✨</div>
                     <span class="closing-label-quickwin">Quick Win</span>
                 </div>
-                <div class="closing-content">Spin up a staging copy and test WordPress 7.2 Beta 1 with your main Bricks site. Reporting issues early is cheap and the final release is December 8.</div>
+                <div class="closing-content">Update Claude Code to v2.1.312 (<code>claude update</code>) and check your hooks: any setup spawning many prompt/agent hooks is now capped at 24 concurrent runs per session.</div>
             </div>
 
             <div class="closing-section full-width">
@@ -926,7 +902,7 @@
                     <div class="closing-icon">💡</div>
                     <span class="closing-label-idea">Idea</span>
                 </div>
-                <div class="closing-content">Use Claude Code to write a small <code>sws_</code>-prefixed WP-CLI command that scans all client sites for plugins and themes with pending updates and prints a table. Run it each morning to prioritise maintenance.</div>
+                <div class="closing-content">Ask Claude Code to scaffold an ACF field group plus a Bricks-ready query loop for a "Case Studies" CPT: generate the PHP registration with <code>sws_register_case_study_cpt()</code>, the ACF JSON export, and a template partial using <code>sws_render_case_study_card()</code>, then diff against your existing theme conventions before committing.</div>
             </div>
         </div>
 
