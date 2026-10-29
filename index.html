@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Tech Watch · Wednesday, October 28, 2026</title>
+    <title>Daily Tech Watch · Thursday, October 29, 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 
     <!--
@@ -28,10 +28,10 @@
                    yellow (#f6c547), orange (#f69b47), red (#f66b6b)
 
     Template tokens (shown in HTML comments, rendered with sample content):
-    Wednesday, October 28, 2026, 1, {{CATEGORY_TITLE}}, {{COUNT}},
+    Thursday, October 29, 2026, 0, {{CATEGORY_TITLE}}, {{COUNT}},
     {{ITEM_NAME}}, {{TAG_LABEL}}, {{ITEM_SUMMARY}}, {{ITEM_WHY}},
     {{ITEM_SOURCE_URL}}, {{ITEM_SOURCE_NAME}},
-    All clear today. No verified security patches, breaking changes or deadlines found in the last 24 hours (note: WordPress.org, Wordfence and Bricks sites were unreachable from this run, so WordPress-specific news was not checked)., Update Claude Code to v2.1.312 (<code>claude update</code>) and check your hooks: any setup spawning many prompt/agent hooks is now capped at 24 concurrent runs per session., Ask Claude Code to scaffold an ACF field group plus a Bricks-ready query loop for a "Case Studies" CPT: generate the PHP registration with <code>sws_register_case_study_cpt()</code>, the ACF JSON export, and a template partial using <code>sws_render_case_study_card()</code>, then diff against your existing theme conventions before committing.
+    Nothing new in the last 24h. Carry-over reminder (still open from earlier this month): if you manage client sites with <strong>UpdraftCentral</strong> (TeamUpdraft breach, Oct 17–18) or <strong>Rank Math PRO 3.0.123</strong> (tainted build, Oct 15–16, fixed in 3.0.124), confirm keys were rotated, admin users and plugins audited, and updates applied., Run <code>wp user list --role=administrator</code> and <code>wp plugin list --status=active</code> via WP-CLI across client sites and flag any unknown admin or plugin name. Ten minutes, and it covers the recent backdoor wave., Have Claude Code scaffold an audit script: a WP-CLI package with a <code>sws_audit_admins()</code> function that loops over your sites over SSH, diffs administrators and installed plugins against a stored baseline JSON, and prints only the changes. Add <code>sws_flag_unknown_plugins()</code> to cross-check slugs against an allowlist so a rogue backdoor plugin is caught the day it appears.
     -->
 
     <style>
@@ -812,15 +812,15 @@
             <div class="branding">Stellar Web Solutions</div>
             <h1>Daily Tech Watch</h1>
             <div class="header-meta">
-                <span class="meta-date">Wednesday, October 28, 2026</span>
+                <span class="meta-date">Thursday, October 29, 2026</span>
             </div>
             <div class="stats-strip">
                 <div class="stat">
-                    <span class="stat-value">1</span>
+                    <span class="stat-value">0</span>
                     <span class="stat-label">Items</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-value">1</span>
+                    <span class="stat-value">0</span>
                     <span class="stat-label">Categories</span>
                 </div>
                 <div class="stat">
@@ -851,29 +851,11 @@
              For breaking/security items, also add class priority-breaking
              or priority-security on the <article>.
              ============================================================ -->
-        <details class="category" open>
-            <summary class="category-header">
-                <div class="category-toggle"></div>
-                <div class="category-title-text">
-                    <h2>🤖 AI &amp; LLM Ecosystem</h2>
-                    <span class="category-subtitle">1 item</span>
-                </div>
-            </summary>
-
-            <div class="items-list">
-                <article class="item">
-                    <div class="item-header">
-                        <h3 class="item-title">Claude Code v2.1.312: safer large-file edits, hook concurrency cap, telemetry change</h3>
-                        <span class="item-tag tag-update">Update</span>
-                    </div>
-                    <p class="item-summary">Released 27 Oct. Fixes Claude overwriting very large CLAUDE.md, rules, or @-included files in subdirectories (Write now reads the whole file or edits in place). Prompt and agent hooks now run at most 24 at a time per session, usage-limit messages say "5-hour limit", and the <code>claude_code.safety_event</code> OpenTelemetry event is no longer sent. Also adds <code>oidc.user_id_claim</code> to the Claude apps gateway.</p>
-                    <div class="item-why">
-                        <strong>Why it matters:</strong> If your WordPress project rules or large CLAUDE.md files are big, the overwrite fix removes a real risk. Heavy hook setups are now capped at 24 concurrent runs.
-                    </div>
-                    <a href="https://github.com/anthropics/claude-code/releases" class="item-source">via Claude Code GitHub releases</a>
-                </article>
-            </div>
-        </details>
+        <div class="empty-state">
+            <div class="empty-state-icon">🌤️</div>
+            <h3>Quiet day</h3>
+            <p>No verifiable news from the last 24 hours (Europe/Paris) across the tracked categories. Nothing is included rather than risk unverified items.</p>
+        </div>
 
         <!-- ============================================================
              CLOSING SECTIONS — always render all three.
@@ -886,7 +868,7 @@
                     <div class="closing-icon">⚡</div>
                     <span class="closing-label-action">Action</span>
                 </div>
-                <div class="closing-content">All clear today. No verified security patches, breaking changes or deadlines found in the last 24 hours (note: WordPress.org, Wordfence and Bricks sites were unreachable from this run, so WordPress-specific news was not checked).</div>
+                <div class="closing-content">Nothing new in the last 24h. Carry-over reminder (still open from earlier this month): if you manage client sites with <strong>UpdraftCentral</strong> (TeamUpdraft breach, Oct 17–18) or <strong>Rank Math PRO 3.0.123</strong> (tainted build, Oct 15–16, fixed in 3.0.124), confirm keys were rotated, admin users and plugins audited, and updates applied.</div>
             </div>
 
             <div class="closing-section">
@@ -894,7 +876,7 @@
                     <div class="closing-icon">✨</div>
                     <span class="closing-label-quickwin">Quick Win</span>
                 </div>
-                <div class="closing-content">Update Claude Code to v2.1.312 (<code>claude update</code>) and check your hooks: any setup spawning many prompt/agent hooks is now capped at 24 concurrent runs per session.</div>
+                <div class="closing-content">Run <code>wp user list --role=administrator</code> and <code>wp plugin list --status=active</code> via WP-CLI across client sites and flag any unknown admin or plugin name. Ten minutes, and it covers the recent backdoor wave.</div>
             </div>
 
             <div class="closing-section full-width">
@@ -902,7 +884,7 @@
                     <div class="closing-icon">💡</div>
                     <span class="closing-label-idea">Idea</span>
                 </div>
-                <div class="closing-content">Ask Claude Code to scaffold an ACF field group plus a Bricks-ready query loop for a "Case Studies" CPT: generate the PHP registration with <code>sws_register_case_study_cpt()</code>, the ACF JSON export, and a template partial using <code>sws_render_case_study_card()</code>, then diff against your existing theme conventions before committing.</div>
+                <div class="closing-content">Have Claude Code scaffold an audit script: a WP-CLI package with a <code>sws_audit_admins()</code> function that loops over your sites over SSH, diffs administrators and installed plugins against a stored baseline JSON, and prints only the changes. Add <code>sws_flag_unknown_plugins()</code> to cross-check slugs against an allowlist so a rogue backdoor plugin is caught the day it appears.</div>
             </div>
         </div>
 
