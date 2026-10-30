@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Tech Watch · Thursday, October 29, 2026</title>
+    <title>Daily Tech Watch · Friday, October 30, 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 
     <!--
@@ -28,10 +28,10 @@
                    yellow (#f6c547), orange (#f69b47), red (#f66b6b)
 
     Template tokens (shown in HTML comments, rendered with sample content):
-    Thursday, October 29, 2026, 0, {{CATEGORY_TITLE}}, {{COUNT}},
+    Friday, October 30, 2026, 2, {{CATEGORY_TITLE}}, {{COUNT}},
     {{ITEM_NAME}}, {{TAG_LABEL}}, {{ITEM_SUMMARY}}, {{ITEM_WHY}},
     {{ITEM_SOURCE_URL}}, {{ITEM_SOURCE_NAME}},
-    Nothing new in the last 24h. Carry-over reminder (still open from earlier this month): if you manage client sites with <strong>UpdraftCentral</strong> (TeamUpdraft breach, Oct 17–18) or <strong>Rank Math PRO 3.0.123</strong> (tainted build, Oct 15–16, fixed in 3.0.124), confirm keys were rotated, admin users and plugins audited, and updates applied., Run <code>wp user list --role=administrator</code> and <code>wp plugin list --status=active</code> via WP-CLI across client sites and flag any unknown admin or plugin name. Ten minutes, and it covers the recent backdoor wave., Have Claude Code scaffold an audit script: a WP-CLI package with a <code>sws_audit_admins()</code> function that loops over your sites over SSH, diffs administrators and installed plugins against a stored baseline JSON, and prints only the changes. Add <code>sws_flag_unknown_plugins()</code> to cross-check slugs against an allowlist so a rogue backdoor plugin is caught the day it appears.
+    {{ACTION_CONTENT}}, {{QUICKWIN_CONTENT}}, {{IDEA_CONTENT}}
     -->
 
     <style>
@@ -812,20 +812,20 @@
             <div class="branding">Stellar Web Solutions</div>
             <h1>Daily Tech Watch</h1>
             <div class="header-meta">
-                <span class="meta-date">Thursday, October 29, 2026</span>
+                <span class="meta-date">Friday, October 30, 2026</span>
             </div>
             <div class="stats-strip">
                 <div class="stat">
-                    <span class="stat-value">0</span>
+                    <span class="stat-value">2</span>
                     <span class="stat-label">Items</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-value">0</span>
+                    <span class="stat-value">2</span>
                     <span class="stat-label">Categories</span>
                 </div>
                 <div class="stat">
                     <span class="stat-dot high-priority"></span>
-                    <span class="stat-value">0</span>
+                    <span class="stat-value">1</span>
                     <span class="stat-label">Critical</span>
                 </div>
             </div>
@@ -851,24 +851,61 @@
              For breaking/security items, also add class priority-breaking
              or priority-security on the <article>.
              ============================================================ -->
-        <div class="empty-state">
-            <div class="empty-state-icon">🌤️</div>
-            <h3>Quiet day</h3>
-            <p>No verifiable news from the last 24 hours (Europe/Paris) across the tracked categories. Nothing is included rather than risk unverified items.</p>
-        </div>
+                <details class="category" open>
+            <summary class="category-header">
+                <div class="category-toggle"></div>
+                <div class="category-title-text">
+                    <h2>🤖 AI &amp; LLM Ecosystem</h2>
+                    <span class="category-subtitle">1 item</span>
+                </div>
+            </summary>
 
-        <!-- ============================================================
-             CLOSING SECTIONS — always render all three.
-             Two-column grid on desktop, single column on mobile.
-             "Idea" spans full width.
-             ============================================================ -->
+            <div class="items-list">
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">Mistral releases Large 4 as open weights</h3>
+                        <span class="item-tag tag-new">New</span>
+                    </div>
+                    <p class="item-summary">Mistral published open weights for Mistral Large 4, a ~1T-parameter multimodal MoE model, under its Ecosystem Open-Weight license (modified MIT with a MaaS carve-out). Reported specs differ between aggregators (≈49–52B active parameters, up to 1M context).</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> A strong EU-built open-weight model is a viable option for self-hosted or GDPR-sensitive client workloads. Check the license carve-out before any commercial hosting. Specs are from secondary sources and unverified.
+                    </div>
+                    <a href="https://github.com/nickzren/ai-news-agent/issues/567" class="item-source">via AI Headlines digest</a>
+                </article>
+            </div>
+        </details>
+
+        <details class="category" open>
+            <summary class="category-header">
+                <div class="category-toggle"></div>
+                <div class="category-title-text">
+                    <h2>📦 WordPress Ecosystem</h2>
+                    <span class="category-subtitle">1 item</span>
+                </div>
+            </summary>
+
+            <div class="items-list">
+                <article class="item priority-security">
+                    <div class="item-header">
+                        <h3 class="item-title">WordPress 7.1.4 security release: 22 vulnerabilities, incl. upgrade-window RCE</h3>
+                        <span class="item-tag tag-security">Security</span>
+                    </div>
+                    <p class="item-summary">Released Oct 28: fixes 22 vulnerabilities across 17 advisories, including a race condition in the core update process that can lead to remote code execution (needs wp-content/upgrade/ reachable over the web), plus stored XSS (Contributor level). Backports: 7.0.8, 6.9.11, 6.8.12, 6.7.11. Wordfence reports exploitation attempts already detected; its firewall rule reaches Free users only on Nov 27.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> Update all client sites now and block web access to wp-content/upgrade/. Next major release, 7.2, is scheduled for Dec 8, 2026.
+                    </div>
+                    <a href="https://patchstack.com/articles/wordpress-7-1-4-security-release/" class="item-source">via Patchstack</a>
+                </article>
+            </div>
+        </details>
+
         <div class="closing-sections">
             <div class="closing-section">
                 <div class="closing-header">
                     <div class="closing-icon">⚡</div>
                     <span class="closing-label-action">Action</span>
                 </div>
-                <div class="closing-content">Nothing new in the last 24h. Carry-over reminder (still open from earlier this month): if you manage client sites with <strong>UpdraftCentral</strong> (TeamUpdraft breach, Oct 17–18) or <strong>Rank Math PRO 3.0.123</strong> (tainted build, Oct 15–16, fixed in 3.0.124), confirm keys were rotated, admin users and plugins audited, and updates applied.</div>
+                <div class="closing-content"><strong>Update to WordPress 7.1.4 (or 7.0.8 / 6.9.11 backport) on every client site today</strong> and deny public access to <code>wp-content/upgrade/</code>. Exploitation attempts are already being seen.</div>
             </div>
 
             <div class="closing-section">
@@ -876,7 +913,7 @@
                     <div class="closing-icon">✨</div>
                     <span class="closing-label-quickwin">Quick Win</span>
                 </div>
-                <div class="closing-content">Run <code>wp user list --role=administrator</code> and <code>wp plugin list --status=active</code> via WP-CLI across client sites and flag any unknown admin or plugin name. Ten minutes, and it covers the recent backdoor wave.</div>
+                <div class="closing-content">Run <code>wp core version</code> across your sites via WP-CLI (or your ManageWP/MainWP dashboard) and update in one batch: <code>wp core update &amp;&amp; wp core update-db</code>.</div>
             </div>
 
             <div class="closing-section full-width">
@@ -884,7 +921,7 @@
                     <div class="closing-icon">💡</div>
                     <span class="closing-label-idea">Idea</span>
                 </div>
-                <div class="closing-content">Have Claude Code scaffold an audit script: a WP-CLI package with a <code>sws_audit_admins()</code> function that loops over your sites over SSH, diffs administrators and installed plugins against a stored baseline JSON, and prints only the changes. Add <code>sws_flag_unknown_plugins()</code> to cross-check slugs against an allowlist so a rogue backdoor plugin is caught the day it appears.</div>
+                <div class="closing-content">Have Claude Code write a small WP-CLI helper, <code>sws_audit_core_exposure()</code>, that loops through your site list over SSH, reports the core version, and curls <code>/wp-content/upgrade/</code> to flag any that are publicly reachable. Reuse it for every future core advisory.</div>
             </div>
         </div>
 
