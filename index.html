@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Tech Watch · Thursday, November 5, 2026</title>
+    <title>Daily Tech Watch · Friday, November 6, 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 
     <!--
@@ -28,10 +28,10 @@
                    yellow (#f6c547), orange (#f69b47), red (#f66b6b)
 
     Template tokens (shown in HTML comments, rendered with sample content):
-    Thursday, November 5, 2026, 0, {{CATEGORY_TITLE}}, {{COUNT}},
+    Friday, November 6, 2026, 2, {{CATEGORY_TITLE}}, {{COUNT}},
     {{ITEM_NAME}}, {{TAG_LABEL}}, {{ITEM_SUMMARY}}, {{ITEM_WHY}},
     {{ITEM_SOURCE_URL}}, {{ITEM_SOURCE_NAME}},
-    All clear today., Run <code>claude update</code> and check <code>/release-notes</code> in Claude Code: the 2.1.x series ships frequently, and keeping the CLI current is the cheapest way to pick up new agent and review features., Have Claude Code scaffold a Bricks Builder custom element: ask it to generate a PHP element class with an <code>sws_</code>-prefixed registration function, controls for spacing and typography, and a render method that outputs semantic, accessible markup. Keep a reusable prompt in your CLAUDE.md so every new component follows the same conventions.
+    {{ACTION_CONTENT}}, {{QUICKWIN_CONTENT}}, {{IDEA_CONTENT}}
     -->
 
     <style>
@@ -812,20 +812,20 @@
             <div class="branding">Stellar Web Solutions</div>
             <h1>Daily Tech Watch</h1>
             <div class="header-meta">
-                <span class="meta-date">Thursday, November 5, 2026</span>
+                <span class="meta-date">Friday, November 6, 2026</span>
             </div>
             <div class="stats-strip">
                 <div class="stat">
-                    <span class="stat-value">0</span>
+                    <span class="stat-value">2</span>
                     <span class="stat-label">Items</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-value">0</span>
+                    <span class="stat-value">2</span>
                     <span class="stat-label">Categories</span>
                 </div>
                 <div class="stat">
                     <span class="stat-dot high-priority"></span>
-                    <span class="stat-value">0</span>
+                    <span class="stat-value">1</span>
                     <span class="stat-label">Critical</span>
                 </div>
             </div>
@@ -851,11 +851,53 @@
              For breaking/security items, also add class priority-breaking
              or priority-security on the <article>.
              ============================================================ -->
-        <div class="empty-state">
-            <div class="empty-state-icon">🔍</div>
-            <h3>No verified news in the last 24 hours</h3>
-            <p>Searches across all five categories returned no sources I could confirm as published between 2026-11-04 08:00 and 2026-11-05 08:00 (Europe/Paris). Rather than pad the report with unverified or stale items, every category has been omitted.</p>
-        </div>
+        <details class="category" open>
+            <summary class="category-header">
+                <div class="category-toggle"></div>
+                <div class="category-title-text">
+                    <h2>🤖 AI &amp; LLM Ecosystem</h2>
+                    <span class="category-subtitle">1 item</span>
+                </div>
+            </summary>
+
+            <div class="items-list">
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">Claude Personal Finance launches in US beta</h3>
+                        <span class="item-tag tag-new">New</span>
+                    </div>
+                    <p class="item-summary">Anthropic introduced a Personal Finance feature letting paying US users link bank accounts and cards (via Plaid) and ask Claude about their spending. Access is read-only, Claude does not see credentials, and these chats are not used for training or added to shared memory.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> Signals Anthropic pushing Claude toward connected, consumer-facing data use. Not agency-critical, but a hint of where connectors are heading.
+                    </div>
+                    <a href="https://macrumors.com/2026/11/05/claude-personal-finance" class="item-source">via MacRumors</a>
+                </article>
+            </div>
+        </details>
+
+        <details class="category">
+            <summary class="category-header">
+                <div class="category-toggle"></div>
+                <div class="category-title-text">
+                    <h2>📦 WordPress Ecosystem</h2>
+                    <span class="category-subtitle">1 item</span>
+                </div>
+            </summary>
+
+            <div class="items-list">
+                <article class="item priority-security">
+                    <div class="item-header">
+                        <h3 class="item-title">WordPress core CVE-2026-119977 (updater race condition) added to CISA KEV</h3>
+                        <span class="item-tag tag-security">Security</span>
+                    </div>
+                    <p class="item-summary">A race condition in the core updater (affects 4.7.0 to 7.1.3) is reported as exploited. WordPress 7.1.4 shipped Oct 28 as a security release; CISA added the CVE to its KEV catalog on Nov 3 with a federal deadline of Nov 6. Sources disagree on severity (Wordfence 8.1 High, WordPress rates it Low) and on backport status for older branches. These dates fall just outside the 24h window but the deadline is today.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> Any client site still below 7.1.4 (or without a backport for its branch) is exposed. Verify versions across your managed sites today.
+                    </div>
+                    <a href="https://socprime.com/blog/cve-2026-119977-wordpress-core-rce-flaw-exploited-during-software-upgrades/" class="item-source">via SOC Prime</a>
+                </article>
+            </div>
+        </details>
 
         <!-- ============================================================
              CLOSING SECTIONS — always render all three.
@@ -868,7 +910,7 @@
                     <div class="closing-icon">⚡</div>
                     <span class="closing-label-action">Action</span>
                 </div>
-                <div class="closing-content">All clear today.</div>
+                <div class="closing-content"><strong>Patch WordPress core to 7.1.4+</strong> (or the backported release for your branch) on all client sites. CVE-2026-119977 is listed as actively exploited by CISA. Check <code>wp core version</code> across sites and keep a backup before updating.</div>
             </div>
 
             <div class="closing-section">
@@ -876,7 +918,7 @@
                     <div class="closing-icon">✨</div>
                     <span class="closing-label-quickwin">Quick Win</span>
                 </div>
-                <div class="closing-content">Run <code>claude update</code> and check <code>/release-notes</code> in Claude Code: the 2.1.x series ships frequently, and keeping the CLI current is the cheapest way to pick up new agent and review features.</div>
+                <div class="closing-content">Run <code>wp core check-update</code> over SSH on each hosted site (or via a loop script) to list sites still behind in one pass instead of logging into each dashboard.</div>
             </div>
 
             <div class="closing-section full-width">
@@ -884,7 +926,7 @@
                     <div class="closing-icon">💡</div>
                     <span class="closing-label-idea">Idea</span>
                 </div>
-                <div class="closing-content">Have Claude Code scaffold a Bricks Builder custom element: ask it to generate a PHP element class with an <code>sws_</code>-prefixed registration function, controls for spacing and typography, and a render method that outputs semantic, accessible markup. Keep a reusable prompt in your CLAUDE.md so every new component follows the same conventions.</div>
+                <div class="closing-content">Have Claude Code write a WP-CLI wrapper plugin or shell script, e.g. <code>sws_audit_core_versions()</code>, that reads a list of client SSH hosts, reports core/plugin versions and flags anything below a patched threshold, outputting a Markdown table you can paste into a client maintenance report.</div>
             </div>
         </div>
 
