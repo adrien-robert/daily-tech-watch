@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Tech Watch · Friday, November 6, 2026</title>
+    <title>Daily Tech Watch · Monday, November 9, 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 
     <!--
@@ -28,10 +28,10 @@
                    yellow (#f6c547), orange (#f69b47), red (#f66b6b)
 
     Template tokens (shown in HTML comments, rendered with sample content):
-    Friday, November 6, 2026, 2, {{CATEGORY_TITLE}}, {{COUNT}},
+    Monday, November 9, 2026, 0, {{CATEGORY_TITLE}}, {{COUNT}},
     {{ITEM_NAME}}, {{TAG_LABEL}}, {{ITEM_SUMMARY}}, {{ITEM_WHY}},
     {{ITEM_SOURCE_URL}}, {{ITEM_SOURCE_NAME}},
-    {{ACTION_CONTENT}}, {{QUICKWIN_CONTENT}}, {{IDEA_CONTENT}}
+    All clear today., Bricks now ships an <strong>AI Abilities</strong> screen that installs the WordPress MCP Adapter, creates an application password and generates a ready-to-run <code>claude mcp add</code> command. Try it on a staging site so Claude Code can read and edit Bricks pages directly. Review what abilities you enable before using it near a client production site., Ask Claude Code to scaffold a small must-use plugin that registers custom abilities for your agency, for example <code>sws_register_abilities()</code> exposing <code>sws/audit-acf-fields</code> and <code>sws/list-unused-bricks-templates</code>. With the MCP Adapter, Claude Code can then run a read-only audit of any client site before you quote a maintenance contract.
     -->
 
     <style>
@@ -812,20 +812,20 @@
             <div class="branding">Stellar Web Solutions</div>
             <h1>Daily Tech Watch</h1>
             <div class="header-meta">
-                <span class="meta-date">Friday, November 6, 2026</span>
+                <span class="meta-date">Monday, November 9, 2026</span>
             </div>
             <div class="stats-strip">
                 <div class="stat">
-                    <span class="stat-value">2</span>
+                    <span class="stat-value">0</span>
                     <span class="stat-label">Items</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-value">2</span>
+                    <span class="stat-value">0</span>
                     <span class="stat-label">Categories</span>
                 </div>
                 <div class="stat">
                     <span class="stat-dot high-priority"></span>
-                    <span class="stat-value">1</span>
+                    <span class="stat-value">0</span>
                     <span class="stat-label">Critical</span>
                 </div>
             </div>
@@ -851,53 +851,11 @@
              For breaking/security items, also add class priority-breaking
              or priority-security on the <article>.
              ============================================================ -->
-        <details class="category" open>
-            <summary class="category-header">
-                <div class="category-toggle"></div>
-                <div class="category-title-text">
-                    <h2>🤖 AI &amp; LLM Ecosystem</h2>
-                    <span class="category-subtitle">1 item</span>
-                </div>
-            </summary>
-
-            <div class="items-list">
-                <article class="item">
-                    <div class="item-header">
-                        <h3 class="item-title">Claude Personal Finance launches in US beta</h3>
-                        <span class="item-tag tag-new">New</span>
-                    </div>
-                    <p class="item-summary">Anthropic introduced a Personal Finance feature letting paying US users link bank accounts and cards (via Plaid) and ask Claude about their spending. Access is read-only, Claude does not see credentials, and these chats are not used for training or added to shared memory.</p>
-                    <div class="item-why">
-                        <strong>Why it matters:</strong> Signals Anthropic pushing Claude toward connected, consumer-facing data use. Not agency-critical, but a hint of where connectors are heading.
-                    </div>
-                    <a href="https://macrumors.com/2026/11/05/claude-personal-finance" class="item-source">via MacRumors</a>
-                </article>
-            </div>
-        </details>
-
-        <details class="category">
-            <summary class="category-header">
-                <div class="category-toggle"></div>
-                <div class="category-title-text">
-                    <h2>📦 WordPress Ecosystem</h2>
-                    <span class="category-subtitle">1 item</span>
-                </div>
-            </summary>
-
-            <div class="items-list">
-                <article class="item priority-security">
-                    <div class="item-header">
-                        <h3 class="item-title">WordPress core CVE-2026-119977 (updater race condition) added to CISA KEV</h3>
-                        <span class="item-tag tag-security">Security</span>
-                    </div>
-                    <p class="item-summary">A race condition in the core updater (affects 4.7.0 to 7.1.3) is reported as exploited. WordPress 7.1.4 shipped Oct 28 as a security release; CISA added the CVE to its KEV catalog on Nov 3 with a federal deadline of Nov 6. Sources disagree on severity (Wordfence 8.1 High, WordPress rates it Low) and on backport status for older branches. These dates fall just outside the 24h window but the deadline is today.</p>
-                    <div class="item-why">
-                        <strong>Why it matters:</strong> Any client site still below 7.1.4 (or without a backport for its branch) is exposed. Verify versions across your managed sites today.
-                    </div>
-                    <a href="https://socprime.com/blog/cve-2026-119977-wordpress-core-rce-flaw-exploited-during-software-upgrades/" class="item-source">via SOC Prime</a>
-                </article>
-            </div>
-        </details>
+        <div class="empty-state">
+            <div class="empty-state-icon">🌤️</div>
+            <h3>Quiet day — nothing verified in the last 24 hours</h3>
+            <p>No news published between Sun Nov 8, 08:00 and Mon Nov 9, 08:00 (Europe/Paris) could be confirmed from reliable sources, so every category is omitted rather than padded. The latest Claude Code release (v2.1.319, Nov 6) is already covered by earlier reports.</p>
+        </div>
 
         <!-- ============================================================
              CLOSING SECTIONS — always render all three.
@@ -910,7 +868,7 @@
                     <div class="closing-icon">⚡</div>
                     <span class="closing-label-action">Action</span>
                 </div>
-                <div class="closing-content"><strong>Patch WordPress core to 7.1.4+</strong> (or the backported release for your branch) on all client sites. CVE-2026-119977 is listed as actively exploited by CISA. Check <code>wp core version</code> across sites and keep a backup before updating.</div>
+                <div class="closing-content">All clear today.</div>
             </div>
 
             <div class="closing-section">
@@ -918,7 +876,7 @@
                     <div class="closing-icon">✨</div>
                     <span class="closing-label-quickwin">Quick Win</span>
                 </div>
-                <div class="closing-content">Run <code>wp core check-update</code> over SSH on each hosted site (or via a loop script) to list sites still behind in one pass instead of logging into each dashboard.</div>
+                <div class="closing-content">Bricks now ships an <strong>AI Abilities</strong> screen that installs the WordPress MCP Adapter, creates an application password and generates a ready-to-run <code>claude mcp add</code> command. Try it on a staging site so Claude Code can read and edit Bricks pages directly. Review what abilities you enable before using it near a client production site.</div>
             </div>
 
             <div class="closing-section full-width">
@@ -926,7 +884,7 @@
                     <div class="closing-icon">💡</div>
                     <span class="closing-label-idea">Idea</span>
                 </div>
-                <div class="closing-content">Have Claude Code write a WP-CLI wrapper plugin or shell script, e.g. <code>sws_audit_core_versions()</code>, that reads a list of client SSH hosts, reports core/plugin versions and flags anything below a patched threshold, outputting a Markdown table you can paste into a client maintenance report.</div>
+                <div class="closing-content">Ask Claude Code to scaffold a small must-use plugin that registers custom abilities for your agency, for example <code>sws_register_abilities()</code> exposing <code>sws/audit-acf-fields</code> and <code>sws/list-unused-bricks-templates</code>. With the MCP Adapter, Claude Code can then run a read-only audit of any client site before you quote a maintenance contract.</div>
             </div>
         </div>
 
