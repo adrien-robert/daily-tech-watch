@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Tech Watch · Monday, November 9, 2026</title>
+    <title>Daily Tech Watch · Tuesday, November 10, 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 
     <!--
@@ -28,10 +28,10 @@
                    yellow (#f6c547), orange (#f69b47), red (#f66b6b)
 
     Template tokens (shown in HTML comments, rendered with sample content):
-    Monday, November 9, 2026, 0, {{CATEGORY_TITLE}}, {{COUNT}},
+    Tuesday, November 10, 2026, 3, {{CATEGORY_TITLE}}, {{COUNT}},
     {{ITEM_NAME}}, {{TAG_LABEL}}, {{ITEM_SUMMARY}}, {{ITEM_WHY}},
     {{ITEM_SOURCE_URL}}, {{ITEM_SOURCE_NAME}},
-    All clear today., Bricks now ships an <strong>AI Abilities</strong> screen that installs the WordPress MCP Adapter, creates an application password and generates a ready-to-run <code>claude mcp add</code> command. Try it on a staging site so Claude Code can read and edit Bricks pages directly. Review what abilities you enable before using it near a client production site., Ask Claude Code to scaffold a small must-use plugin that registers custom abilities for your agency, for example <code>sws_register_abilities()</code> exposing <code>sws/audit-acf-fields</code> and <code>sws/list-unused-bricks-templates</code>. With the MCP Adapter, Claude Code can then run a read-only audit of any client site before you quote a maintenance contract.
+    <strong>Patch check:</strong> confirm all client sites run WordPress 7.1.4 (or the patched release for their branch) because CVE-2026-119977 is exploited in the wild (CISA KEV, Nov 3). Also: OpenAI models leave Cursor on Nov 12., Run a bulk check of core versions across managed sites (e.g. <code>wp core version</code> over SSH, or ManageWP/MainWP) and force <code>wp core update</code> where needed., Ask Claude Code to scaffold a small WP-CLI command <code>sws_audit_core_versions()</code> that reads a list of client site paths, reports core version, pending updates and auto-update status, and outputs a CSV. Bricks Academy documents a Claude Code MCP setup for Bricks, which could later be used to extend this to builder-level audits.
     -->
 
     <style>
@@ -812,20 +812,20 @@
             <div class="branding">Stellar Web Solutions</div>
             <h1>Daily Tech Watch</h1>
             <div class="header-meta">
-                <span class="meta-date">Monday, November 9, 2026</span>
+                <span class="meta-date">Tuesday, November 10, 2026</span>
             </div>
             <div class="stats-strip">
                 <div class="stat">
-                    <span class="stat-value">0</span>
+                    <span class="stat-value">3</span>
                     <span class="stat-label">Items</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-value">0</span>
+                    <span class="stat-value">3</span>
                     <span class="stat-label">Categories</span>
                 </div>
                 <div class="stat">
                     <span class="stat-dot high-priority"></span>
-                    <span class="stat-value">0</span>
+                    <span class="stat-value">1</span>
                     <span class="stat-label">Critical</span>
                 </div>
             </div>
@@ -851,11 +851,77 @@
              For breaking/security items, also add class priority-breaking
              or priority-security on the <article>.
              ============================================================ -->
-        <div class="empty-state">
-            <div class="empty-state-icon">🌤️</div>
-            <h3>Quiet day — nothing verified in the last 24 hours</h3>
-            <p>No news published between Sun Nov 8, 08:00 and Mon Nov 9, 08:00 (Europe/Paris) could be confirmed from reliable sources, so every category is omitted rather than padded. The latest Claude Code release (v2.1.319, Nov 6) is already covered by earlier reports.</p>
-        </div>
+        <details class="category" open>
+            <summary class="category-header">
+                <div class="category-toggle"></div>
+                <div class="category-title-text">
+                    <h2>🤖 AI &amp; LLM Ecosystem</h2>
+                    <span class="category-subtitle">1 item</span>
+                </div>
+            </summary>
+
+            <div class="items-list">
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">OpenAI ends model supply to Cursor on November 12</h3>
+                        <span class="item-tag tag-deadline">Deadline</span>
+                    </div>
+                    <p class="item-summary">OpenAI is winding down its direct model supply to Cursor on Nov 12 following SpaceX's acquisition of Cursor. Cursor will keep Grok, Anthropic and Google models; Anthropic says it will keep increasing compute for Claude in Cursor. Reports on deal details vary between outlets.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> If you use Cursor, OpenAI models disappear there in two days; Claude models stay available, so Claude-based workflows are unaffected.
+                    </div>
+                    <a href="https://forklog.com/en/news/openai-to-end-partnership-with-cursor-following-spacex-acquisition" class="item-source">via Forklog</a>
+                </article>
+            </div>
+        </details>
+
+        <details class="category">
+            <summary class="category-header">
+                <div class="category-toggle"></div>
+                <div class="category-title-text">
+                    <h2>📦 WordPress Ecosystem</h2>
+                    <span class="category-subtitle">1 item</span>
+                </div>
+            </summary>
+
+            <div class="items-list">
+                <article class="item priority-security">
+                    <div class="item-header">
+                        <h3 class="item-title">WordPress 7.1.4 security release: core RCE flaw now in CISA KEV</h3>
+                        <span class="item-tag tag-security">Security</span>
+                    </div>
+                    <p class="item-summary">WordPress 7.1.4 (Oct 28) fixes CVE-2026-119977, a race condition in full-package core update unpacking that can lead to remote code execution. CISA added it to its Known Exploited Vulnerabilities catalog on Nov 3. Affects 4.7 to 7.1.3. Version numbers for older branches differ between sources: confirm on wordpress.org.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> Actively exploited core flaw: every client site should be on the patched release for its branch, and auto-updates verified.
+                    </div>
+                    <a href="https://webhosting.today/2026/11/04/cisa-lists-a-fourth-wordpress-core-flaw-since-july-wordpress-rates-this-one-low/" class="item-source">via WebHosting Today</a>
+                </article>
+            </div>
+        </details>
+
+        <details class="category">
+            <summary class="category-header">
+                <div class="category-toggle"></div>
+                <div class="category-title-text">
+                    <h2>⚡ Web Development &amp; Performance</h2>
+                    <span class="category-subtitle">1 item</span>
+                </div>
+            </summary>
+
+            <div class="items-list">
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">Chrome adds soft-navigation Core Web Vitals to CrUX (experimental)</h3>
+                        <span class="item-tag tag-update">Update</span>
+                    </div>
+                    <p class="item-summary">Following the Soft Navigations API in Chrome 151, experimental CrUX versions of LCP, INP and CLS now include SPA route changes; more metrics are expected in the November CrUX release. Stable Core Web Vitals scoring is unchanged.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> Mostly relevant to SPA/headless builds; classic WordPress sites are not affected for now.
+                    </div>
+                    <a href="https://web.dev/blog/cwv-experimental-soft-navs/" class="item-source">via web.dev</a>
+                </article>
+            </div>
+        </details>
 
         <!-- ============================================================
              CLOSING SECTIONS — always render all three.
@@ -868,7 +934,7 @@
                     <div class="closing-icon">⚡</div>
                     <span class="closing-label-action">Action</span>
                 </div>
-                <div class="closing-content">All clear today.</div>
+                <div class="closing-content"><strong>Patch check:</strong> confirm all client sites run WordPress 7.1.4 (or the patched release for their branch) because CVE-2026-119977 is exploited in the wild (CISA KEV, Nov 3). Also: OpenAI models leave Cursor on Nov 12.</div>
             </div>
 
             <div class="closing-section">
@@ -876,7 +942,7 @@
                     <div class="closing-icon">✨</div>
                     <span class="closing-label-quickwin">Quick Win</span>
                 </div>
-                <div class="closing-content">Bricks now ships an <strong>AI Abilities</strong> screen that installs the WordPress MCP Adapter, creates an application password and generates a ready-to-run <code>claude mcp add</code> command. Try it on a staging site so Claude Code can read and edit Bricks pages directly. Review what abilities you enable before using it near a client production site.</div>
+                <div class="closing-content">Run a bulk check of core versions across managed sites (e.g. <code>wp core version</code> over SSH, or ManageWP/MainWP) and force <code>wp core update</code> where needed.</div>
             </div>
 
             <div class="closing-section full-width">
@@ -884,7 +950,7 @@
                     <div class="closing-icon">💡</div>
                     <span class="closing-label-idea">Idea</span>
                 </div>
-                <div class="closing-content">Ask Claude Code to scaffold a small must-use plugin that registers custom abilities for your agency, for example <code>sws_register_abilities()</code> exposing <code>sws/audit-acf-fields</code> and <code>sws/list-unused-bricks-templates</code>. With the MCP Adapter, Claude Code can then run a read-only audit of any client site before you quote a maintenance contract.</div>
+                <div class="closing-content">Ask Claude Code to scaffold a small WP-CLI command <code>sws_audit_core_versions()</code> that reads a list of client site paths, reports core version, pending updates and auto-update status, and outputs a CSV. Bricks Academy documents a Claude Code MCP setup for Bricks, which could later be used to extend this to builder-level audits.</div>
             </div>
         </div>
 
