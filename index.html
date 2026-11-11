@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Tech Watch · Tuesday, November 10, 2026</title>
+    <title>Daily Tech Watch · Wednesday, November 11, 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 
     <!--
@@ -28,10 +28,10 @@
                    yellow (#f6c547), orange (#f69b47), red (#f66b6b)
 
     Template tokens (shown in HTML comments, rendered with sample content):
-    Tuesday, November 10, 2026, 3, {{CATEGORY_TITLE}}, {{COUNT}},
+    Wednesday, November 11, 2026, 2, {{CATEGORY_TITLE}}, {{COUNT}},
     {{ITEM_NAME}}, {{TAG_LABEL}}, {{ITEM_SUMMARY}}, {{ITEM_WHY}},
     {{ITEM_SOURCE_URL}}, {{ITEM_SOURCE_NAME}},
-    <strong>Patch check:</strong> confirm all client sites run WordPress 7.1.4 (or the patched release for their branch) because CVE-2026-119977 is exploited in the wild (CISA KEV, Nov 3). Also: OpenAI models leave Cursor on Nov 12., Run a bulk check of core versions across managed sites (e.g. <code>wp core version</code> over SSH, or ManageWP/MainWP) and force <code>wp core update</code> where needed., Ask Claude Code to scaffold a small WP-CLI command <code>sws_audit_core_versions()</code> that reads a list of client site paths, reports core version, pending updates and auto-update status, and outputs a CSV. Bricks Academy documents a Claude Code MCP setup for Bricks, which could later be used to extend this to builder-level audits.
+    Update Claude Code to v2.1.321 (<code>npm i -g @anthropic-ai/claude-code</code>) for the MCP OAuth and sandbox fixes. If you use Cursor with OpenAI models, plan for the proposed Nov 12 cutoff., Run <code>claude --version</code> on every machine you use for client work and align them on v2.1.321. Quiet news day otherwise: no confirmed WordPress, Bricks or Etch releases in the last 24 hours., Have Claude Code scaffold a reusable ACF field group plus a matching Bricks query loop from a JSON spec. A single <code>sws_register_field_group()</code> helper would read the spec and register the fields, so each new client section starts from one command.
     -->
 
     <style>
@@ -812,15 +812,15 @@
             <div class="branding">Stellar Web Solutions</div>
             <h1>Daily Tech Watch</h1>
             <div class="header-meta">
-                <span class="meta-date">Tuesday, November 10, 2026</span>
+                <span class="meta-date">Wednesday, November 11, 2026</span>
             </div>
             <div class="stats-strip">
                 <div class="stat">
-                    <span class="stat-value">3</span>
+                    <span class="stat-value">2</span>
                     <span class="stat-label">Items</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-value">3</span>
+                    <span class="stat-value">1</span>
                     <span class="stat-label">Categories</span>
                 </div>
                 <div class="stat">
@@ -856,69 +856,31 @@
                 <div class="category-toggle"></div>
                 <div class="category-title-text">
                     <h2>🤖 AI &amp; LLM Ecosystem</h2>
-                    <span class="category-subtitle">1 item</span>
+                    <span class="category-subtitle">2 items</span>
                 </div>
             </summary>
-
-            <div class="items-list">
-                <article class="item">
-                    <div class="item-header">
-                        <h3 class="item-title">OpenAI ends model supply to Cursor on November 12</h3>
-                        <span class="item-tag tag-deadline">Deadline</span>
-                    </div>
-                    <p class="item-summary">OpenAI is winding down its direct model supply to Cursor on Nov 12 following SpaceX's acquisition of Cursor. Cursor will keep Grok, Anthropic and Google models; Anthropic says it will keep increasing compute for Claude in Cursor. Reports on deal details vary between outlets.</p>
-                    <div class="item-why">
-                        <strong>Why it matters:</strong> If you use Cursor, OpenAI models disappear there in two days; Claude models stay available, so Claude-based workflows are unaffected.
-                    </div>
-                    <a href="https://forklog.com/en/news/openai-to-end-partnership-with-cursor-following-spacex-acquisition" class="item-source">via Forklog</a>
-                </article>
-            </div>
-        </details>
-
-        <details class="category">
-            <summary class="category-header">
-                <div class="category-toggle"></div>
-                <div class="category-title-text">
-                    <h2>📦 WordPress Ecosystem</h2>
-                    <span class="category-subtitle">1 item</span>
-                </div>
-            </summary>
-
             <div class="items-list">
                 <article class="item priority-security">
                     <div class="item-header">
-                        <h3 class="item-title">WordPress 7.1.4 security release: core RCE flaw now in CISA KEV</h3>
+                        <h3 class="item-title">Claude Code v2.1.321: security fixes and Fable 5.2 as default model</h3>
                         <span class="item-tag tag-security">Security</span>
                     </div>
-                    <p class="item-summary">WordPress 7.1.4 (Oct 28) fixes CVE-2026-119977, a race condition in full-package core update unpacking that can lead to remote code execution. CISA added it to its Known Exploited Vulnerabilities catalog on Nov 3. Affects 4.7 to 7.1.3. Version numbers for older branches differ between sources: confirm on wordpress.org.</p>
+                    <p class="item-summary">Published on npm on Nov 10. Reported fixes include MCP server OAuth redirects sending refresh tokens and other secrets to a different host, and read-only Bash commands running outside the sandbox without a permission prompt. The default Fable model is updated to Fable 5.2, and saved Fable 5.1 selections migrate to "fable". v2.1.320 appears to have been skipped, and the native installer's stable channel was reportedly still on v2.1.311 at publication.</p>
                     <div class="item-why">
-                        <strong>Why it matters:</strong> Actively exploited core flaw: every client site should be on the patched release for its branch, and auto-updates verified.
+                        <strong>Why it matters:</strong> If you connect Claude Code to WordPress MCP servers (Bricks, Etch bridges), the OAuth fix is relevant. Update via npm. Details come from a secondary write-up, so check the official changelog.
                     </div>
-                    <a href="https://webhosting.today/2026/11/04/cisa-lists-a-fourth-wordpress-core-flaw-since-july-wordpress-rates-this-one-low/" class="item-source">via WebHosting Today</a>
+                    <a href="https://labmemo.com/claude-code-v2-1-321-fable-5-2-default-security-fixes-2026-11/" class="item-source">via labmemo.com</a>
                 </article>
-            </div>
-        </details>
-
-        <details class="category">
-            <summary class="category-header">
-                <div class="category-toggle"></div>
-                <div class="category-title-text">
-                    <h2>⚡ Web Development &amp; Performance</h2>
-                    <span class="category-subtitle">1 item</span>
-                </div>
-            </summary>
-
-            <div class="items-list">
                 <article class="item">
                     <div class="item-header">
-                        <h3 class="item-title">Chrome adds soft-navigation Core Web Vitals to CrUX (experimental)</h3>
-                        <span class="item-tag tag-update">Update</span>
+                        <h3 class="item-title">OpenAI's proposed cutoff of model access for Cursor: November 12</h3>
+                        <span class="item-tag tag-deadline">Deadline</span>
                     </div>
-                    <p class="item-summary">Following the Soft Navigations API in Chrome 151, experimental CrUX versions of LCP, INP and CLS now include SPA route changes; more metrics are expected in the November CrUX release. Stable Core Web Vitals scoring is unchanged.</p>
+                    <p class="item-summary">After SpaceX acquired Cursor, OpenAI reportedly proposed ending Cursor's access to its models on November 12. Reporting describes this as a proposed date, not a confirmed final deadline, and comes mainly from secondary blogs.</p>
                     <div class="item-why">
-                        <strong>Why it matters:</strong> Mostly relevant to SPA/headless builds; classic WordPress sites are not affected for now.
+                        <strong>Why it matters:</strong> If you use Cursor with OpenAI models, expect them to disappear from the model picker around tomorrow; switch to Claude or Gemini models there, or use Claude Code.
                     </div>
-                    <a href="https://web.dev/blog/cwv-experimental-soft-navs/" class="item-source">via web.dev</a>
+                    <a href="https://www.deeplearning.ai/the-batch/openai-cuts-off-cursor" class="item-source">via The Batch</a>
                 </article>
             </div>
         </details>
@@ -934,7 +896,7 @@
                     <div class="closing-icon">⚡</div>
                     <span class="closing-label-action">Action</span>
                 </div>
-                <div class="closing-content"><strong>Patch check:</strong> confirm all client sites run WordPress 7.1.4 (or the patched release for their branch) because CVE-2026-119977 is exploited in the wild (CISA KEV, Nov 3). Also: OpenAI models leave Cursor on Nov 12.</div>
+                <div class="closing-content">Update Claude Code to v2.1.321 (<code>npm i -g @anthropic-ai/claude-code</code>) for the MCP OAuth and sandbox fixes. If you use Cursor with OpenAI models, plan for the proposed Nov 12 cutoff.</div>
             </div>
 
             <div class="closing-section">
@@ -942,7 +904,7 @@
                     <div class="closing-icon">✨</div>
                     <span class="closing-label-quickwin">Quick Win</span>
                 </div>
-                <div class="closing-content">Run a bulk check of core versions across managed sites (e.g. <code>wp core version</code> over SSH, or ManageWP/MainWP) and force <code>wp core update</code> where needed.</div>
+                <div class="closing-content">Run <code>claude --version</code> on every machine you use for client work and align them on v2.1.321. Quiet news day otherwise: no confirmed WordPress, Bricks or Etch releases in the last 24 hours.</div>
             </div>
 
             <div class="closing-section full-width">
@@ -950,7 +912,7 @@
                     <div class="closing-icon">💡</div>
                     <span class="closing-label-idea">Idea</span>
                 </div>
-                <div class="closing-content">Ask Claude Code to scaffold a small WP-CLI command <code>sws_audit_core_versions()</code> that reads a list of client site paths, reports core version, pending updates and auto-update status, and outputs a CSV. Bricks Academy documents a Claude Code MCP setup for Bricks, which could later be used to extend this to builder-level audits.</div>
+                <div class="closing-content">Have Claude Code scaffold a reusable ACF field group plus a matching Bricks query loop from a JSON spec. A single <code>sws_register_field_group()</code> helper would read the spec and register the fields, so each new client section starts from one command.</div>
             </div>
         </div>
 
