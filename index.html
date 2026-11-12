@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Tech Watch · Wednesday, November 11, 2026</title>
+    <title>Daily Tech Watch · Thursday, November 12, 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 
     <!--
@@ -28,10 +28,10 @@
                    yellow (#f6c547), orange (#f69b47), red (#f66b6b)
 
     Template tokens (shown in HTML comments, rendered with sample content):
-    Wednesday, November 11, 2026, 2, {{CATEGORY_TITLE}}, {{COUNT}},
+    Thursday, November 12, 2026, 0, {{CATEGORY_TITLE}}, {{COUNT}},
     {{ITEM_NAME}}, {{TAG_LABEL}}, {{ITEM_SUMMARY}}, {{ITEM_WHY}},
     {{ITEM_SOURCE_URL}}, {{ITEM_SOURCE_NAME}},
-    Update Claude Code to v2.1.321 (<code>npm i -g @anthropic-ai/claude-code</code>) for the MCP OAuth and sandbox fixes. If you use Cursor with OpenAI models, plan for the proposed Nov 12 cutoff., Run <code>claude --version</code> on every machine you use for client work and align them on v2.1.321. Quiet news day otherwise: no confirmed WordPress, Bricks or Etch releases in the last 24 hours., Have Claude Code scaffold a reusable ACF field group plus a matching Bricks query loop from a JSON spec. A single <code>sws_register_field_group()</code> helper would read the spec and register the fields, so each new client section starts from one command.
+    All clear today., Check you are on the latest Claude Code (a v2.1.321 release was reported on Nov 10 — verify against the <a href="https://code.claude.com/docs/en/changelog">official changelog</a>) and review your permission settings, since recent releases reportedly include permission and sandbox fixes., Have Claude Code scaffold an ACF field group plus a matching Bricks query loop: describe the CPT, let it generate the <code>acf_add_local_field_group()</code> registration inside an <code>sws_register_fields()</code> function, and a <code>sws_render_card()</code> helper for the template. Commit it as a reusable snippet for future client projects.
     -->
 
     <style>
@@ -812,20 +812,20 @@
             <div class="branding">Stellar Web Solutions</div>
             <h1>Daily Tech Watch</h1>
             <div class="header-meta">
-                <span class="meta-date">Wednesday, November 11, 2026</span>
+                <span class="meta-date">Thursday, November 12, 2026</span>
             </div>
             <div class="stats-strip">
                 <div class="stat">
-                    <span class="stat-value">2</span>
+                    <span class="stat-value">0</span>
                     <span class="stat-label">Items</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-value">1</span>
+                    <span class="stat-value">0</span>
                     <span class="stat-label">Categories</span>
                 </div>
                 <div class="stat">
                     <span class="stat-dot high-priority"></span>
-                    <span class="stat-value">1</span>
+                    <span class="stat-value">0</span>
                     <span class="stat-label">Critical</span>
                 </div>
             </div>
@@ -851,39 +851,11 @@
              For breaking/security items, also add class priority-breaking
              or priority-security on the <article>.
              ============================================================ -->
-        <details class="category" open>
-            <summary class="category-header">
-                <div class="category-toggle"></div>
-                <div class="category-title-text">
-                    <h2>🤖 AI &amp; LLM Ecosystem</h2>
-                    <span class="category-subtitle">2 items</span>
-                </div>
-            </summary>
-            <div class="items-list">
-                <article class="item priority-security">
-                    <div class="item-header">
-                        <h3 class="item-title">Claude Code v2.1.321: security fixes and Fable 5.2 as default model</h3>
-                        <span class="item-tag tag-security">Security</span>
-                    </div>
-                    <p class="item-summary">Published on npm on Nov 10. Reported fixes include MCP server OAuth redirects sending refresh tokens and other secrets to a different host, and read-only Bash commands running outside the sandbox without a permission prompt. The default Fable model is updated to Fable 5.2, and saved Fable 5.1 selections migrate to "fable". v2.1.320 appears to have been skipped, and the native installer's stable channel was reportedly still on v2.1.311 at publication.</p>
-                    <div class="item-why">
-                        <strong>Why it matters:</strong> If you connect Claude Code to WordPress MCP servers (Bricks, Etch bridges), the OAuth fix is relevant. Update via npm. Details come from a secondary write-up, so check the official changelog.
-                    </div>
-                    <a href="https://labmemo.com/claude-code-v2-1-321-fable-5-2-default-security-fixes-2026-11/" class="item-source">via labmemo.com</a>
-                </article>
-                <article class="item">
-                    <div class="item-header">
-                        <h3 class="item-title">OpenAI's proposed cutoff of model access for Cursor: November 12</h3>
-                        <span class="item-tag tag-deadline">Deadline</span>
-                    </div>
-                    <p class="item-summary">After SpaceX acquired Cursor, OpenAI reportedly proposed ending Cursor's access to its models on November 12. Reporting describes this as a proposed date, not a confirmed final deadline, and comes mainly from secondary blogs.</p>
-                    <div class="item-why">
-                        <strong>Why it matters:</strong> If you use Cursor with OpenAI models, expect them to disappear from the model picker around tomorrow; switch to Claude or Gemini models there, or use Claude Code.
-                    </div>
-                    <a href="https://www.deeplearning.ai/the-batch/openai-cuts-off-cursor" class="item-source">via The Batch</a>
-                </article>
-            </div>
-        </details>
+        <div class="empty-state">
+            <div class="empty-state-icon">🌤️</div>
+            <h3>Quiet day</h3>
+            <p>No verifiable news from the last 24 hours (Europe/Paris) across the tracked categories. Nothing was included rather than risk unverified items.</p>
+        </div>
 
         <!-- ============================================================
              CLOSING SECTIONS — always render all three.
@@ -896,7 +868,7 @@
                     <div class="closing-icon">⚡</div>
                     <span class="closing-label-action">Action</span>
                 </div>
-                <div class="closing-content">Update Claude Code to v2.1.321 (<code>npm i -g @anthropic-ai/claude-code</code>) for the MCP OAuth and sandbox fixes. If you use Cursor with OpenAI models, plan for the proposed Nov 12 cutoff.</div>
+                <div class="closing-content">All clear today.</div>
             </div>
 
             <div class="closing-section">
@@ -904,7 +876,7 @@
                     <div class="closing-icon">✨</div>
                     <span class="closing-label-quickwin">Quick Win</span>
                 </div>
-                <div class="closing-content">Run <code>claude --version</code> on every machine you use for client work and align them on v2.1.321. Quiet news day otherwise: no confirmed WordPress, Bricks or Etch releases in the last 24 hours.</div>
+                <div class="closing-content">Check you are on the latest Claude Code (a v2.1.321 release was reported on Nov 10 — verify against the <a href="https://code.claude.com/docs/en/changelog">official changelog</a>) and review your permission settings, since recent releases reportedly include permission and sandbox fixes.</div>
             </div>
 
             <div class="closing-section full-width">
@@ -912,7 +884,7 @@
                     <div class="closing-icon">💡</div>
                     <span class="closing-label-idea">Idea</span>
                 </div>
-                <div class="closing-content">Have Claude Code scaffold a reusable ACF field group plus a matching Bricks query loop from a JSON spec. A single <code>sws_register_field_group()</code> helper would read the spec and register the fields, so each new client section starts from one command.</div>
+                <div class="closing-content">Have Claude Code scaffold an ACF field group plus a matching Bricks query loop: describe the CPT, let it generate the <code>acf_add_local_field_group()</code> registration inside an <code>sws_register_fields()</code> function, and a <code>sws_render_card()</code> helper for the template. Commit it as a reusable snippet for future client projects.</div>
             </div>
         </div>
 
