@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Tech Watch · Thursday, November 12, 2026</title>
+    <title>Daily Tech Watch · Friday, November 13, 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 
     <!--
@@ -28,10 +28,10 @@
                    yellow (#f6c547), orange (#f69b47), red (#f66b6b)
 
     Template tokens (shown in HTML comments, rendered with sample content):
-    Thursday, November 12, 2026, 0, {{CATEGORY_TITLE}}, {{COUNT}},
+    Friday, November 13, 2026, 4, {{CATEGORY_TITLE}}, {{COUNT}},
     {{ITEM_NAME}}, {{TAG_LABEL}}, {{ITEM_SUMMARY}}, {{ITEM_WHY}},
     {{ITEM_SOURCE_URL}}, {{ITEM_SOURCE_NAME}},
-    All clear today., Check you are on the latest Claude Code (a v2.1.321 release was reported on Nov 10 — verify against the <a href="https://code.claude.com/docs/en/changelog">official changelog</a>) and review your permission settings, since recent releases reportedly include permission and sandbox fixes., Have Claude Code scaffold an ACF field group plus a matching Bricks query loop: describe the CPT, let it generate the <code>acf_add_local_field_group()</code> registration inside an <code>sws_register_fields()</code> function, and a <code>sws_render_card()</code> helper for the template. Commit it as a reusable snippet for future client projects.
+    Switch off Opus 4.8 fast mode before Nov 30. Also: one aggregator (SesameDisk, unverified, could not open) claims a Bricksforge CVE (CVE-2026-85097) is exploited in the wild and a core race-condition CVE is in CISA KEV — check Wordfence/Patchstack and your Bricksforge installs., Update Claude Code (<code>claude update</code>) to 2.1.319 for the permission-bypass and worktree sandbox-escape fixes., Have Claude Code scaffold an ACF field group + matching Bricks query loop from a JSON spec: generate the <code>acf_add_local_field_group()</code> PHP in a <code>sws_register_fields()</code> function and a checklist of Bricks element settings to wire up, committed to your starter theme repo.
     -->
 
     <style>
@@ -812,20 +812,20 @@
             <div class="branding">Stellar Web Solutions</div>
             <h1>Daily Tech Watch</h1>
             <div class="header-meta">
-                <span class="meta-date">Thursday, November 12, 2026</span>
+                <span class="meta-date">Friday, November 13, 2026</span>
             </div>
             <div class="stats-strip">
                 <div class="stat">
-                    <span class="stat-value">0</span>
+                    <span class="stat-value">4</span>
                     <span class="stat-label">Items</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-value">0</span>
+                    <span class="stat-value">3</span>
                     <span class="stat-label">Categories</span>
                 </div>
                 <div class="stat">
                     <span class="stat-dot high-priority"></span>
-                    <span class="stat-value">0</span>
+                    <span class="stat-value">1</span>
                     <span class="stat-label">Critical</span>
                 </div>
             </div>
@@ -851,11 +851,88 @@
              For breaking/security items, also add class priority-breaking
              or priority-security on the <article>.
              ============================================================ -->
-        <div class="empty-state">
-            <div class="empty-state-icon">🌤️</div>
-            <h3>Quiet day</h3>
-            <p>No verifiable news from the last 24 hours (Europe/Paris) across the tracked categories. Nothing was included rather than risk unverified items.</p>
-        </div>
+        <details class="category" open>
+            <summary class="category-header">
+                <div class="category-toggle"></div>
+                <div class="category-title-text">
+                    <h2>🤖 AI &amp; LLM Ecosystem</h2>
+                    <span class="category-subtitle">2 items</span>
+                </div>
+            </summary>
+
+            <div class="items-list">
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">Claude Code 2.1.319: MCP tasks in terminal, deny-instead-of-prompt setting, security fixes</h3>
+                        <span class="item-tag tag-update">Update</span>
+                    </div>
+                    <p class="item-summary">Released Nov 6 (latest version found; outside the strict 24h window but the newest release). Adds MCP tasks in the terminal, a setting that denies instead of prompting, and gateway controls. Fixes include a Bash permission bypass and a sandbox escape when creating a worktree.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> Update Claude Code to pick up the permission-bypass and sandbox fixes, especially if you run it with auto/permissive modes on client projects.
+                    </div>
+                    <a href="https://claudekit.io/en/updates/claude-code-2-1-319/" class="item-source">via ClaudeKit</a>
+                </article>
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">Opus 4.8 fast mode removed on November 30</h3>
+                        <span class="item-tag tag-deadline">Deadline</span>
+                    </div>
+                    <p class="item-summary">Fast mode for Opus 4.8 was deprecated on Oct 30 and will be removed Nov 30, 2026. The suggested replacement is Opus 5.5.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> If any scripts or Claude Code settings pin Opus 4.8 fast mode, switch the model before the end of the month.
+                    </div>
+                    <a href="https://www.havoptic.com/releases/claude-code/2026/11" class="item-source">via Havoptic</a>
+                </article>
+            </div>
+        </details>
+
+        <details class="category" open>
+            <summary class="category-header">
+                <div class="category-toggle"></div>
+                <div class="category-title-text">
+                    <h2>🔧 Claude Code × WordPress</h2>
+                    <span class="category-subtitle">1 item</span>
+                </div>
+            </summary>
+
+            <div class="items-list">
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">Community MCP servers for Bricks Builder and Etch keep multiplying</h3>
+                        <span class="item-tag tag-tool">Tool</span>
+                    </div>
+                    <p class="item-summary">Several third-party MCP servers let Claude Code read/write Bricks pages, templates, global classes and theme styles; the Bricks Academy documents an AI abilities/skills page, and an Etch Agent Bridge (Chrome extension + stdio MCP) works via a project .mcp.json. Not new today; a roundup of what exists. Status and security of each project is unverified.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> Worth a sandbox test on a staging site, using a restricted application password, before touching client sites.
+                    </div>
+                    <a href="https://academy.bricksbuilder.io/builder/features/ai-abilities-and-skills.md" class="item-source">via Bricks Academy</a>
+                </article>
+            </div>
+        </details>
+
+        <details class="category">
+            <summary class="category-header">
+                <div class="category-toggle"></div>
+                <div class="category-title-text">
+                    <h2>⚡ Web Development &amp; Performance</h2>
+                    <span class="category-subtitle">1 item</span>
+                </div>
+            </summary>
+
+            <div class="items-list">
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">Google November 2026 core update is rolling out</h3>
+                        <span class="item-tag tag-trend">Trend</span>
+                    </div>
+                    <p class="item-summary">Third core update of 2026 began Nov 10 (global, all languages) and can take up to two weeks. Ranking volatility is being reported.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> Expect ranking swings on client sites through ~Nov 24; avoid judging SEO changes made this week and annotate Search Console.
+                    </div>
+                    <a href="https://www.seroundtable.com/google-november-2026-core-update-42504.html" class="item-source">via Search Engine Roundtable</a>
+                </article>
+            </div>
+        </details>
 
         <!-- ============================================================
              CLOSING SECTIONS — always render all three.
@@ -868,7 +945,7 @@
                     <div class="closing-icon">⚡</div>
                     <span class="closing-label-action">Action</span>
                 </div>
-                <div class="closing-content">All clear today.</div>
+                <div class="closing-content">Switch off Opus 4.8 fast mode before Nov 30. Also: one aggregator (SesameDisk, unverified, could not open) claims a Bricksforge CVE (CVE-2026-85097) is exploited in the wild and a core race-condition CVE is in CISA KEV — check Wordfence/Patchstack and your Bricksforge installs.</div>
             </div>
 
             <div class="closing-section">
@@ -876,7 +953,7 @@
                     <div class="closing-icon">✨</div>
                     <span class="closing-label-quickwin">Quick Win</span>
                 </div>
-                <div class="closing-content">Check you are on the latest Claude Code (a v2.1.321 release was reported on Nov 10 — verify against the <a href="https://code.claude.com/docs/en/changelog">official changelog</a>) and review your permission settings, since recent releases reportedly include permission and sandbox fixes.</div>
+                <div class="closing-content">Update Claude Code (<code>claude update</code>) to 2.1.319 for the permission-bypass and worktree sandbox-escape fixes.</div>
             </div>
 
             <div class="closing-section full-width">
@@ -884,7 +961,7 @@
                     <div class="closing-icon">💡</div>
                     <span class="closing-label-idea">Idea</span>
                 </div>
-                <div class="closing-content">Have Claude Code scaffold an ACF field group plus a matching Bricks query loop: describe the CPT, let it generate the <code>acf_add_local_field_group()</code> registration inside an <code>sws_register_fields()</code> function, and a <code>sws_render_card()</code> helper for the template. Commit it as a reusable snippet for future client projects.</div>
+                <div class="closing-content">Have Claude Code scaffold an ACF field group + matching Bricks query loop from a JSON spec: generate the <code>acf_add_local_field_group()</code> PHP in a <code>sws_register_fields()</code> function and a checklist of Bricks element settings to wire up, committed to your starter theme repo.</div>
             </div>
         </div>
 
