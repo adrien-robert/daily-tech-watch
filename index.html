@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Tech Watch · Monday, November 16, 2026</title>
+    <title>Daily Tech Watch · Tuesday, November 17, 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 
     <!--
@@ -28,10 +28,10 @@
                    yellow (#f6c547), orange (#f69b47), red (#f66b6b)
 
     Template tokens (shown in HTML comments, rendered with sample content):
-    Monday, November 16, 2026, 0, {{CATEGORY_TITLE}}, {{COUNT}},
+    Tuesday, November 17, 2026, 1, {{CATEGORY_TITLE}}, {{COUNT}},
     {{ITEM_NAME}}, {{TAG_LABEL}}, {{ITEM_SUMMARY}}, {{ITEM_WHY}},
     {{ITEM_SOURCE_URL}}, {{ITEM_SOURCE_NAME}},
-    All clear today., Run <code>claude update</code> and check that you are on the latest Claude Code release (2.1.319+ includes Bash permission and sandbox-escape fixes). Review your deny/allow rules afterwards., Ask Claude Code to scaffold an ACF field group plus a Bricks element from a spec: generate the PHP registration with <code>sws_register_acf_group()</code> and <code>sws_render_testimonial_element()</code>, output ACF JSON for version control, and add a WP-CLI command <code>sws_sync_fields</code> to import it on staging and prod.
+    <strong>Opus 4.8 fast mode is removed on Nov 30, 2026</strong> (deprecated Oct 30 per the Claude Code v2.1.316 notes). After that, requests return an error instead of falling back. Check any scripts, CI jobs or settings that pin Opus 4.8 fast mode and move them to Opus 5.5. This was not published in the last 24 hours, but it is the nearest deadline., Run <code>claude update</code> to get v2.1.326, then grep your <code>.claude/settings.json</code> files for permission rules that now trigger the malformed-rule startup warning. Fix them so your deny/allow lists actually apply., Have Claude Code scaffold a Bricks-ready component helper: ask it to generate a small plugin file with <code>sws_register_element()</code> and <code>sws_render_card()</code> functions, plus a WP-CLI command <code>sws_audit_elements</code> that lists every custom element and flags missing escaping. Pair it with an agent-team session (one agent writes, one reviews against WordPress coding standards).
     -->
 
     <style>
@@ -812,15 +812,15 @@
             <div class="branding">Stellar Web Solutions</div>
             <h1>Daily Tech Watch</h1>
             <div class="header-meta">
-                <span class="meta-date">Monday, November 16, 2026</span>
+                <span class="meta-date">Tuesday, November 17, 2026</span>
             </div>
             <div class="stats-strip">
                 <div class="stat">
-                    <span class="stat-value">0</span>
+                    <span class="stat-value">1</span>
                     <span class="stat-label">Items</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-value">0</span>
+                    <span class="stat-value">1</span>
                     <span class="stat-label">Categories</span>
                 </div>
                 <div class="stat">
@@ -855,19 +855,22 @@
             <summary class="category-header">
                 <div class="category-toggle"></div>
                 <div class="category-title-text">
-                    <h2>📭 Quiet news day</h2>
-                    <span class="category-subtitle">0 items</span>
+                    <h2>🤖 AI &amp; LLM Ecosystem</h2>
+                    <span class="category-subtitle">1 item</span>
                 </div>
             </summary>
+
             <div class="items-list">
                 <article class="item">
                     <div class="item-header">
-                        <h3 class="item-title">No verifiable news from the last 24 hours</h3>
-                        <span class="item-tag tag-update">Info</span>
+                        <h3 class="item-title">Claude Code v2.1.326: Code Mode now enabled for agent-team sessions</h3>
+                        <span class="item-tag tag-update">Update</span>
                     </div>
-                    <p class="item-summary">Searches across AI/LLM, Claude Code, WordPress, Bricks/Etch, web dev and agency topics returned nothing dated within the last 24 hours (Europe/Paris) that could be verified. Nearest context: Claude Code v2.1.321 shipped around Nov 10, and Planet WordPress (Nov 11–13) covers the Reprint site-copy tool and WordCamp Asia 2027 in Penang. Both are older than 24h, so they are not counted as items.</p>
-                    <div class="item-why"><strong>Why it matters:</strong> Nothing was invented to fill space. Check Claude Code's changelog and the Bricks/Etch release notes directly if you want to be sure.</div>
-                    <a href="https://planet.wordpress.org/" class="item-source">via Planet WordPress</a>
+                    <p class="item-summary">Released Nov 16 (evening). Code Mode is now enabled for sessions that use agent teams. It also adds an opt-in <code>OTEL_RESOURCE_INCLUDE_HOST</code> setting, drops settings nested more than 64 levels with a warning, and warns at startup about malformed tool rules. It includes a batch of fixes for <code>/rewind</code>, login and compaction. Code Mode first shipped as experimental in v2.1.323 (Nov 12).</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> If you run multi-agent Claude Code sessions for theme or plugin work, update and try Code Mode. The malformed-rule warnings may flag permission rules in your settings that were silently being ignored.
+                    </div>
+                    <a href="https://github.com/anthropics/claude-code/releases" class="item-source">via GitHub – anthropics/claude-code releases</a>
                 </article>
             </div>
         </details>
@@ -883,7 +886,7 @@
                     <div class="closing-icon">⚡</div>
                     <span class="closing-label-action">Action</span>
                 </div>
-                <div class="closing-content">All clear today.</div>
+                <div class="closing-content"><strong>Opus 4.8 fast mode is removed on Nov 30, 2026</strong> (deprecated Oct 30 per the Claude Code v2.1.316 notes). After that, requests return an error instead of falling back. Check any scripts, CI jobs or settings that pin Opus 4.8 fast mode and move them to Opus 5.5. This was not published in the last 24 hours, but it is the nearest deadline.</div>
             </div>
 
             <div class="closing-section">
@@ -891,7 +894,7 @@
                     <div class="closing-icon">✨</div>
                     <span class="closing-label-quickwin">Quick Win</span>
                 </div>
-                <div class="closing-content">Run <code>claude update</code> and check that you are on the latest Claude Code release (2.1.319+ includes Bash permission and sandbox-escape fixes). Review your deny/allow rules afterwards.</div>
+                <div class="closing-content">Run <code>claude update</code> to get v2.1.326, then grep your <code>.claude/settings.json</code> files for permission rules that now trigger the malformed-rule startup warning. Fix them so your deny/allow lists actually apply.</div>
             </div>
 
             <div class="closing-section full-width">
@@ -899,7 +902,7 @@
                     <div class="closing-icon">💡</div>
                     <span class="closing-label-idea">Idea</span>
                 </div>
-                <div class="closing-content">Ask Claude Code to scaffold an ACF field group plus a Bricks element from a spec: generate the PHP registration with <code>sws_register_acf_group()</code> and <code>sws_render_testimonial_element()</code>, output ACF JSON for version control, and add a WP-CLI command <code>sws_sync_fields</code> to import it on staging and prod.</div>
+                <div class="closing-content">Have Claude Code scaffold a Bricks-ready component helper: ask it to generate a small plugin file with <code>sws_register_element()</code> and <code>sws_render_card()</code> functions, plus a WP-CLI command <code>sws_audit_elements</code> that lists every custom element and flags missing escaping. Pair it with an agent-team session (one agent writes, one reviews against WordPress coding standards).</div>
             </div>
         </div>
 
