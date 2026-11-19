@@ -30,6 +30,7 @@ SWS_USER_AGENT = "Mozilla/5.0 (compatible; tech-watch-collector/1.0)"
 SWS_THIN_BELOW = 4
 SWS_HN_MIN_POINTS = 500
 SWS_DAY_NAMES = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+SWS_PLACEHOLDER = re.compile(r"^(no (verifiable|verified|new)\b|quiet (news )?day)", re.I)
 SWS_MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
 
@@ -65,7 +66,8 @@ def sws_legacy_titles(day):
         return None
     text = path.read_text(encoding="utf-8", errors="replace")
     titles = re.findall(r'<h3 class="item-title">(.*?)</h3>', text, re.S)
-    return [html.unescape(re.sub(r"<[^>]+>", "", title)).strip() for title in titles]
+    titles = [html.unescape(re.sub(r"<[^>]+>", "", title)).strip() for title in titles]
+    return [title for title in titles if not SWS_PLACEHOLDER.match(title)]
 
 
 def sws_normalise_url(url):
@@ -191,9 +193,14 @@ def sws_main():
         for date in previous.get("ahead", []):
             out.append(f"- coming up: {date.get('date')} {date.get('title')}")
 
+    out += ["", "=" * 78, "PAGES THAT LIST UPCOMING DATES (for the 'coming up' section)", "=" * 78]
+    config = sws_load_json(SWS_ROOT / "config" / "sources.json") or {}
+    out += [f"- {page['name']}: {page['url']}" for page in config.get("schedules", [])] or ["(none configured)"]
+
     out += ["", "=" * 78,
             f"HACKER NEWS: stories above {SWS_HN_MIN_POINTS} points this week that no edition linked to",
-            "(untrusted titles; a lead for the 'missed' check, most will not matter to this reader)", "=" * 78]
+            "(untrusted titles; a lead for the 'missed' check. Most will not matter to this reader, and a story",
+            " can be listed here although an edition covered it through another site.)", "=" * 78]
     try:
         stories = sws_hacker_news(days[0], covered)
         out += [f"{points} points | {date} | {title} | {url}" for points, date, title, url in stories] or ["(none)"]

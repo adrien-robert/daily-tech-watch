@@ -56,6 +56,7 @@ SWS_THIN_BELOW = 4
 SWS_WEEKDAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 SWS_MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August",
               "September", "October", "November", "December"]
+SWS_PLACEHOLDER = re.compile(r"^(no (verifiable|verified|new)\b|quiet (news )?day)", re.I)
 SWS_ID = re.compile(r"^[a-z0-9][a-z0-9-]{1,60}$")
 SWS_HEDGE = re.compile(
     r"could(?: not|n[’']t) (?:be )?(?:confirm|verif|reach)|not (?:independently )?(?:confirmed|verified)"
@@ -441,7 +442,8 @@ def sws_legacy_titles(path):
     """Headlines of a report published before the data format existed."""
     text = path.read_text(encoding="utf-8", errors="replace")
     titles = re.findall(r'<h3 class="item-title">(.*?)</h3>', text, re.S)
-    return [html.unescape(re.sub(r"<[^>]+>", "", title)).strip() for title in titles]
+    titles = [html.unescape(re.sub(r"<[^>]+>", "", title)).strip() for title in titles]
+    return [title for title in titles if not SWS_PLACEHOLDER.match(title)]
 
 
 def sws_ensure_noindex(path):

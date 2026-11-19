@@ -455,7 +455,7 @@ details[open] > .category-header::before { transform: none; }
 .archive-weeklies { margin-bottom: 2.25rem; }
 .archive-weeklies h2 { font-family: var(--serif); font-size: 1.2rem; padding-bottom: 0.6rem; margin-bottom: 0.75rem; border-bottom: 2px solid var(--line); }
 .weekly-list { list-style: none; display: grid; gap: 0.6rem; }
-.weekly-list li { display: grid; grid-template-columns: 14rem 1fr; gap: 0.2rem 1rem; }
+.weekly-list li { display: grid; grid-template-columns: 18rem 1fr; gap: 0.2rem 1rem; align-items: baseline; }
 .weekly-list a { font-weight: 600; }
 .weekly-list span { font-size: 0.9rem; color: var(--soft); }
 

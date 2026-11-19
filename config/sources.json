@@ -9,6 +9,12 @@
     "webdev": "⚡ Web development & performance",
     "business": "💼 Agency business & France"
   },
+  "schedules": [
+    { "name": "Make WordPress Core (release schedules)", "url": "https://make.wordpress.org/core/" },
+    { "name": "WordPress roadmap", "url": "https://wordpress.org/about/roadmap/" },
+    { "name": "PHP supported versions", "url": "https://www.php.net/supported-versions.php" },
+    { "name": "Bricks changelog", "url": "https://bricksbuilder.io/changelog/" }
+  ],
   "sources": [
     { "name": "Techmeme", "category": "wider", "type": "feed", "url": "https://www.techmeme.com/feed.xml", "max": 30 },
     { "name": "Hacker News (stories above 300 points)", "category": "wider", "type": "feed", "url": "https://hnrss.org/frontpage?points=300", "max": 30 },

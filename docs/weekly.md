@@ -26,7 +26,7 @@ python3 scripts/week.py --out /tmp/tech-watch-week.txt
 
 Read the whole file. It gives you the week's identifier and dates, the state of each weekday edition, every item published with its reference (such as `2026-11-19/wordpress-7-1-5`), the actions raised, last week's digest, and the most-discussed Hacker News stories that no edition covered.
 
-If it says this week's digest file already exists, the digest is published: stop and say so. Editions marked "old format" give headlines only; use them as leads.
+If it says this week's digest file already exists, the digest is published: stop and say so. Editions marked "old format" give headlines only; use them as leads. The material counts the problems with the week's editions itself; go by its count (Step 10).
 
 ## Step 2: Choose the stories of the week
 
@@ -36,21 +36,21 @@ Rank by what it means for him: something he must act on first, then changes to t
 
 ## Step 3: Find out where each story stands today
 
-This is the step that makes the digest worth reading. For each story:
+This is the step that makes the digest worth reading. For each story, find out what happened since the first report: a fix released or replaced, attacks confirmed, a date moved, a decision reversed, a notable reaction.
 
-- read the primary source again, or the newest solid report, with `scripts/page.py`;
-- run one search for what happened since the first report: a fix released or replaced, attacks confirmed, a date moved, a decision reversed, a notable reaction.
+- Read pages first, with `scripts/page.py`: the primary source again (advisories and release pages get updated), the vendor's or researcher's own write-up, the newest solid report. This is where follow-ups usually turn something up.
+- Then at most one search per story, for the part most likely to have moved. Skip it when the pages already answered the question. Searches often return old results for recent events; use extended mode as `docs/routine.md` describes, and never let a search summary overrule a page.
 
-Write the result in `now`, with `now_url` set to the page you read today that supports it. If nothing changed, say that plainly and link the page that shows the current state. Follow up on last week's open stories and "coming up" dates the same way when they are still relevant.
+Write the result in `now`, and set `now_url` to the one page that supports it. Every fact in `now` must be on that page, so choose the page that carries the most important update and keep `now` to what it says. If nothing changed, say that plainly and link the page that shows the current state. Follow up on last week's open stories and "coming up" dates the same way when they are still relevant.
 
 ## Step 4: Look for what was missed
 
 Two sources:
 
-- the Hacker News list in the material (most of it will not matter to this reader);
+- the Hacker News list in the material, which is the better lead (most of it will not matter to this reader, and some of it was covered through another site);
 - up to four searches for the week's biggest stories: in tech generally, in AI, in WordPress, and for French small companies.
 
-Include **at most 3** things that clearly belonged in a daily edition and were not there. Usually it is none or one. Each one follows the daily rules: read the page, take the facts and the date from it. Do not fill this section to make it look useful; an empty one means the daily editions did their job.
+Include **at most 3** things that clearly belonged in a daily edition and were not there. Usually it is none or one. Each one follows the daily rules: read the page, take the facts and the date from it. Link the primary source, or an established publication when the primary page will not open; not a site that only rewrites announcements. Do not fill this section to make it look useful; an empty one means the daily editions did their job.
 
 ## Step 5: Decide what is still to do
 
@@ -58,9 +58,9 @@ Start from "actions raised this week" in the material. He cannot tick anything o
 
 ## Step 6: List what is coming
 
-Dated events in roughly the next four weeks that matter to him: releases of the tools he uses, end-of-support and deprecation dates, legal and tax deadlines in France, a launch everyone will talk about. Up to 8, and often 2 or 3.
+Dated events in the next six weeks or so that matter to him: releases of the tools he uses, end-of-support and deprecation dates, legal and tax deadlines in France, a launch everyone will talk about. Up to 8, and often 2 or 3.
 
-Each entry needs a date you read on a page today, and that page as its link. The week's items are the first place to look (many mention dates); the release schedules of WordPress, PHP and Chrome are worth a check. No date from memory.
+Each entry needs a date you read on a page today, and that page as its link. The week's items are the first place to look (many mention dates), then the pages the material lists under "pages that list upcoming dates". No date from memory.
 
 ## Step 7: Optionally, one thing worth reading in full
 
@@ -123,7 +123,7 @@ Fields:
 - `missed[]`: `title`, `summary`, `why`, `url`, `source` and `published`, written as for a daily item.
 - `ahead[].date`: the date of the event, inside the next 60 days.
 - `long_read`: leave the whole field out when there is none.
-- `run`: how many searches you ran and how many different pages you read.
+- `run`: how many searches you ran, and how many different pages you read successfully (a failed attempt does not count, and a page read twice counts once).
 
 The page also shows a table of the week's editions (which days were published, how many items, which sources failed). The build writes it from the data; you do not.
 
@@ -139,7 +139,15 @@ python3 scripts/build.py
 python3 scripts/verify.py <week>
 ```
 
-Fix every error from the build. The check opens each `now_url` and each missed item's link and lists figures it cannot find there; look at each one again, as for a daily edition. Then publish exactly as in Step 6 of `docs/routine.md`, with the commit message `Add weekly digest for <week>`.
+Fix every error from the build. The check opens each `now_url`, each missed item's link and each "coming up" link, and lists figures it cannot find there; look at each one again, as for a daily edition, and run the build again after any change. Then publish as a daily edition is published:
+
+```bash
+git add -A
+git commit -m "Add weekly digest for <week>"
+git push -u origin "$(git branch --show-current)"
+```
+
+Open a pull request from that branch into `main` with the GitHub tools and merge it straight away with the squash method. If the push or the merge fails, retry once, then report the failure in your final message.
 
 ## Step 10: Final message
 
@@ -156,7 +164,7 @@ https://adrien-robert.github.io/daily-tech-watch/2026-W03-weekly-digest.html
 
 Leave out "Still to do" when the list is empty, and list at most three stories.
 
-When the material reports a problem with the week's editions (a missing or thin day), or the gathering or publishing failed, start the first line with ⚠️ and put the cause on a second line, in one plain sentence of at most 140 characters:
+When the material counts one or more problems with the week's editions (a missing or thin day; old-format days are not problems), or the gathering or publishing failed, start the first line with ⚠️ and put the cause on a second line, in one plain sentence of at most 140 characters:
 
 ```
 ⚠️ Weekly digest W03 (12 to 16 Jan): 3 stories
