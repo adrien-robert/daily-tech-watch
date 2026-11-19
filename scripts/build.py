@@ -6,6 +6,7 @@ file, then writes:
 
     YYYY-MM-DD-daily-tech-report.html   one page per data file
     index.html                          a copy of the newest report
+    YYYY-Www-weekly-digest.html         one page per data/weekly/YYYY-Www.json file
     archive.html                        every report, old and new, with search
 
 Reports published before the data format existed stay as they are; they are
@@ -35,6 +36,8 @@ SWS_ROOT = Path(__file__).resolve().parent.parent
 SWS_TZ = ZoneInfo("Europe/Paris")
 SWS_REPORT_FILE = "{date}-daily-tech-report.html"
 SWS_REPORT_GLOB = "20??-??-??-daily-tech-report.html"
+SWS_WEEKLY_FILE = "{week}-weekly-digest.html"
+SWS_WEEK_ID = re.compile(r"^(\d{4})-W(\d{2})$")
 SWS_NOINDEX = '<meta name="robots" content="noindex, nofollow">'
 SWS_TAGS = {
     "security": "🔒 Security",
@@ -53,6 +56,7 @@ SWS_THIN_BELOW = 4
 SWS_WEEKDAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 SWS_MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August",
               "September", "October", "November", "December"]
+SWS_PLACEHOLDER = re.compile(r"^(no (verifiable|verified|new)\b|quiet (news )?day)", re.I)
 SWS_ID = re.compile(r"^[a-z0-9][a-z0-9-]{1,60}$")
 SWS_HEDGE = re.compile(
     r"could(?: not|n[’']t) (?:be )?(?:confirm|verif|reach)|not (?:independently )?(?:confirmed|verified)"
@@ -108,10 +112,10 @@ def sws_check_text(obj, key, where, errors, low=1, high=None, required=True):
         errors.append(f"{where}: \"{key}\" is too long ({length} characters, maximum {high})")
 
 
-def sws_check_url(value, where, errors):
+def sws_check_url(value, where, errors, key="url"):
     parts = urlsplit(value) if isinstance(value, str) else None
     if not parts or parts.scheme not in ("http", "https") or "." not in parts.netloc:
-        errors.append(f"{where}: \"url\" must be a full http(s) link, got {value!r}")
+        errors.append(f"{where}: \"{key}\" must be a full http(s) link, got {value!r}")
         return False
     return True
 
@@ -438,7 +442,8 @@ def sws_legacy_titles(path):
     """Headlines of a report published before the data format existed."""
     text = path.read_text(encoding="utf-8", errors="replace")
     titles = re.findall(r'<h3 class="item-title">(.*?)</h3>', text, re.S)
-    return [html.unescape(re.sub(r"<[^>]+>", "", title)).strip() for title in titles]
+    titles = [html.unescape(re.sub(r"<[^>]+>", "", title)).strip() for title in titles]
+    return [title for title in titles if not SWS_PLACEHOLDER.match(title)]
 
 
 def sws_ensure_noindex(path):
@@ -451,7 +456,7 @@ def sws_ensure_noindex(path):
     return True
 
 
-def sws_render_archive(entries, template, version):
+def sws_render_archive(entries, weeks, template, version):
     """entries: list of (date, [titles]) for every report, any format."""
     months = {}
     for date, titles in sorted(entries, reverse=True):
@@ -478,11 +483,323 @@ def sws_render_archive(entries, template, version):
 {chr(10).join(rows)}
         </section>""")
     total = f"{sws_plural(len(entries), 'report')}, {sum(len(titles) for _, titles in entries)} headlines"
+    weeklies = ""
+    if weeks:
+        rows = "\n".join(
+            f'                <li><a href="{SWS_WEEKLY_FILE.format(week=week)}">{html.escape(sws_week_label(digest))}</a>'
+            f'<span>{sws_inline(digest["stories"][0]["title"]) if digest["stories"] else "A quiet week"}</span></li>'
+            for week, digest in sorted(weeks.items(), reverse=True))
+        weeklies = f"""        <section class="archive-weeklies">
+            <h2>Weekly digests</h2>
+            <ul class="weekly-list">
+{rows}
+            </ul>
+        </section>"""
     return sws_fill(template, {
         "asset_version": version,
         "total": total,
+        "weeklies": weeklies,
         "months": "\n\n".join(blocks),
         "latest": SWS_REPORT_FILE.format(date=max(date for date, _ in entries)) if entries else "index.html",
+    })
+
+
+# ── Weekly digest ────────────────────────────────────────────────────────
+
+def sws_week_days(week):
+    """Monday to Friday of an ISO week written like 2026-W47, or None."""
+    match = SWS_WEEK_ID.match(week)
+    if not match:
+        return None
+    try:
+        monday = dt.date.fromisocalendar(int(match.group(1)), int(match.group(2)), 1)
+    except ValueError:
+        return None
+    return [monday + dt.timedelta(days=offset) for offset in range(5)]
+
+
+def sws_week_label(digest):
+    start, end = dt.date.fromisoformat(digest["from"]), dt.date.fromisoformat(digest["to"])
+    number = int(digest["week"].split("-W")[1])
+    if start.month == end.month:
+        span = f"{start.day} to {end.day} {SWS_MONTHS[end.month - 1]} {end.year}"
+    else:
+        span = f"{start.day} {SWS_MONTHS[start.month - 1]} to {end.day} {SWS_MONTHS[end.month - 1]} {end.year}"
+    return f"Week {number} · {span}"
+
+
+def sws_load_weeks(weekly_dir, errors):
+    weeks = {}
+    for path in sorted(weekly_dir.glob("20??-W??.json")):
+        try:
+            weeks[path.stem] = json.loads(path.read_text(encoding="utf-8"))
+        except ValueError as exc:
+            errors.append(f"weekly/{path.name}: not valid JSON ({exc})")
+    return weeks
+
+
+def sws_validate_week(week, digest, days):
+    """Check one weekly digest. Returns (errors, warnings)."""
+    errors, warnings = [], []
+    name = f"weekly/{week}.json"
+    weekdays = sws_week_days(week)
+    if not isinstance(digest, dict) or not weekdays:
+        return [f"{name}: the file must be a JSON object named like 2026-W47.json"], warnings
+    if digest.get("week") != week:
+        errors.append(f"{name}: \"week\" must be {week!r} to match the file name")
+    start, end = sws_parse_day(digest.get("from")), sws_parse_day(digest.get("to"))
+    if start != weekdays[0] or end not in weekdays:
+        errors.append(f"{name}: \"from\" must be {weekdays[0]} (the Monday) and \"to\" the last weekday covered, "
+                      f"normally {weekdays[-1]}; copy both from the week.py output")
+    sws_check_text(digest, "summary", name, errors, 60, 700)
+
+    known = {f"{date}/{item['id']}" for date, day in days.items() for item in day.get("items", [])}
+    stories = digest.get("stories")
+    if not isinstance(stories, list) or len(stories) > 5:
+        errors.append(f"{name}: \"stories\" must be a list of at most 5 stories")
+        stories = []
+    ids = set()
+    for number, story in enumerate(stories, 1):
+        if not isinstance(story, dict):
+            errors.append(f"{name}: stories[{number}] must be an object")
+            continue
+        where = f"{name}: story {number} ({story.get('id', 'no id')})"
+        if not isinstance(story.get("id"), str) or not SWS_ID.match(story["id"]) or story["id"] in ids:
+            errors.append(f"{where}: \"id\" must be a short slug, unique in the digest")
+        ids.add(story.get("id"))
+        sws_check_text(story, "title", where, errors, 10, 110)
+        sws_check_text(story, "what", where, errors, 60, 900)
+        sws_check_text(story, "now", where, errors, 30, 500)
+        sws_check_text(story, "why", where, errors, 20, 450)
+        sws_check_url(story.get("now_url"), where, errors, "now_url")
+        refs = story.get("items")
+        if not isinstance(refs, list):
+            errors.append(f"{where}: \"items\" must be a list of references such as \"2026-11-19/item-id\"")
+            refs = []
+        for ref in refs:
+            if ref not in known:
+                errors.append(f"{where}: \"{ref}\" is not an item of a daily edition; copy the reference "
+                              "from the week.py output")
+        for key in ("title", "what", "now", "why"):
+            if isinstance(story.get(key), str) and SWS_HEDGE.search(story[key]):
+                warnings.append(f"{where}: \"{key}\" hedges about something unconfirmed. Leave it out instead")
+
+    actions = digest.get("actions", [])
+    if not isinstance(actions, list) or len(actions) > 5:
+        errors.append(f"{name}: \"actions\" must be a list of at most 5 things still to do")
+        actions = []
+    for number, action in enumerate(actions, 1):
+        where = f"{name}: action {number}"
+        if not isinstance(action, dict):
+            errors.append(f"{where} must be an object")
+            continue
+        sws_check_text(action, "title", where, errors, 8, 110)
+        sws_check_text(action, "detail", where, errors, 20, 500)
+        if not sws_parse_day(action.get("opened")):
+            errors.append(f"{where}: \"opened\" must be the date the action first appeared")
+        if action.get("url") is not None:
+            sws_check_url(action.get("url"), where, errors)
+
+    missed = digest.get("missed", [])
+    if not isinstance(missed, list) or len(missed) > 3:
+        errors.append(f"{name}: \"missed\" must be a list of at most 3 items")
+        missed = []
+    for number, item in enumerate(missed, 1):
+        where = f"{name}: missed item {number}"
+        if not isinstance(item, dict):
+            errors.append(f"{where} must be an object")
+            continue
+        sws_check_text(item, "title", where, errors, 10, 110)
+        sws_check_text(item, "summary", where, errors, 40, 700)
+        sws_check_text(item, "why", where, errors, 20, 450)
+        sws_check_text(item, "source", where, errors, 2, 60)
+        sws_check_url(item.get("url"), where, errors)
+        published = sws_parse_day(item.get("published"))
+        if not published or not (weekdays[0] - dt.timedelta(days=2) <= published <= weekdays[-1] + dt.timedelta(days=2)):
+            errors.append(f"{where}: \"published\" must be a date inside the week")
+
+    ahead = digest.get("ahead", [])
+    if not isinstance(ahead, list) or len(ahead) > 8:
+        errors.append(f"{name}: \"ahead\" must be a list of at most 8 dated events")
+        ahead = []
+    for number, event in enumerate(ahead, 1):
+        where = f"{name}: coming-up entry {number}"
+        if not isinstance(event, dict):
+            errors.append(f"{where} must be an object")
+            continue
+        date = sws_parse_day(event.get("date"))
+        if not date or (end and not (end <= date <= end + dt.timedelta(days=60))):
+            errors.append(f"{where}: \"date\" must fall within 60 days after the week")
+        sws_check_text(event, "title", where, errors, 8, 110)
+        sws_check_text(event, "detail", where, errors, 10, 300, required=False)
+        sws_check_url(event.get("url"), where, errors)
+
+    long_read = digest.get("long_read")
+    if long_read is not None:
+        where = f"{name}: long_read"
+        if not isinstance(long_read, dict):
+            errors.append(f"{where} must be an object or left out")
+        else:
+            sws_check_text(long_read, "title", where, errors, 8, 140)
+            sws_check_text(long_read, "source", where, errors, 2, 60)
+            sws_check_text(long_read, "why", where, errors, 20, 400)
+            sws_check_url(long_read.get("url"), where, errors)
+
+    run = digest.get("run")
+    if not isinstance(run, dict) or not all(isinstance(run.get(key), int) for key in ("searches", "pages_opened")):
+        errors.append(f"{name}: \"run\" must give \"searches\" and \"pages_opened\" as whole numbers")
+    return errors, warnings
+
+
+def sws_week_health(digest, days, legacy):
+    """One row per weekday covered: (date, status text, link or None, is a problem)."""
+    rows = []
+    day = dt.date.fromisoformat(digest["from"])
+    end = dt.date.fromisoformat(digest["to"])
+    while day <= end:
+        date = day.isoformat()
+        if date in days:
+            count = len(days[date]["items"])
+            failed = days[date]["run"]["failed"]
+            status = sws_plural(count, "item")
+            if failed:
+                status += f", {sws_plural(len(failed), 'source')} not reachable"
+            rows.append((day, status, SWS_REPORT_FILE.format(date=date), count < SWS_THIN_BELOW))
+        elif date in legacy:
+            rows.append((day, f"{sws_plural(len(legacy[date]), 'item')}, older format",
+                         SWS_REPORT_FILE.format(date=date), False))
+        else:
+            rows.append((day, "no edition published", None, True))
+        day += dt.timedelta(days=1)
+    return rows
+
+
+def sws_render_week(week, digest, days, legacy, all_weeks, template, version):
+    items = {f"{date}/{item['id']}": (date, item) for date, day in days.items() for item in day["items"]}
+
+    stories = []
+    for story in digest["stories"]:
+        refs = []
+        for ref in story["items"]:
+            date, item = items[ref]
+            edition = f'{SWS_REPORT_FILE.format(date=date)}#item-{item["id"]}'
+            refs.append(f'                    <li>{sws_external_link(item["url"], sws_inline(item["title"]))} · '
+                        f'<a href="{edition}">{sws_short_date(dt.date.fromisoformat(date))} edition</a></li>')
+        ref_list = ('\n                <ul class="story-items">\n' + "\n".join(refs) + "\n                </ul>") if refs else ""
+        stories.append(f"""            <article class="story" id="story-{story['id']}">
+                <h3>{sws_inline(story['title'])}</h3>
+                <p class="story-part"><span class="story-label">What happened</span>{sws_inline(story['what'])}</p>
+                <p class="story-part"><span class="story-label">Where it stands</span>{sws_inline(story['now'])} {sws_external_link(story['now_url'], 'Source', 'item-source')}</p>
+                <p class="item-why"><strong>Why it matters:</strong> {sws_inline(story['why'])}</p>{ref_list}
+            </article>""")
+    stories_html = ""
+    if stories:
+        stories_html = ('        <h2 class="section-title">Stories of the week</h2>\n        <div class="stories">\n'
+                        + "\n".join(stories) + "\n        </div>")
+
+    actions = digest.get("actions") or []
+    if actions:
+        rows = []
+        for action in actions:
+            meta = [f"Open since {sws_short_date(dt.date.fromisoformat(action['opened']))}"]
+            if action.get("url"):
+                meta.append(sws_external_link(action["url"], "details"))
+            rows.append(f"""                <li>
+                    <div class="action-title">{sws_inline(action['title'])}</div>
+                    <p class="action-detail">{sws_inline(action['detail'])}</p>
+                    <p class="action-meta">{' · '.join(meta)}</p>
+                </li>""")
+        actions_html = f"""        <section class="panel panel-actions" aria-labelledby="actionsTitle">
+            <h2 class="panel-title" id="actionsTitle">Still to do</h2>
+            <ul class="action-list">
+{chr(10).join(rows)}
+            </ul>
+        </section>"""
+    else:
+        actions_html = """        <section class="panel panel-actions is-clear" aria-labelledby="actionsTitle">
+            <h2 class="panel-title" id="actionsTitle">Still to do</h2>
+            <p>Nothing is left over from this week.</p>
+        </section>"""
+
+    missed_html = ""
+    if digest.get("missed"):
+        cards = []
+        for item in digest["missed"]:
+            published = dt.date.fromisoformat(item["published"])
+            cards.append(f"""            <article class="item">
+                <div class="item-header">
+                    <h3 class="item-title">{sws_external_link(item['url'], sws_inline(item['title']))}</h3>
+                </div>
+                <p class="item-summary">{sws_inline(item['summary'])}</p>
+                <p class="item-why"><strong>Why it matters:</strong> {sws_inline(item['why'])}</p>
+                <p class="item-meta">{sws_external_link(item['url'], 'via ' + html.escape(item['source'].strip()), 'item-source')} · published <time datetime="{published}">{sws_short_date(published)}</time></p>
+            </article>""")
+        missed_html = ('        <h2 class="section-title">Not in the daily editions</h2>\n        <div class="items-list">\n'
+                       + "\n".join(cards) + "\n        </div>")
+
+    ahead_html = ""
+    if digest.get("ahead"):
+        rows = []
+        for event in sorted(digest["ahead"], key=lambda e: e["date"]):
+            date = dt.date.fromisoformat(event["date"])
+            detail = f' <span class="ahead-detail">{sws_inline(event["detail"])}</span>' if event.get("detail") else ""
+            rows.append(f'                <li><time class="ahead-date" datetime="{date}">{sws_short_date(date)}</time>'
+                        f'<span>{sws_external_link(event["url"], sws_inline(event["title"]))}{detail}</span></li>')
+        ahead_html = f"""        <section class="panel" aria-labelledby="aheadTitle">
+            <h2 class="panel-title" id="aheadTitle">Coming up</h2>
+            <ul class="ahead-list">
+{chr(10).join(rows)}
+            </ul>
+        </section>"""
+
+    read_html = ""
+    if digest.get("long_read"):
+        read = digest["long_read"]
+        read_html = f"""        <section class="panel" aria-labelledby="readTitle">
+            <h2 class="panel-title" id="readTitle">One thing worth reading in full</h2>
+            <p class="read-title">{sws_external_link(read['url'], sws_inline(read['title']))} <span class="ahead-detail">{html.escape(read['source'].strip())}</span></p>
+            <p class="action-detail">{sws_inline(read['why'])}</p>
+        </section>"""
+
+    health_rows = []
+    for day, status, link, problem in sws_week_health(digest, days, legacy):
+        label = f'<a href="{link}">{sws_short_date(day)}</a>' if link else sws_short_date(day)
+        css = ' class="is-problem"' if problem else ""
+        health_rows.append(f'                <li{css}><span class="ahead-date">{label}</span><span>{html.escape(status)}</span></li>')
+    health_html = f"""        <section class="panel" aria-labelledby="healthTitle">
+            <h2 class="panel-title" id="healthTitle">This week's editions</h2>
+            <ul class="ahead-list health-list">
+{chr(10).join(health_rows)}
+            </ul>
+        </section>"""
+
+    position = all_weeks.index(week)
+    nav = []
+    if position > 0:
+        previous = all_weeks[position - 1]
+        nav.append(f'<a href="{SWS_WEEKLY_FILE.format(week=previous)}" rel="prev">← Week {int(previous.split("-W")[1])}</a>')
+    nav.append('<a href="archive.html">Archive</a>')
+    if position < len(all_weeks) - 1:
+        following = all_weeks[position + 1]
+        nav.append(f'<a href="{SWS_WEEKLY_FILE.format(week=following)}" rel="next">Week {int(following.split("-W")[1])} →</a>')
+    else:
+        nav.append('<a href="index.html">Latest daily →</a>')
+
+    run = digest["run"]
+    return sws_fill(template, {
+        "week_label": html.escape(sws_week_label(digest)),
+        "description": html.escape(digest["summary"].strip()[:200], quote=True),
+        "asset_version": version,
+        "nav": "\n                    ".join(nav),
+        "summary": sws_inline(digest["summary"]),
+        "stories": stories_html,
+        "actions": actions_html,
+        "missed": missed_html,
+        "ahead": ahead_html,
+        "long_read": read_html,
+        "health": health_html,
+        "run": f"{run['searches']} search" + ("" if run["searches"] == 1 else "es")
+               + f" · {sws_plural(run['pages_opened'], 'page')} opened",
     })
 
 
@@ -516,6 +833,13 @@ def sws_main():
             for item in day["items"]:
                 earlier_urls.setdefault(item["url"], date)
 
+    weeks = sws_load_weeks(args.data / "weekly", errors)
+    for week, digest in weeks.items():
+        week_errors, week_warnings = sws_validate_week(week, digest, days)
+        errors += week_errors
+        if week == max(weeks):
+            warnings += week_warnings
+
     for message in warnings:
         print(f"warning: {message}")
     if errors:
@@ -523,7 +847,7 @@ def sws_main():
             print(f"error: {message}", file=sys.stderr)
         sys.exit(f"\n{len(errors)} problem(s) found. Nothing was written. Fix the data file and run again.")
     if args.check:
-        print(f"OK: {sws_plural(len(days), 'data file')} valid.")
+        print(f"OK: {sws_plural(len(days), 'data file')} and {sws_plural(len(weeks), 'weekly digest')} valid.")
         return
 
     out = args.out.resolve()
@@ -549,22 +873,30 @@ def sws_main():
         page = sws_render_report(date, day, categories, all_dates, report_template, version)
         written += sws_write(out / SWS_REPORT_FILE.format(date=date), page)
 
+    weekly_template = (SWS_ROOT / "templates" / "weekly.html").read_text(encoding="utf-8")
+    all_weeks = sorted(weeks)
+    for week, digest in weeks.items():
+        page = sws_render_week(week, digest, days, legacy, all_weeks, weekly_template, version)
+        written += sws_write(out / SWS_WEEKLY_FILE.format(week=week), page)
+
     entries = [(date, [item["title"] for item in day["items"]]) for date, day in days.items()]
     entries += list(legacy.items())
     archive_template = (SWS_ROOT / "templates" / "archive.html").read_text(encoding="utf-8")
-    written += sws_write(out / "archive.html", sws_render_archive(entries, archive_template, version))
+    written += sws_write(out / "archive.html", sws_render_archive(entries, weeks, archive_template, version))
 
     if all_dates:
         newest = all_dates[-1]
         source = (out if newest in days else SWS_ROOT) / SWS_REPORT_FILE.format(date=newest)
         written += sws_write(out / "index.html", source.read_text(encoding="utf-8"))
 
-    print(f"Built {sws_plural(len(days), 'report')} from data, {len(legacy)} older reports listed in the archive, "
-          f"{sws_plural(written, 'file')} changed.")
+    print(f"Built {sws_plural(len(days), 'report')} and {sws_plural(len(weeks), 'weekly digest')} from data, "
+          f"{len(legacy)} older reports listed in the archive, {sws_plural(written, 'file')} changed.")
     if tagged:
         print(f"Added the noindex tag to {sws_plural(tagged, 'older page')} (they had none).")
     if days:
-        print(f"Newest: {SWS_REPORT_FILE.format(date=max(days))}")
+        print(f"Newest daily: {SWS_REPORT_FILE.format(date=max(days))}")
+    if weeks:
+        print(f"Newest weekly: {SWS_WEEKLY_FILE.format(week=max(weeks))}")
 
 
 if __name__ == "__main__":

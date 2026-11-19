@@ -11,8 +11,9 @@ hand, not a verdict. A figure can be right and still be listed (a count you
 made yourself, a number the page writes in words).
 
 Usage:
-    python3 scripts/verify.py                 newest data file
+    python3 scripts/verify.py                 newest daily edition
     python3 scripts/verify.py 2026-11-19      a given edition
+    python3 scripts/verify.py 2026-W47        a weekly digest (story updates and missed items)
 
 Standard library only.
 """
@@ -66,6 +67,7 @@ def sws_page_date(parsed):
 
 
 def sws_check_item(item):
+    """Check one piece of text against its link. item: {"url", "text", "published" (optional)}."""
     notes = []
     try:
         final_url, status, content_type, markup = sws_page.sws_fetch(item["url"])
@@ -81,13 +83,12 @@ def sws_check_item(item):
     if len(text) < 400:
         return [f"the link returned almost no text (HTTP {status}), so nothing could be checked"]
     haystack = text.lower().replace(",", "").replace("\xa0", " ")
-    missing = [figure for figure in sws_figures(item["title"] + " " + item["summary"])
-               if not sws_on_page(figure, haystack)]
+    missing = [figure for figure in sws_figures(item["text"]) if not sws_on_page(figure, haystack)]
     if missing:
         notes.append("not found on the linked page: " + ", ".join(missing))
     declared = sws_page_date(parsed) if parsed else None
     try:
-        published = dt.date.fromisoformat(item["published"])
+        published = dt.date.fromisoformat(item.get("published") or "")
     except ValueError:
         published = None
     if declared and published and abs((declared - published).days) > 1:
@@ -97,19 +98,32 @@ def sws_check_item(item):
 
 def sws_main():
     data_dir = SWS_ROOT / "data"
-    if len(sys.argv) > 1:
-        path = data_dir / f"{sys.argv[1]}.json"
+    target = sys.argv[1] if len(sys.argv) > 1 else None
+    if target and "-W" in target:
+        path = data_dir / "weekly" / f"{target}.json"
+        digest = json.loads(path.read_text(encoding="utf-8"))
+        items = [{"id": f"story: {story.get('id')}", "url": story.get("now_url", ""), "text": story.get("now", "")}
+                 for story in digest.get("stories", [])]
+        items += [{"id": f"missed: {missed.get('title', '')[:50]}", "url": missed.get("url", ""),
+                   "text": missed.get("title", "") + " " + missed.get("summary", ""),
+                   "published": missed.get("published")} for missed in digest.get("missed", [])]
+        items += [{"id": f"coming up: {event.get('title', '')[:50]}", "url": event.get("url", ""),
+                   "text": event.get("detail", "")} for event in digest.get("ahead", [])]
     else:
-        files = sorted(data_dir.glob("20??-??-??.json"))
-        if not files:
-            sys.exit("No data files yet.")
-        path = files[-1]
-    day = json.loads(path.read_text(encoding="utf-8"))
-    items = day.get("items", [])
+        if target:
+            path = data_dir / f"{target}.json"
+        else:
+            files = sorted(data_dir.glob("20??-??-??.json"))
+            if not files:
+                sys.exit("No data files yet.")
+            path = files[-1]
+        day = json.loads(path.read_text(encoding="utf-8"))
+        items = [{"id": item["id"], "url": item["url"], "text": item["title"] + " " + item["summary"],
+                  "published": item.get("published")} for item in day.get("items", [])]
     with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
         results = list(pool.map(sws_check_item, items))
     flagged = 0
-    print(f"Checking {len(items)} items in {path.name} against their links\n")
+    print(f"Checking {len(items)} entries in {path.name} against their links\n")
     for item, notes in zip(items, results):
         if notes:
             flagged += 1
@@ -118,7 +132,7 @@ def sws_main():
                 print(f"          {note}")
         else:
             print(f"ok        {item['id']}")
-    print(f"\n{flagged} of {len(items)} items to re-check by hand." if flagged
+    print(f"\n{flagged} of {len(items)} entries to re-check by hand." if flagged
           else "\nEvery figure was found on its linked page.")
 
 
