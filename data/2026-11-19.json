@@ -1,0 +1,173 @@
+{
+  "date": "2026-11-19",
+  "window": {
+    "from": "2026-11-18T16:19+01:00",
+    "to": "2026-11-19T18:19+01:00"
+  },
+  "top": [
+    "wordpress-7-1-5",
+    "php-november-security-release",
+    "anthropic-ipo"
+  ],
+  "items": [
+    {
+      "id": "wordpress-7-1-5",
+      "category": "wordpress",
+      "tag": "security",
+      "priority": "critical",
+      "title": "WordPress 7.1.5 fixes 20 security issues, including an unauthenticated flaw that could lead to RCE",
+      "summary": "WordPress 7.1.5, released on 18 Nov, lists 20 security fixes. They include an unauthenticated privilege escalation via Template Part block attributes that could lead to remote code execution, SQL injection in WP_Meta_Query and in Customizer changeset previews, and an unauthenticated stored XSS via shortcode attributes in comments. Fixes were backported to all branches eligible for security fixes, through 4.7, and are shipping as they become ready.",
+      "why": "Update every client site today, or check that background updates have applied. The next major release, 7.2, is planned for 8 Dec.",
+      "url": "https://wordpress.org/news/2026/11/wordpress-7-1-5-release/",
+      "source": "WordPress News",
+      "published": "2026-11-18",
+      "verified": "page"
+    },
+    {
+      "id": "php-november-security-release",
+      "category": "wordpress",
+      "tag": "security",
+      "title": "PHP 8.5.13, 8.4.28, 8.3.37 and 8.2.36 fix 18 CVEs, seven rated Critical",
+      "summary": "PHP released security updates on 19 Nov for all supported branches. Patchstack counts 18 CVEs, seven of them Critical at CVSS 9.2. It says none are WordPress bugs and the fix is a host-level update, and picks out two as reachable on ordinary hosting setups: a timezone cache use-after-free (CVE-2026-129496) and PHP-FPM request smuggling (CVE-2026-129289).",
+      "why": "Ask your hosts to move to the fixed PHP versions this week. Until they do, check that FastCGI connection reuse is off (fastcgi_keep_conn in nginx, enablereuse in mod_proxy_fcgi), which is the precondition for the request smuggling bug.",
+      "url": "https://patchstack.com/articles/php-november-2026-security-release-wordpress/",
+      "source": "Patchstack",
+      "published": "2026-11-19",
+      "verified": "page"
+    },
+    {
+      "id": "anthropic-ipo",
+      "category": "wider",
+      "tag": "milestone",
+      "title": "Anthropic starts trading on Nasdaq at $111.50 a share",
+      "summary": "Anthropic began trading on the Nasdaq on 19 Nov under the ticker ANT at $111.50, up from its $83 IPO price, which valued the company at about $1.5 trillion. Its S-1 reported $16.3 billion in revenue and an $80.7 billion net loss for the first half of the year, most of it from an accounting charge.",
+      "why": "Nothing to do. It is the story a well-informed person in the industry will know about tomorrow, and you depend on Claude and Claude Code daily.",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1035384/anthropic-ipo-trading-nasdaq",
+      "source": "The Verge",
+      "published": "2026-11-19",
+      "verified": "page"
+    },
+    {
+      "id": "nginx-http2-rce",
+      "category": "wordpress",
+      "tag": "security",
+      "title": "NGINX patches critical HTTP/2 flaw that allows remote code execution",
+      "summary": "NGINX 1.31.9 and 1.30.7, released on 18 Nov, fix CVE-2026-123007, a memory corruption bug in HTTP/2 flow control present in every release from 1.9.5 to 1.31.8. Public proof-of-concept code exists, but The Hacker News reports no attacks so far and no listing in CISA's exploited-vulnerabilities catalog. Four more flaws are fixed in the same releases.",
+      "why": "Only matters if a client's host runs NGINX with HTTP/2 enabled. Ask your hosts whether they have moved to the fixed versions.",
+      "url": "https://thehackernews.com/2026/11/10-year-old-nginx-http2-flaw-lets.html",
+      "source": "The Hacker News",
+      "published": "2026-11-18",
+      "verified": "page"
+    },
+    {
+      "id": "bricks-2-4-6",
+      "category": "wordpress",
+      "tag": "update",
+      "title": "Bricks 2.4.6 fixes an AI abilities regression and hardens component forms",
+      "summary": "Bricks 2.4.6, dated 19 Nov, fixes a code-escaping regression in AI abilities introduced in 2.4.5. It also adds security hardening for component forms, Builder and Media Browser improvements, and WooCommerce 11.3.0 compatibility.",
+      "why": "Update if you use Bricks AI abilities or component forms on client sites. The 2.5 beta of 17 Nov is out but not a release to put on client sites.",
+      "url": "https://bricksbuilder.io/changelog/",
+      "source": "Bricks Builder",
+      "published": "2026-11-19",
+      "verified": "page"
+    },
+    {
+      "id": "chrome-xslt-wordpress-sitemaps",
+      "category": "webdev",
+      "tag": "important",
+      "title": "Chrome 158 drops XSLT, so WordPress sitemaps now show as raw XML",
+      "summary": "Chrome 158 began rolling out on 17 Nov without client-side XSLT, so WordPress core and SEO plugin sitemaps that rely on an .xsl stylesheet display as unstyled XML. Search Engine Journal says crawlers do not use XSLT and indexing is unaffected. WordPress 7.2, planned for 8 Dec, removes core's XSLT stylesheet, and Yoast 28.9 replaces it with CSS.",
+      "why": "If a client reports a broken sitemap, it is not. Check Search Console under Indexing, then Sitemaps, for a Success status instead of changing anything.",
+      "url": "https://www.searchenginejournal.com/your-wordpress-sitemap-isnt-broken-chrome-158-has-dropped-xslt/597549/",
+      "source": "Search Engine Journal",
+      "published": "2026-11-19",
+      "verified": "page"
+    },
+    {
+      "id": "gemini-4-neon",
+      "category": "ai",
+      "tag": "new",
+      "title": "Google releases Gemini 4 Neon, priced at $3 and $15 per million tokens",
+      "summary": "Google released Gemini 4 Neon on 18 Nov, built for software engineering and agentic work, with a 1 million-token context window and a price of $3 per million input tokens and $15 per million output tokens. It is available in the Gemini API, Google AI Studio, Antigravity and the Gemini app. GitHub says it is generally available in Copilot.",
+      "why": "Nothing to change in your Claude workflow. It matters if a client or tool you use is switching coding models on price.",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/",
+      "source": "Google",
+      "published": "2026-11-18",
+      "verified": "page"
+    },
+    {
+      "id": "ec-artex-cyberattack",
+      "category": "wider",
+      "tag": "important",
+      "title": "European Commission hit by cyberattack using AI pentest tool ARTEX",
+      "summary": "The European Commission has had more than 10 days of disruption after attackers used ARTEX, a publicly available AI penetration-testing framework, as first reported by Politico. Staff systems for payslips and medical reimbursement were taken offline, and the Commission has not said whether personal data was taken. The FBI found more than 1,600 ARTEX consoles exposed to the internet.",
+      "why": "Nothing specific to do today. The FBI describes attackers using this tool going from picking a target to privileged access in under three hours, which leaves less room for slow patching on client sites.",
+      "url": "https://www.theregister.com/cyber-crime/2026/11/19/european-commission-scrambles-to-contain-ai-assisted-cyberattack/5311103",
+      "source": "The Register",
+      "published": "2026-11-19",
+      "verified": "page"
+    },
+    {
+      "id": "uk-apple-backdoor-order",
+      "category": "wider",
+      "tag": "important",
+      "title": "UK tribunal forces government to acknowledge secret Apple encryption order",
+      "summary": "On 19 Nov the UK Investigatory Powers Tribunal ruled that the government must confirm it issued a secret notice demanding Apple give authorities access to encrypted customer data. The tribunal rejected the Home Office's claim that disclosure would harm national security.",
+      "why": "Nothing to do. It is a regulation and privacy story you will hear about, relevant if clients ask about iCloud encryption.",
+      "url": "https://techcrunch.com/2026/11/19/u-k-government-forced-to-disclose-secret-apple-backdoor-order/",
+      "source": "TechCrunch",
+      "published": "2026-11-19",
+      "verified": "page"
+    },
+    {
+      "id": "agent-framework-pypi-compromise",
+      "category": "wider",
+      "tag": "security",
+      "title": "Microsoft Agent Framework PyPI package compromised to steal credentials",
+      "summary": "Attackers published two malicious versions, 1.26.1 and 1.26.2, of Microsoft's Agent Framework package on PyPI on 17 Nov. They ran a credential stealer at Python startup, even without importing the package. PyPI quarantined both, and the safe version is 1.26.0.",
+      "why": "Only matters if you or a tool of yours installed agent-framework on 17 Nov. If so, rotate any credentials in reach of that environment.",
+      "url": "https://www.bleepingcomputer.com/news/security/microsofts-agent-framework-pypi-package-compromised-to-steal-credentials/",
+      "source": "BleepingComputer",
+      "published": "2026-11-18",
+      "verified": "page"
+    },
+    {
+      "id": "wp-abilities-core-first",
+      "category": "claude-wp",
+      "tag": "update",
+      "title": "WordPress AI team: abilities for 7.3 will be built in core first",
+      "summary": "The WordPress AI team's meeting on 18 Nov agreed that abilities planned for WordPress 7.3 are developed and reviewed in core, then synchronised into the shared Abilities package used by projects such as the MCP Adapter. Abilities not yet targeted for core can be tested in the package. A proposed minimum set of 7.3 abilities, with input and output schemas, is open for feedback.",
+      "why": "If you write custom abilities for Claude to use on client sites, expect core to define the standard ones in 7.3. Nothing to change now.",
+      "url": "https://make.wordpress.org/ai/2026/11/19/ai-contributor-weekly-summary-18-november-2026/",
+      "source": "Make WordPress AI",
+      "published": "2026-11-19",
+      "verified": "page"
+    }
+  ],
+  "actions": [
+    {
+      "id": "update-wordpress-7-1-5",
+      "title": "Update every client site to WordPress 7.1.5",
+      "detail": "The release fixes 20 security issues, including an unauthenticated flaw that could lead to remote code execution.",
+      "status": "new",
+      "opened": "2026-11-19",
+      "url": "https://wordpress.org/news/2026/11/wordpress-7-1-5-release/"
+    },
+    {
+      "id": "ask-hosts-php-update",
+      "title": "Ask hosts to update PHP to 8.5.13, 8.4.28, 8.3.37 or 8.2.36",
+      "detail": "Until then, turn off FastCGI connection reuse where it is on.",
+      "status": "new",
+      "opened": "2026-11-19",
+      "url": "https://patchstack.com/articles/php-november-2026-security-release-wordpress/"
+    }
+  ],
+  "quick_win": "Open a client's wp-sitemap.xml in Chrome and check the Sitemaps report in Search Console, so you can answer a raw-XML complaint with a screenshot of the Success status.",
+  "run": {
+    "sources_total": 55,
+    "sources_ok": 55,
+    "failed": [],
+    "searches": 9,
+    "pages_opened": 21
+  }
+}
