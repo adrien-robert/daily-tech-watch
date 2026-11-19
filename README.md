@@ -4,6 +4,7 @@ A daily tech briefing by **Stellar Web Solutions**: the day's important tech new
 
 - **Latest edition:** https://adrien-robert.github.io/daily-tech-watch/
 - **Archive with search:** https://adrien-robert.github.io/daily-tech-watch/archive.html
+- **Weekly digest:** `https://adrien-robert.github.io/daily-tech-watch/YYYY-Www-weekly-digest.html`, listed at the top of the archive
 - **By date:** `https://adrien-robert.github.io/daily-tech-watch/YYYY-MM-DD-daily-tech-report.html`
 
 ## How an edition is made
@@ -16,18 +17,29 @@ A scheduled Claude Code task runs every weekday morning and follows [`docs/routi
 4. `scripts/build.py` validates that file and renders the report page, `index.html` and `archive.html`.
 5. The result is merged into `main`, which publishes it through GitHub Pages.
 
+## How a weekly digest is made
+
+A second scheduled task runs on Friday afternoon and follows [`docs/weekly.md`](docs/weekly.md):
+
+1. `scripts/week.py` gathers the week: the state of each weekday edition, every item published, the actions raised, and the most-discussed Hacker News stories no edition covered.
+2. Claude joins the items into three to five stories, goes back to the sources to see where each one stands today, looks for what the daily editions missed, and lists what is still to do and what is coming.
+3. Claude writes `data/weekly/YYYY-Www.json`; `scripts/build.py` renders the page, including a table of the week's editions that shows a missing or thin day.
+
 ## What lives where
 
 | Path | What it is |
 |---|---|
-| `docs/routine.md` | The instructions the scheduled task follows. Edit this to change what the briefing covers or how it is written. |
+| `docs/routine.md` | The instructions the daily task follows. Edit this to change what the briefing covers or how it is written. |
+| `docs/weekly.md` | The instructions the weekly task follows. |
 | `config/sources.json` | The feeds and pages checked every day, and the section names. |
-| `data/` | One JSON file per edition. The source of truth for every report page. |
+| `data/` | One JSON file per daily edition, and one per weekly digest in `data/weekly/`. The source of truth for every page. |
 | `scripts/collect.py` | Fetches the feeds and prints the candidates for the day. |
+| `scripts/week.py` | Gathers a week of editions for the weekly digest. |
 | `scripts/page.py` | Opens one web page and prints its publication dates and text, for checking a story. |
+| `scripts/verify.py` | Lists figures in an edition or digest that are not on the page it links to. |
 | `scripts/build.py` | Validates the data and renders the site. |
 | `templates/`, `assets/` | Page layout, styles and scripts shared by every report. |
-| `YYYY-MM-DD-daily-tech-report.html`, `index.html`, `archive.html` | Generated pages. Do not edit them by hand. |
+| `YYYY-MM-DD-daily-tech-report.html`, `YYYY-Www-weekly-digest.html`, `index.html`, `archive.html` | Generated pages. Do not edit them by hand. |
 
 Reports dated before 2026-11-19 were written directly as HTML by an earlier version of the task. They are kept as they are and listed in the archive.
 
