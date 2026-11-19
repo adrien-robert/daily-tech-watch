@@ -112,10 +112,10 @@ def sws_check_text(obj, key, where, errors, low=1, high=None, required=True):
         errors.append(f"{where}: \"{key}\" is too long ({length} characters, maximum {high})")
 
 
-def sws_check_url(value, where, errors):
+def sws_check_url(value, where, errors, key="url"):
     parts = urlsplit(value) if isinstance(value, str) else None
     if not parts or parts.scheme not in ("http", "https") or "." not in parts.netloc:
-        errors.append(f"{where}: \"url\" must be a full http(s) link, got {value!r}")
+        errors.append(f"{where}: \"{key}\" must be a full http(s) link, got {value!r}")
         return False
     return True
 
@@ -571,7 +571,7 @@ def sws_validate_week(week, digest, days):
         sws_check_text(story, "what", where, errors, 60, 900)
         sws_check_text(story, "now", where, errors, 30, 500)
         sws_check_text(story, "why", where, errors, 20, 450)
-        sws_check_url(story.get("now_url"), where, errors)
+        sws_check_url(story.get("now_url"), where, errors, "now_url")
         refs = story.get("items")
         if not isinstance(refs, list):
             errors.append(f"{where}: \"items\" must be a list of references such as \"2026-11-19/item-id\"")
