@@ -52,6 +52,30 @@ def sws_load_reports():
     return reports
 
 
+def sws_legacy_reported(before, known_dates, limit):
+    """Titles and links from reports published before the data format existed.
+
+    Only used until enough new-format reports exist to fill the "already
+    reported" list on their own.
+    """
+    found = []
+    paths = sorted(SWS_ROOT.glob("20??-??-??-daily-tech-report.html"), reverse=True)
+    for path in paths:
+        date = path.name[:10]
+        if date >= before or date in known_dates:
+            continue
+        if limit <= 0:
+            break
+        limit -= 1
+        text = path.read_text(encoding="utf-8", errors="replace")
+        for block in re.findall(r'<article class="item.*?</article>', text, re.S):
+            title = re.search(r'<h3 class="item-title">(.*?)</h3>', block, re.S)
+            link = re.search(r'href="(https?://[^"]+)"', block)
+            if title:
+                found.append((date, sws_clean_text(title.group(1), 200), html.unescape(link.group(1)) if link else ""))
+    return found
+
+
 def sws_parse_iso(value):
     try:
         parsed = dt.datetime.fromisoformat(str(value).strip().replace("Z", "+00:00"))
@@ -216,7 +240,7 @@ def sws_collect_source(source, start, now, seen, default_max):
     return result
 
 
-def sws_format_output(config, reports, start, now, note, results):
+def sws_format_output(config, reports, legacy, start, now, note, results):
     """Render everything as plain text for the report writer."""
     categories = config["categories"]
     feeds = [r for r in results if r["source"]["type"] == "feed"]
@@ -264,11 +288,13 @@ def sws_format_output(config, reports, start, now, note, results):
 
     out += ["", "=" * 78, "ALREADY REPORTED (do not repeat a story unless something new happened)", "=" * 78]
     recent = reports[-7:]
-    if not recent:
-        out.append("(no earlier reports in the new format yet)")
+    if not recent and not legacy:
+        out.append("(nothing reported in the last few editions)")
     for report in reversed(recent):
         for item in report.get("items", []):
             out.append(f"{report.get('date')} | {item.get('title')} | {item.get('url')}")
+    for date, title, link in legacy:
+        out.append(f"{date} | {title} | {link}")
 
     out += ["", "=" * 78, "OPEN ACTIONS FROM THE LAST REPORT", "=" * 78]
     actions = reports[-1].get("actions", []) if reports else []
@@ -299,12 +325,17 @@ def sws_main():
             for report in reports if report.get("date", "") >= cutoff
             for item in report.get("items", [])}
 
+    edition = now.astimezone(SWS_TZ).date().isoformat()
+    known = {report.get("date") for report in reports}
+    legacy = sws_legacy_reported(edition, known, max(0, 7 - len(reports)))
+    seen |= {sws_normalise_url(link) for _, _, link in legacy if link}
+
     feeds = [s for s in config["sources"] if s["type"] == "feed"]
     default_max = config.get("per_source_max", 20)
     with concurrent.futures.ThreadPoolExecutor(max_workers=10) as pool:
         results = list(pool.map(lambda s: sws_collect_source(s, start, now, seen, default_max), feeds))
 
-    text = sws_format_output(config, reports, start, now, note, results)
+    text = sws_format_output(config, reports, legacy, start, now, note, results)
     failed = [r["source"]["name"] for r in results if r["error"]]
     if args.out:
         Path(args.out).write_text(text, encoding="utf-8")

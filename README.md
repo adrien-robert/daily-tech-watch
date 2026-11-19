@@ -11,7 +11,7 @@ A daily tech briefing by **Stellar Web Solutions**: the day's important tech new
 A scheduled Claude Code task runs every weekday morning and follows [`docs/routine.md`](docs/routine.md):
 
 1. `scripts/collect.py` reads the feeds listed in `config/sources.json` and lists everything published since the last edition, with real dates.
-2. Claude opens the pages that have no feed, runs searches for what feeds miss, and opens the page behind every story it keeps.
+2. Claude reads the pages that have no feed, runs searches for what feeds miss, and reads the page behind every story it keeps (`scripts/page.py`).
 3. Claude writes the day as one data file, `data/YYYY-MM-DD.json`.
 4. `scripts/build.py` validates that file and renders the report page, `index.html` and `archive.html`.
 5. The result is merged into `main`, which publishes it through GitHub Pages.
@@ -24,6 +24,7 @@ A scheduled Claude Code task runs every weekday morning and follows [`docs/routi
 | `config/sources.json` | The feeds and pages checked every day, and the section names. |
 | `data/` | One JSON file per edition. The source of truth for every report page. |
 | `scripts/collect.py` | Fetches the feeds and prints the candidates for the day. |
+| `scripts/page.py` | Opens one web page and prints its publication dates and text, for checking a story. |
 | `scripts/build.py` | Validates the data and renders the site. |
 | `templates/`, `assets/` | Page layout, styles and scripts shared by every report. |
 | `YYYY-MM-DD-daily-tech-report.html`, `index.html`, `archive.html` | Generated pages. Do not edit them by hand. |
@@ -32,7 +33,7 @@ Reports dated before 2026-11-19 were written directly as HTML by an earlier vers
 
 ## Running it by hand
 
-Both scripts use only the Python standard library.
+The scripts use only the Python standard library.
 
 ```bash
 python3 scripts/collect.py --out /tmp/tech-watch-candidates.txt

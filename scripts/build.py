@@ -531,15 +531,15 @@ def sws_main():
     if out != SWS_ROOT:
         shutil.copytree(SWS_ROOT / "assets", out / "assets", dirs_exist_ok=True)
 
-    legacy = {}
+    legacy, tagged = {}, 0
     for path in sorted(SWS_ROOT.glob(SWS_REPORT_GLOB)):
         date = path.name[:10]
         if date not in days:
             legacy[date] = sws_legacy_titles(path)
             if out == SWS_ROOT:
-                sws_ensure_noindex(path)
+                tagged += sws_ensure_noindex(path)
     if out == SWS_ROOT and (SWS_ROOT / "daily-tech-watch-template.html").exists():
-        sws_ensure_noindex(SWS_ROOT / "daily-tech-watch-template.html")
+        tagged += sws_ensure_noindex(SWS_ROOT / "daily-tech-watch-template.html")
 
     version = sws_asset_version()
     all_dates = sorted(set(days) | set(legacy))
@@ -561,6 +561,8 @@ def sws_main():
 
     print(f"Built {sws_plural(len(days), 'report')} from data, {len(legacy)} older reports listed in the archive, "
           f"{sws_plural(written, 'file')} changed.")
+    if tagged:
+        print(f"Added the noindex tag to {sws_plural(tagged, 'older page')} (they had none).")
     if days:
         print(f"Newest: {SWS_REPORT_FILE.format(date=max(days))}")
 
