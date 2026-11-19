@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Tech Watch · Wednesday, November 18, 2026</title>
+    <title>Daily Tech Watch · Thursday, November 19, 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 
     <!--
@@ -28,10 +28,10 @@
                    yellow (#f6c547), orange (#f69b47), red (#f66b6b)
 
     Template tokens (shown in HTML comments, rendered with sample content):
-    Wednesday, November 18, 2026, 0, {{CATEGORY_TITLE}}, {{COUNT}},
+    Thursday, November 19, 2026, 1, {{CATEGORY_TITLE}}, {{COUNT}},
     {{ITEM_NAME}}, {{TAG_LABEL}}, {{ITEM_SUMMARY}}, {{ITEM_WHY}},
     {{ITEM_SOURCE_URL}}, {{ITEM_SOURCE_NAME}},
-    All clear today., Use a quiet day to run your Claude Code update (<code>claude update</code>) and review the changelog for permission and sandbox fixes shipped in recent 2.1.x releases before your next client session., Ask Claude Code to scaffold a Bricks Builder custom element with an <code>sws_</code>-prefixed registration function and an ACF-driven options panel: give it your element conventions in CLAUDE.md, have it generate the PHP class, the render template and scoped CSS, then run PHPCS against WordPress standards before committing.
+    All clear today. Nothing new in the last 24 hours needed action. (Reminder: WordPress 7.1.4, released Oct 28, fixes CVE-2026-119977, which CISA lists as exploited. Make sure client sites are patched.), Check that every client site runs WordPress 7.1.4 or later. WP-CLI: <code>wp core version --path=/path/to/site</code>, or use your usual manager dashboard to see all sites at once., Connect Claude Code to a Bricks site through the Bricks AI Abilities (WordPress Abilities API + MCP Adapter) and ask it to build a reusable section. Pair it with a small helper such as <code>sws_register_hero_variants()</code> that Claude scaffolds in your child theme, then review the result in the builder before going live.
     -->
 
     <style>
@@ -812,15 +812,15 @@
             <div class="branding">Stellar Web Solutions</div>
             <h1>Daily Tech Watch</h1>
             <div class="header-meta">
-                <span class="meta-date">Wednesday, November 18, 2026</span>
+                <span class="meta-date">Thursday, November 19, 2026</span>
             </div>
             <div class="stats-strip">
                 <div class="stat">
-                    <span class="stat-value">0</span>
+                    <span class="stat-value">1</span>
                     <span class="stat-label">Items</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-value">0</span>
+                    <span class="stat-value">1</span>
                     <span class="stat-label">Categories</span>
                 </div>
                 <div class="stat">
@@ -851,7 +851,29 @@
              For breaking/security items, also add class priority-breaking
              or priority-security on the <article>.
              ============================================================ -->
-        <p class="item-summary" style="text-align:center;padding:24px 0;">No verifiable news from the last 24 hours (Europe/Paris) surfaced in today's search. Nothing is reported rather than risk unverified items.</p>
+        <details class="category" open>
+            <summary class="category-header">
+                <div class="category-toggle"></div>
+                <div class="category-title-text">
+                    <h2>🤖 AI &amp; LLM Ecosystem</h2>
+                    <span class="category-subtitle">1 item</span>
+                </div>
+            </summary>
+
+            <div class="items-list">
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">Anthropic prices its initial public offering</h3>
+                        <span class="item-tag tag-milestone">Milestone</span>
+                    </div>
+                    <p class="item-summary">Anthropic announced on Nov 18 that it priced its IPO of Class A common stock. Trading was scheduled to begin on Nasdaq (ticker ANT) on Nov 19. The filed range was $70–$78 per share. I could not confirm the final price from the sources I could reach.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> Claude is a core tool in your workflow. Public-company status could affect pricing, roadmap pace and long-term stability, so it is worth watching over the coming weeks.
+                    </div>
+                    <a href="https://www.anthropic.com/news" class="item-source">via Anthropic News</a>
+                </article>
+            </div>
+        </details>
 
         <!-- ============================================================
              CLOSING SECTIONS — always render all three.
@@ -864,7 +886,7 @@
                     <div class="closing-icon">⚡</div>
                     <span class="closing-label-action">Action</span>
                 </div>
-                <div class="closing-content">All clear today.</div>
+                <div class="closing-content">All clear today. Nothing new in the last 24 hours needed action. (Reminder: WordPress 7.1.4, released Oct 28, fixes CVE-2026-119977, which CISA lists as exploited. Make sure client sites are patched.)</div>
             </div>
 
             <div class="closing-section">
@@ -872,7 +894,7 @@
                     <div class="closing-icon">✨</div>
                     <span class="closing-label-quickwin">Quick Win</span>
                 </div>
-                <div class="closing-content">Use a quiet day to run your Claude Code update (<code>claude update</code>) and review the changelog for permission and sandbox fixes shipped in recent 2.1.x releases before your next client session.</div>
+                <div class="closing-content">Check that every client site runs WordPress 7.1.4 or later. WP-CLI: <code>wp core version --path=/path/to/site</code>, or use your usual manager dashboard to see all sites at once.</div>
             </div>
 
             <div class="closing-section full-width">
@@ -880,7 +902,7 @@
                     <div class="closing-icon">💡</div>
                     <span class="closing-label-idea">Idea</span>
                 </div>
-                <div class="closing-content">Ask Claude Code to scaffold a Bricks Builder custom element with an <code>sws_</code>-prefixed registration function and an ACF-driven options panel: give it your element conventions in CLAUDE.md, have it generate the PHP class, the render template and scoped CSS, then run PHPCS against WordPress standards before committing.</div>
+                <div class="closing-content">Connect Claude Code to a Bricks site through the Bricks AI Abilities (WordPress Abilities API + MCP Adapter) and ask it to build a reusable section. Pair it with a small helper such as <code>sws_register_hero_variants()</code> that Claude scaffolds in your child theme, then review the result in the builder before going live.</div>
             </div>
         </div>
 
