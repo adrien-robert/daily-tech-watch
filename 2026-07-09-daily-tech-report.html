@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Tech Watch · Thursday, July 9, 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ═══════════════════════════════════════════════════════════════════
+           RESET & BASE STYLES
+           ═════════════════════════════════════════════════════════════════ */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #0c0e14;
+            color: #e8e9ed;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           TYPOGRAPHY
+           ═════════════════════════════════════════════════════════════════ */
+
+        h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-family: 'Merriweather', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 0.75rem;
+        }
+
+        h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: #5eadf6;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: #8b7cf6;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           LAYOUT & CONTAINER
+           ═════════════════════════════════════════════════════════════════ */
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 2rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.25rem;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           HEADER
+           ═════════════════════════════════════════════════════════════════ */
+
+        .header {
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -1.5rem;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #8b7cf6, #5eadf6);
+            border-radius: 2px;
+        }
+
+        .branding {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #a4a7b3;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 1rem;
+        }
+
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #1f2330;
+        }
+
+        .meta-date {
+            font-size: 0.95rem;
+            color: #a4a7b3;
+            font-weight: 500;
+        }
+
+        @media (max-width: 640px) {
+            .header-meta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           STATS STRIP
+           ═════════════════════════════════════════════════════════════════ */
+
+        .stats-strip {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .stat-value {
+            font-weight: 700;
+            font-family: 'Fira Mono', monospace;
+            font-size: 1.125rem;
+            color: #e8e9ed;
+        }
+
+        .stat-label {
+            color: #a4a7b3;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+        }
+
+        .stat-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .stat-dot.high-priority {
+            background-color: #f66b6b;
+        }
+
+        @media (max-width: 640px) {
+            .stats-strip {
+                gap: 1rem;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           TAG FILTER BAR
+           ═════════════════════════════════════════════════════════════════ */
+
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #1f2330;
+        }
+
+        .filter-bar-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #a4a7b3;
+            margin-right: 0.5rem;
+        }
+
+        .filter-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 0.35rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+            opacity: 0.5;
+            background: transparent;
+        }
+
+        .filter-btn:hover {
+            opacity: 0.8;
+        }
+
+        .filter-btn.active {
+            opacity: 1;
+        }
+
+        .filter-btn-all {
+            color: #e8e9ed;
+            background: #1f2330;
+            opacity: 1;
+            border-color: #2a3142;
+        }
+
+        .filter-btn-all.active {
+            background: #8b7cf6;
+            border-color: #8b7cf6;
+            color: #fff;
+        }
+
+        .filter-btn[data-tag="new"] { color: #3dd9a0; border-color: rgba(61, 217, 160, 0.4); }
+        .filter-btn[data-tag="new"].active { background: rgba(61, 217, 160, 0.15); }
+
+        .filter-btn[data-tag="security"] { color: #f69b47; border-color: rgba(246, 155, 71, 0.4); }
+        .filter-btn[data-tag="security"].active { background: rgba(246, 155, 71, 0.15); }
+
+        .filter-btn[data-tag="update"] { color: #5eadf6; border-color: rgba(94, 173, 246, 0.4); }
+        .filter-btn[data-tag="update"].active { background: rgba(94, 173, 246, 0.15); }
+
+        .filter-btn[data-tag="breaking"] { color: #f66b6b; border-color: rgba(246, 107, 107, 0.4); }
+        .filter-btn[data-tag="breaking"].active { background: rgba(246, 107, 107, 0.15); }
+
+        .filter-btn[data-tag="important"] { color: #f6c547; border-color: rgba(246, 197, 71, 0.4); }
+        .filter-btn[data-tag="important"].active { background: rgba(246, 197, 71, 0.15); }
+
+        .filter-btn[data-tag="milestone"] { color: #8b7cf6; border-color: rgba(139, 124, 246, 0.4); }
+        .filter-btn[data-tag="milestone"].active { background: rgba(139, 124, 246, 0.15); }
+
+        .filter-btn[data-tag="tool"] { color: #2ec9b6; border-color: rgba(46, 201, 182, 0.4); }
+        .filter-btn[data-tag="tool"].active { background: rgba(46, 201, 182, 0.15); }
+
+        .filter-btn[data-tag="trend"] { color: #5eadf6; border-color: rgba(94, 173, 246, 0.4); }
+        .filter-btn[data-tag="trend"].active { background: rgba(94, 173, 246, 0.15); }
+
+        .filter-btn[data-tag="tutorial"] { color: #2ec9b6; border-color: rgba(46, 201, 182, 0.4); }
+        .filter-btn[data-tag="tutorial"].active { background: rgba(46, 201, 182, 0.15); }
+
+        .filter-btn[data-tag="deadline"] { color: #f66b6b; border-color: rgba(246, 107, 107, 0.4); }
+        .filter-btn[data-tag="deadline"].active { background: rgba(246, 107, 107, 0.15); }
+
+        .filter-btn[data-tag="delayed"] { color: #a4a7b3; border-color: rgba(164, 167, 179, 0.4); }
+        .filter-btn[data-tag="delayed"].active { background: rgba(164, 167, 179, 0.15); }
+
+        .filter-btn[data-tag="key"] { color: #f6c547; border-color: rgba(246, 197, 71, 0.4); }
+        .filter-btn[data-tag="key"].active { background: rgba(246, 197, 71, 0.15); }
+
+        .item.filtered-out {
+            display: none;
+        }
+
+        .category.category-empty {
+            display: none;
+        }
+
+        .filter-count {
+            font-family: 'Fira Mono', monospace;
+            font-size: 0.65rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1px 5px;
+            border-radius: 3px;
+            margin-left: 2px;
+        }
+
+        @media print {
+            .filter-bar {
+                display: none;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           CATEGORIES & COLLAPSIBLE SECTIONS
+           ═════════════════════════════════════════════════════════════════ */
+
+        .category {
+            margin-bottom: 2.5rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #1f2330;
+            cursor: pointer;
+            user-select: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .category-header:hover {
+            border-color: #2a3142;
+        }
+
+        .category-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            color: #8b7cf6;
+            flex-shrink: 0;
+        }
+
+        .category-toggle::before {
+            content: '▼';
+            font-size: 0.75rem;
+            transition: transform 0.2s ease;
+        }
+
+        details[open] .category-toggle::before {
+            transform: rotate(-180deg);
+        }
+
+        .category-title-text {
+            flex: 1;
+        }
+
+        .category-title-text h2 {
+            margin-bottom: 0.25rem;
+        }
+
+        .category-subtitle {
+            font-size: 0.875rem;
+            color: #a4a7b3;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           NEWS ITEMS / CARDS
+           ═════════════════════════════════════════════════════════════════ */
+
+        .items-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .item {
+            background: #13161f;
+            border: 1px solid #1f2330;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.2s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .item:hover {
+            border-color: #2a3142;
+            background: #171a24;
+        }
+
+        .item.priority-breaking {
+            border-left-color: #f66b6b;
+            background: linear-gradient(135deg, #13161f 0%, rgba(246, 107, 107, 0.05) 100%);
+        }
+
+        .item.priority-security {
+            border-left-color: #f69b47;
+            background: linear-gradient(135deg, #13161f 0%, rgba(246, 155, 71, 0.05) 100%);
+        }
+
+        .item.priority-breaking:hover,
+        .item.priority-security:hover {
+            box-shadow: 0 0 20px rgba(246, 107, 107, 0.1);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .item-title {
+            flex: 1;
+            font-size: 1.125rem;
+            font-weight: 700;
+            line-height: 1.4;
+            color: #e8e9ed;
+        }
+
+        .item-tag {
+            flex-shrink: 0;
+            padding: 0.375rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .item-tag::before {
+            margin-right: 0.25rem;
+            font-size: 0.65rem;
+        }
+
+        .tag-new::before { content: "🆕"; }
+        .tag-new {
+            background: rgba(61, 217, 160, 0.15);
+            color: #3dd9a0;
+        }
+
+        .tag-security::before { content: "🔒"; }
+        .tag-security {
+            background: rgba(246, 155, 71, 0.15);
+            color: #f69b47;
+        }
+
+        .tag-update::before { content: "🔄"; }
+        .tag-update {
+            background: rgba(94, 173, 246, 0.15);
+            color: #5eadf6;
+        }
+
+        .tag-breaking::before { content: "⚠️"; }
+        .tag-breaking {
+            background: rgba(246, 107, 107, 0.15);
+            color: #f66b6b;
+            font-weight: 700;
+        }
+
+        .tag-important::before { content: "❗"; }
+        .tag-important {
+            background: rgba(246, 197, 71, 0.15);
+            color: #f6c547;
+        }
+
+        .tag-milestone::before { content: "🎯"; }
+        .tag-milestone {
+            background: rgba(139, 124, 246, 0.15);
+            color: #8b7cf6;
+        }
+
+        .tag-tool::before { content: "🔧"; }
+        .tag-tool {
+            background: rgba(46, 201, 182, 0.15);
+            color: #2ec9b6;
+        }
+
+        .tag-trend::before { content: "📈"; }
+        .tag-trend {
+            background: rgba(94, 173, 246, 0.15);
+            color: #5eadf6;
+        }
+
+        .tag-tutorial::before { content: "📚"; }
+        .tag-tutorial {
+            background: rgba(46, 201, 182, 0.15);
+            color: #2ec9b6;
+        }
+
+        .tag-deadline::before { content: "⏰"; }
+        .tag-deadline {
+            background: rgba(246, 107, 107, 0.15);
+            color: #f66b6b;
+        }
+
+        .tag-delayed::before { content: "⏳"; }
+        .tag-delayed {
+            background: rgba(164, 167, 179, 0.15);
+            color: #a4a7b3;
+        }
+
+        .tag-key::before { content: "🔑"; }
+        .tag-key {
+            background: rgba(246, 197, 71, 0.15);
+            color: #f6c547;
+        }
+
+        .item-summary {
+            font-size: 0.95rem;
+            color: #a4a7b3;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .item-why {
+            background: rgba(139, 124, 246, 0.08);
+            border-left: 3px solid #8b7cf6;
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #d4d5db;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .item-source {
+            font-size: 0.85rem;
+            color: #5eadf6;
+            font-weight: 500;
+        }
+
+        .item-source::before {
+            content: '⤷ ';
+            margin-right: 0.25rem;
+        }
+
+        @media (max-width: 640px) {
+            .item {
+                padding: 1.25rem;
+            }
+
+            .item-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .item-tag {
+                align-self: flex-start;
+            }
+
+            .item-title {
+                font-size: 1rem;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           EMPTY STATE
+           ═════════════════════════════════════════════════════════════════ */
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: #13161f;
+            border-radius: 8px;
+            border: 1px solid #1f2330;
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .empty-state h3 {
+            color: #3dd9a0;
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-state p {
+            color: #a4a7b3;
+            margin-bottom: 0;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           CLOSING SECTIONS (Action, Quick Win, Idea)
+           ═════════════════════════════════════════════════════════════════ */
+
+        .closing-sections {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .closing-sections {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .closing-section {
+            background: #13161f;
+            border: 1px solid #1f2330;
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .closing-section:hover {
+            border-color: #2a3142;
+            background: #171a24;
+        }
+
+        .closing-section.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .closing-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .closing-icon {
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: #1f2330;
+            border-radius: 8px;
+        }
+
+        .closing-header .closing-label-action {
+            color: #f66b6b;
+        }
+
+        .closing-header .closing-label-quickwin {
+            color: #3dd9a0;
+        }
+
+        .closing-header .closing-label-idea {
+            color: #8b7cf6;
+        }
+
+        .closing-content {
+            font-size: 0.95rem;
+            color: #a4a7b3;
+            line-height: 1.6;
+        }
+
+        .closing-content code {
+            background: #1f2330;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Fira Mono', monospace;
+            font-size: 0.85rem;
+            color: #e8e9ed;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           FOOTER
+           ═════════════════════════════════════════════════════════════════ */
+
+        .footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #1f2330;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #a4a7b3;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           PRINT STYLES
+           ═════════════════════════════════════════════════════════════════ */
+
+        @media print {
+            body {
+                background: white;
+                color: #1a1a1a;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 2rem;
+            }
+
+            .header::after {
+                background: #333;
+            }
+
+            .branding {
+                color: #666;
+            }
+
+            .header-meta {
+                border-top-color: #e0e0e0;
+            }
+
+            .meta-date,
+            .meta-count,
+            .category-subtitle,
+            .item-summary {
+                color: #666;
+            }
+
+            .item {
+                background: white;
+                border-color: #e0e0e0;
+            }
+
+            .item.priority-breaking,
+            .item.priority-security {
+                background: white;
+            }
+
+            .closing-section {
+                background: white;
+                border-color: #e0e0e0;
+            }
+
+            .closing-icon {
+                background: #f0f0f0;
+            }
+
+            .item-why {
+                background: #f5f5f5;
+                border-left-color: #999;
+                color: #333;
+            }
+
+            .item-source {
+                color: #0066cc;
+            }
+
+            a {
+                color: #0066cc;
+            }
+
+            .footer {
+                border-top-color: #e0e0e0;
+            }
+
+            * {
+                box-shadow: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <header class="header">
+            <div class="branding">Stellar Web Solutions</div>
+            <h1>Daily Tech Watch</h1>
+            <div class="header-meta">
+                <span class="meta-date">Thursday, July 9, 2026</span>
+            </div>
+            <div class="stats-strip">
+                <div class="stat">
+                    <span class="stat-value">21</span>
+                    <span class="stat-label">Items</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">4</span>
+                    <span class="stat-label">Categories</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-dot high-priority"></span>
+                    <span class="stat-value">3</span>
+                    <span class="stat-label">Critical</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- TAG FILTER BAR -->
+        <div class="filter-bar" id="filterBar">
+            <span class="filter-bar-label">Filter</span>
+        </div>
+
+        <!-- ════════════════════════════════════════════════════════════════
+             CATEGORY 1: AI & LLM Ecosystem (open)
+             ════════════════════════════════════════════════════════════════ -->
+        <details class="category" open>
+            <summary class="category-header">
+                <div class="category-toggle"></div>
+                <div class="category-title-text">
+                    <h2>🤖 AI &amp; LLM Ecosystem</h2>
+                    <span class="category-subtitle">11 items</span>
+                </div>
+            </summary>
+
+            <div class="items-list">
+
+                <article class="item priority-security">
+                    <div class="item-header">
+                        <h3 class="item-title">China Issues Security Alert on Claude Code &mdash; Alibaba Bans It</h3>
+                        <span class="item-tag tag-security">Security</span>
+                    </div>
+                    <p class="item-summary">China's MIIT flagged Claude Code versions 2.1.91 through 2.1.196 as containing a hidden monitoring mechanism that transmits user geographic location and identity data. Anthropic confirmed it was an anti-abuse experiment and rolled back the code. Alibaba ordered employees to switch to its in-house Qoder platform by July 10.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> Verify you are running Claude Code version 2.1.204 or later immediately. The tracking code is removed in that version. A reminder that AI tools handling client code can have opaque telemetry &mdash; always keep CLI tools up to date.
+                    </div>
+                    <a href="https://www.cnbc.com/2026/07/08/china-anthropic-ai-claude-code-backdoor-security-threat.html" class="item-source">via CNBC</a>
+                </article>
+
+                <article class="item priority-breaking">
+                    <div class="item-header">
+                        <h3 class="item-title">OpenAI Publicly Launches GPT-5.6 Sol, Terra, and Luna</h3>
+                        <span class="item-tag tag-breaking">Breaking</span>
+                    </div>
+                    <p class="item-summary">All three GPT-5.6 variants go public today. Pricing: Sol at $5/$30 per Mtok, Terra at $2.50/$15 (competing directly with Claude Sonnet 5), and Luna at $1/$6 as the budget option. A Sol Fast mode delivers up to 750 tokens/second at $12.50/$75. New explicit cache breakpoints with 30-minute minimum cache life and 90% discount on cache reads.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> Terra at $2.50/$15 directly competes with Claude Sonnet 5's promotional $2/$10 pricing. If you use OpenAI-powered tools (Cursor, Copilot, Codex), expect GPT-5.6 to start powering them. The tiered pricing gives agencies flexibility to match model power to task complexity.
+                    </div>
+                    <a href="https://openai.com/index/previewing-gpt-5-6-sol/" class="item-source">via OpenAI</a>
+                </article>
+
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">Claude Cowork Expands to Web and Mobile</h3>
+                        <span class="item-tag tag-new">New</span>
+                    </div>
+                    <p class="item-summary">Claude Cowork, previously desktop-only, is now available on web and mobile for Max plan subscribers with gradual rollout to other paid plans. Start a task on desktop, get status updates on your phone, review results later. Chat and Cowork are now combined into a single view. Doubled usage limits extended through August 5.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> Delegate content drafts, RFP reviews, or research tasks and check results from your phone between client meetings. The combined Chat/Cowork view simplifies the interface. Usage data shows business operations (33.4%) dominating over coding (8.7%).
+                    </div>
+                    <a href="https://techcrunch.com/2026/07/07/the-coding-agent-wars-are-spilling-into-the-rest-of-the-office-claude-cowork/" class="item-source">via TechCrunch</a>
+                </article>
+
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">MCP Specification Going Stateless &mdash; Final Spec July 28</h3>
+                        <span class="item-tag tag-important">Important</span>
+                    </div>
+                    <p class="item-summary">The largest MCP revision since launch is in release candidate status, with the final spec publishing July 28. MCP becomes stateless at the protocol layer &mdash; remote servers no longer need sticky sessions. New extensions include MCP Apps (server-rendered UIs) and the Tasks extension for long-running work. Authorization realigned with OAuth/OpenID Connect.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> Stateless servers are dramatically easier to deploy and scale. If you have custom MCP integrations with Claude Code, review the breaking changes before July 28. MCP Apps could enable richer tool UIs for WordPress development workflows.
+                    </div>
+                    <a href="https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/" class="item-source">via MCP Blog</a>
+                </article>
+
+                <article class="item priority-security">
+                    <div class="item-header">
+                        <h3 class="item-title">NSA MCP Hardening Guidelines Getting Renewed Attention</h3>
+                        <span class="item-tag tag-security">Security</span>
+                    </div>
+                    <p class="item-summary">The NSA's May 2026 publication on MCP security is getting renewed attention alongside the spec changes. After analyzing 10,000+ real-world MCP servers, researchers found credentials, API keys, and PII leaking at rates exceeding 10%. The NSA recommends separating systems by trust level and rigorous code audits of MCP tools.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> If you use MCP servers in your Claude Code workflow (database connectors, CMS integrations, deployment tools), audit them now. Ensure they do not expose client credentials or API keys. Separate tools handling public data from those touching sensitive client information.
+                    </div>
+                    <a href="https://www.nsa.gov/Press-Room/Press-Releases-Statements/Press-Release-View/Article/4496698/" class="item-source">via NSA</a>
+                </article>
+
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">Google Delays Gemini 3.5 Pro to July 17</h3>
+                        <span class="item-tag tag-important">Important</span>
+                    </div>
+                    <p class="item-summary">Google DeepMind pushed back Gemini 3.5 Pro from June to July 17, scrapping the 2.5 Pro architecture for a ground-up redesign. The new model targets a 2 million token context window and a "Deep Think Reasoning Layer." It introduces improvements in mathematical reasoning and SVG scene generation.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> The 2M token context window would be the largest among major providers. SVG scene generation improvements could be relevant for web design workflows. Worth watching on July 17 as a potential alternative for coding and content tasks.
+                    </div>
+                    <a href="https://hackernoon.com/google-delays-gemini-35-pro-to-july-17-the-strategic-play-behind-the-scrapped-base-model" class="item-source">via HackerNoon</a>
+                </article>
+
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">Claude Code Improvements &mdash; Admin Console &amp; Reliability</h3>
+                        <span class="item-tag tag-update">Update</span>
+                    </div>
+                    <p class="item-summary">Claude Sonnet 5 is now the default model with a native 1M-token context window and promotional pricing of $2/$10 per Mtok through August 31. New admin console shows active developers, session counts, productivity lift estimates, and cost per commit. Background session reliability improved &mdash; long-running commands survive process restarts.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> The admin console improvements help agency owners track team usage and understand cost per commit. Background session reliability means you can trust longer-running agent tasks to complete without monitoring them.
+                    </div>
+                    <a href="https://releasebot.io/updates/anthropic/claude-code" class="item-source">via Releasebot</a>
+                </article>
+
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">UST Partners with Anthropic &mdash; 20,000 Employees to Use Claude</h3>
+                        <span class="item-tag tag-milestone">Milestone</span>
+                    </div>
+                    <p class="item-summary">Global IT services company UST announced a strategic alliance with Anthropic to embed Claude into its engineering and operational platforms, training 20,000 employees globally. The partnership targets enterprise-scale AI deployment across semiconductor, automotive, manufacturing, and telecom sectors.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> Enterprise adoption validates Claude as production-ready. This could accelerate the ecosystem of Claude-compatible enterprise tools that agencies encounter when working with larger clients.
+                    </div>
+                    <a href="https://www.prnewswire.com/news-releases/ust-partners-with-anthropic-to-bring-claude-into-usts-platforms-engineering-and-operations-and-train-20-000-ust-employees-globally-302820669.html" class="item-source">via PR Newswire</a>
+                </article>
+
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">Claude for Government Desktop &mdash; Public Beta</h3>
+                        <span class="item-tag tag-new">New</span>
+                    </div>
+                    <p class="item-summary">Anthropic launched a public beta of Claude Code and Claude Cowork in a FedRAMP High authorized environment. Features include desktop file-based work, admin configuration, department-level spend governance, and tamper-evident audit logs. Deploys through standard MDM platforms.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> If your agency serves public sector clients, this opens the door to using Claude in those engagements. FedRAMP High authorization means it can handle sensitive government data for web projects.
+                    </div>
+                    <a href="https://claude.com/blog/bringing-claude-code-and-claude-cowork-to-government" class="item-source">via Anthropic Blog</a>
+                </article>
+
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">AI Coding Tools Market: Seven Major Contenders</h3>
+                        <span class="item-tag tag-trend">Trend</span>
+                    </div>
+                    <p class="item-summary">Major market shifts: Windsurf rebranded to Devin Desktop. GitHub Copilot moved to usage-based billing with AI Credits. Cursor released Composer 2.5. Google launched Antigravity 2.0. Seven serious contenders now compete: Claude Code, Google Antigravity, OpenAI Codex, Cursor, Kiro (AWS), GitHub Copilot, and Devin Desktop.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> Copilot's usage-based billing could affect agency costs on team plans. The convergence of coding assistants and autonomous agents signals a fundamental shift. Worth re-evaluating your tool stack quarterly.
+                    </div>
+                    <a href="https://lushbinary.com/blog/ai-coding-agents-comparison-cursor-windsurf-claude-copilot-kiro-2026/" class="item-source">via Lushbinary</a>
+                </article>
+
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">Google Stitch Continues to Disrupt Design Tools</h3>
+                        <span class="item-tag tag-tool">Tool</span>
+                    </div>
+                    <p class="item-summary">Google Stitch is free, supports multiple frameworks, and produces credible UI in about 20 minutes. At I/O 2026, Google added a streaming design agent and multi-user editing. Figma's stock fell 8.8% after Stitch's March update. Consensus: Stitch dominates "0-to-1" ideation while Figma dominates "1-to-100" refinement.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> A free tool that could accelerate early-stage client design work. Use Stitch for rapid prototyping and concept exploration, then move to Figma for refinement. Can significantly reduce the design phase for agency projects.
+                    </div>
+                    <a href="https://www.the-ai-corner.com/p/google-stitch-ai-design-tool-guide-2026" class="item-source">via The AI Corner</a>
+                </article>
+
+            </div>
+        </details>
+
+        <!-- ════════════════════════════════════════════════════════════════
+             CATEGORY 2: WordPress Ecosystem
+             ════════════════════════════════════════════════════════════════ -->
+        <details class="category">
+            <summary class="category-header">
+                <div class="category-toggle"></div>
+                <div class="category-title-text">
+                    <h2>📦 WordPress Ecosystem</h2>
+                    <span class="category-subtitle">2 items</span>
+                </div>
+            </summary>
+
+            <div class="items-list">
+
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">WordPress 7.0.1 Maintenance Release Scheduled for Today</h3>
+                        <span class="item-tag tag-update">Update</span>
+                    </div>
+                    <p class="item-summary">WordPress 7.0.1, a bugfix-only maintenance release, is scheduled for today (July 9). It addresses issues introduced during the WordPress 7.0 cycle (released May 20) including bugs in the AI Client, Connectors, Command Palette, iframed editor, and visual revisions features. No new features or enhancements.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> Test the update on staging environments immediately upon release and plan client site updates. WordPress 7.0 was a major release with AI Client and Connectors, so this patch addresses early bugs from that cycle.
+                    </div>
+                    <a href="https://make.wordpress.org/core/2026/06/18/wordpress-7-0-1-release-schedule/" class="item-source">via Make WordPress Core</a>
+                </article>
+
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">WordPress Themes Team Update &mdash; July 8</h3>
+                        <span class="item-tag tag-update">Update</span>
+                    </div>
+                    <p class="item-summary">Weekly update: 1,239 tickets opened, 1,033 closed, 1,016 made live (9 new themes, 1,007 theme updates). Currently 331 approved theme updates waiting to go live. Zero new tickets waiting for initial review &mdash; the queue is clear.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> The zero-queue for new reviews makes this a good time to submit custom themes. If you maintain themes for clients, the healthy pipeline means updates will flow through quickly.
+                    </div>
+                    <a href="https://make.wordpress.org/updates/2026/07/08/themes-team-update-july-8-2026/" class="item-source">via Make WordPress</a>
+                </article>
+
+            </div>
+        </details>
+
+        <!-- ════════════════════════════════════════════════════════════════
+             CATEGORY 3: Web Development & Performance
+             ════════════════════════════════════════════════════════════════ -->
+        <details class="category">
+            <summary class="category-header">
+                <div class="category-toggle"></div>
+                <div class="category-title-text">
+                    <h2>⚡ Web Development &amp; Performance</h2>
+                    <span class="category-subtitle">5 items</span>
+                </div>
+            </summary>
+
+            <div class="items-list">
+
+                <article class="item priority-breaking">
+                    <div class="item-header">
+                        <h3 class="item-title">Chrome Manifest V2 Extensions: Final Removal August 31</h3>
+                        <span class="item-tag tag-breaking">Breaking</span>
+                    </div>
+                    <p class="item-summary">Google confirmed all remaining Manifest V2 extensions will be permanently removed from the Chrome Web Store on August 31, 2026. Chrome 151 (expected late July) will also remove the last flags allowing MV2 extensions to function. This is the final step in the multi-year transition to Manifest V3.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> Audit your Chrome extensions and any you've recommended to clients. Popular MV2-only extensions (including the original uBlock Origin) will stop working. Ensure your development tools are all MV3-compatible.
+                    </div>
+                    <a href="https://9to5google.com/2026/07/08/google-chrome-will-remove-older-manifest-v2-extensions-in-august/" class="item-source">via 9to5Google</a>
+                </article>
+
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">Google Unconfirmed July 2026 Search Update Detected</h3>
+                        <span class="item-tag tag-important">Important</span>
+                    </div>
+                    <p class="item-summary">SEO tracking tools are reporting ranking volatility consistent with an unconfirmed Google algorithm update in early July. The update appears to scrutinize trust signals more closely and may penalize pages with low-quality or unoriginal content. This follows the May 2026 core update and the June 24 spam update.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> Client sites may experience unexpected ranking fluctuations. Monitor Search Console closely and advise clients against making hasty content changes until the volatility settles.
+                    </div>
+                    <a href="https://seovendor.co/google-unconfirmed-july-2026-update-what-seo-agencies-should-watch-for/" class="item-source">via SEO Vendor</a>
+                </article>
+
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">CSS Customizable Select Elements Now Stable in Chrome</h3>
+                        <span class="item-tag tag-new">New</span>
+                    </div>
+                    <p class="item-summary">The Customizable Select API (shipped stable in Chrome 135) allows full CSS styling of <code>&lt;select&gt;</code> elements via <code>appearance: base-select</code>. Real HTML (images, icons, spans) can now be placed inside <code>&lt;option&gt;</code> elements. Safari Technology Preview and Firefox Nightly are prototyping support behind flags.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> Eliminates the need for JavaScript-based dropdown replacements on Chromium browsers, improving performance and accessibility. Use progressive enhancement for client sites with custom form styling.
+                    </div>
+                    <a href="https://developer.chrome.com/blog/a-customizable-select" class="item-source">via Chrome Developers</a>
+                </article>
+
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">Google Search Reimagined with AI Agents</h3>
+                        <span class="item-tag tag-trend">Trend</span>
+                    </div>
+                    <p class="item-summary">Google is rolling out "Information Agents" in Search this summer &mdash; background AI agents that reason across information 24/7 and surface results proactively. The search box has been redesigned for the first time in 25 years. AI Mode has surpassed 1 billion monthly users with Gemini 3.5 Flash as the default model.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> The shift toward agentic search fundamentally changes SEO strategy. Citation share in AI Overviews is becoming a distinct KPI. Your clients' content strategies need to account for how AI agents summarize and cite sources.
+                    </div>
+                    <a href="https://blog.google/products-and-platforms/products/search/search-io-2026/" class="item-source">via Google Blog</a>
+                </article>
+
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">Core Web Vitals: INP Remains the Key Metric</h3>
+                        <span class="item-tag tag-key">Key</span>
+                    </div>
+                    <p class="item-summary">Google's CWV thresholds remain stable: LCP &le; 2.5s, INP &lt; 200ms, CLS &lt; 0.1. Search Console dropped the Page Experience report but retains CWV and HTTPS reports. INP (Interaction to Next Paint) continues as the primary responsiveness metric, having fully replaced FID.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> WordPress sites with heavy JavaScript (page builders, sliders, complex forms) are most at risk for INP failures. AVIF image format is now the recommended standard for image optimization on client sites.
+                    </div>
+                    <a href="https://blog.mean.ceo/core-web-vitals-news-july-2026/" class="item-source">via mean.ceo</a>
+                </article>
+
+            </div>
+        </details>
+
+        <!-- ════════════════════════════════════════════════════════════════
+             CATEGORY 4: Agency Business & France
+             ════════════════════════════════════════════════════════════════ -->
+        <details class="category">
+            <summary class="category-header">
+                <div class="category-toggle"></div>
+                <div class="category-title-text">
+                    <h2>💼 Agency Business &amp; France</h2>
+                    <span class="category-subtitle">3 items</span>
+                </div>
+            </summary>
+
+            <div class="items-list">
+
+                <article class="item priority-breaking">
+                    <div class="item-header">
+                        <h3 class="item-title">E-Invoicing Reception Deadline: September 1, 2026</h3>
+                        <span class="item-tag tag-deadline">Deadline</span>
+                    </div>
+                    <p class="item-summary">Starting September 1, 2026, all French businesses &mdash; including micro-enterprises and freelancers &mdash; must be able to receive electronic invoices via a certified platform (Plateforme de D&eacute;mat&eacute;rialisation Partenaire). Simple PDF invoices sent by email will no longer be compliant. Formats must be structured: UBL, CII, or Factur-X.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> Less than 2 months until the reception deadline. You need a compliant invoicing solution in place immediately if you don't have one. This affects every B2B transaction you handle. The obligation to emit e-invoices for TPE/PME starts September 1, 2027.
+                    </div>
+                    <a href="https://www.impots.gouv.fr/depliant-la-facturation-electronique-en-4-questions" class="item-source">via impots.gouv.fr</a>
+                </article>
+
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">ACRE Exoneration Drops from 50% to 25% for New Auto-Entrepreneurs</h3>
+                        <span class="item-tag tag-important">Important</span>
+                    </div>
+                    <p class="item-summary">As of July 1, 2026, the ACRE social security contribution exemption for new auto-entrepreneurs has been halved from 50% to 25%. Only applies to businesses created from July 1 onward &mdash; those created before June 30 still benefit from the 50% rate. Applications must be submitted to URSSAF within 60 days.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> If you are considering recommending micro-enterprise status to subcontractors or collaborators, the financial advantage of ACRE has been significantly reduced. Factor this into cost projections for any new independent freelancers you work with.
+                    </div>
+                    <a href="https://www.mon-autoentreprise.fr/reforme-acre-2026-auto-entrepreneur/" class="item-source">via mon-autoentreprise.fr</a>
+                </article>
+
+                <article class="item">
+                    <div class="item-header">
+                        <h3 class="item-title">n8n Ships Stability Update with AI Agent Improvements</h3>
+                        <span class="item-tag tag-tool">Tool</span>
+                    </div>
+                    <p class="item-summary">n8n shipped a broad stability update in July with bug fixes across AI Builder, the editor, core runtime, and multiple nodes (Notion, Postgres, Salesforce). The update strengthens AI Agent capabilities with Claude and GPT-4o tool calling support, plus expanded admin controls and enterprise authentication.</p>
+                    <div class="item-why">
+                        <strong>Why it matters:</strong> If you use n8n for workflow automation (client onboarding, content publishing, invoice processing), this update improves reliability for AI-powered automations. The AI Agent node with Claude tool calling is increasingly viable for complex multi-step client workflows.
+                    </div>
+                    <a href="https://releasebot.io/updates/n8n" class="item-source">via Releasebot</a>
+                </article>
+
+            </div>
+        </details>
+
+        <!-- ════════════════════════════════════════════════════════════════
+             CLOSING SECTIONS
+             ════════════════════════════════════════════════════════════════ -->
+        <div class="closing-sections">
+            <div class="closing-section">
+                <div class="closing-header">
+                    <div class="closing-icon">⚡</div>
+                    <span class="closing-label-action">Action Required</span>
+                </div>
+                <div class="closing-content">
+                    <strong>1. Claude Code security:</strong> Verify you are running version 2.1.204+ (tracking code removed).<br><br>
+                    <strong>2. WordPress 7.0.1:</strong> Maintenance release dropping today &mdash; test on staging before updating client sites.<br><br>
+                    <strong>3. Chrome MV2 extensions:</strong> Final removal August 31. Audit dev tools and client-recommended extensions now.<br><br>
+                    <strong>4. E-invoicing:</strong> Reception deadline September 1 &mdash; ensure your invoicing solution supports structured formats (UBL, CII, or Factur-X). Less than 2 months remain.
+                </div>
+            </div>
+
+            <div class="closing-section">
+                <div class="closing-header">
+                    <div class="closing-icon">✨</div>
+                    <span class="closing-label-quickwin">Quick Win of the Day</span>
+                </div>
+                <div class="closing-content">
+                    Try <strong>Claude Cowork on mobile</strong> (now available for Max plan subscribers). Start a content review or RFP analysis task from your desk, then check results from your phone between client meetings. The combined Chat/Cowork view means less context-switching, and doubled usage limits run through August 5.
+                </div>
+            </div>
+
+            <div class="closing-section full-width">
+                <div class="closing-header">
+                    <div class="closing-icon">💡</div>
+                    <span class="closing-label-idea">Claude Code &times; WordPress Idea</span>
+                </div>
+                <div class="closing-content">
+                    With WordPress 7.0.1 dropping today, use Claude Code to <strong>audit your Bricks Builder custom elements for WP 7.0 compatibility</strong>. Ask Claude Code to scan your theme's <code>sws_</code>-prefixed functions for deprecated hooks or conflicts with the new iframed editor and AI Client features introduced in 7.0. Example prompt: <em>"Scan all PHP files with sws_ functions in my Bricks child theme. Check for deprecated WordPress hooks removed in 7.0, verify compatibility with the iframed editor, and flag any direct DOM manipulation that may conflict with the new Command Palette API. Output a compatibility report with fix suggestions."</em> This saves hours of manual compatibility testing across multiple client sites.
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <p>Generated by <a href="#">Daily Tech Watch</a> · Stellar Web Solutions</p>
+        </footer>
+    </div>
+
+    <script>
+    const SWS_TAG_LABELS = {
+        'new': '🆕 New',
+        'security': '🔒 Security',
+        'update': '🔄 Update',
+        'breaking': '⚠️ Breaking',
+        'important': '❗ Important',
+        'milestone': '🎯 Milestone',
+        'tool': '🔧 Tool',
+        'trend': '📈 Trend',
+        'tutorial': '📚 Tutorial',
+        'deadline': '⏰ Deadline',
+        'delayed': '⏳ Delayed',
+        'key': '🔑 Key'
+    };
+
+    function sws_getItemTag(item) {
+        const tagEl = item.querySelector('[class*="tag-"]');
+        if (!tagEl) return null;
+        const match = tagEl.className.match(/tag-(\w+)/);
+        return match ? match[1] : null;
+    }
+
+    function sws_initFilters() {
+        const filterBar = document.getElementById('filterBar');
+        const items = document.querySelectorAll('article.item');
+        const categories = document.querySelectorAll('details.category');
+
+        const tagCounts = {};
+        items.forEach(item => {
+            const tag = sws_getItemTag(item);
+            if (tag) tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+        });
+
+        if (Object.keys(tagCounts).length === 0) {
+            filterBar.style.display = 'none';
+            return;
+        }
+
+        const allBtn = document.createElement('button');
+        allBtn.className = 'filter-btn filter-btn-all active';
+        allBtn.textContent = 'All';
+        allBtn.addEventListener('click', () => sws_filterByTag(null));
+        filterBar.appendChild(allBtn);
+
+        Object.keys(tagCounts).forEach(tag => {
+            const btn = document.createElement('button');
+            btn.className = 'filter-btn';
+            btn.setAttribute('data-tag', tag);
+            const label = SWS_TAG_LABELS[tag] || tag;
+            btn.innerHTML = label + '<span class="filter-count">' + tagCounts[tag] + '</span>';
+            btn.addEventListener('click', () => sws_filterByTag(tag));
+            filterBar.appendChild(btn);
+        });
+    }
+
+    function sws_filterByTag(activeTag) {
+        const items = document.querySelectorAll('article.item');
+        const categories = document.querySelectorAll('details.category');
+        const allBtn = document.querySelector('.filter-btn-all');
+        const tagBtns = document.querySelectorAll('.filter-btn[data-tag]');
+
+        if (activeTag === null) {
+            allBtn.classList.add('active');
+            tagBtns.forEach(btn => btn.classList.remove('active'));
+        } else {
+            allBtn.classList.remove('active');
+            tagBtns.forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-tag') === activeTag);
+            });
+        }
+
+        items.forEach(item => {
+            if (activeTag === null) {
+                item.classList.remove('filtered-out');
+            } else {
+                const tag = sws_getItemTag(item);
+                item.classList.toggle('filtered-out', tag !== activeTag);
+            }
+        });
+
+        categories.forEach(cat => {
+            const visibleItems = cat.querySelectorAll('article.item:not(.filtered-out)');
+            cat.classList.toggle('category-empty', visibleItems.length === 0);
+            const subtitle = cat.querySelector('.category-subtitle');
+            if (subtitle) {
+                const total = cat.querySelectorAll('article.item').length;
+                const visible = visibleItems.length;
+                subtitle.textContent = activeTag === null
+                    ? total + ' item' + (total !== 1 ? 's' : '')
+                    : visible + ' of ' + total + ' item' + (total !== 1 ? 's' : '');
+            }
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', sws_initFilters);
+    </script>
+</body>
+</html>
