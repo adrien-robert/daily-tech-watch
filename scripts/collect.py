@@ -21,6 +21,7 @@ import html
 import json
 import re
 import sys
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -208,13 +209,20 @@ def sws_parse_feed(body):
 def sws_collect_source(source, start, now, seen, default_max):
     """Fetch one feed and keep the entries inside the window."""
     result = {"source": source, "entries": [], "error": None, "undated": 0, "seen": 0, "hidden": 0, "total": 0}
-    try:
-        entries = sws_parse_feed(sws_fetch(source["url"]))
-    except urllib.error.HTTPError as exc:
-        result["error"] = f"HTTP {exc.code}"
-        return result
-    except Exception as exc:  # network, TLS, XML: report and carry on
-        result["error"] = sws_clean_text(f"{type(exc).__name__}: {exc}", 120)
+    entries = None
+    for attempt in range(3):  # feeds fail now and then: try again before giving up
+        try:
+            entries = sws_parse_feed(sws_fetch(source["url"]))
+            result["error"] = None
+            break
+        except urllib.error.HTTPError as exc:
+            result["error"] = f"HTTP {exc.code}"
+            if exc.code < 500 and exc.code != 429:
+                break
+        except Exception as exc:  # network, TLS, XML: report and carry on
+            result["error"] = sws_clean_text(f"{type(exc).__name__}: {exc}", 120)
+        time.sleep(2 + 2 * attempt)
+    if entries is None:
         return result
     result["total"] = len(entries)
     if not entries:
@@ -261,7 +269,7 @@ def sws_format_output(config, reports, legacy, start, now, note, results):
         f"Sources total: {len(feeds) + len(pages)} ({len(feeds)} feeds + {len(pages)} pages without a feed)",
     ]
     if failed:
-        out.append("Failed feeds (check these yourself with WebFetch or search):")
+        out.append("Failed feeds (read these sites yourself with scripts/page.py, or rely on search):")
         out += [f"  - {r['source']['name']}: {r['error']} <{r['source']['url']}>" for r in failed]
     out += ["", "PAGES WITHOUT A FEED (open each one yourself and look for entries dated inside the window):"]
     out += [f"  - [{p['category']}] {p['name']}: {p['url']}" for p in pages]
@@ -283,7 +291,7 @@ def sws_format_output(config, reports, legacy, start, now, note, results):
             out.append(f"\n-- {r['source']['name']}: {len(r['entries'])} in window{suffix}")
             for e in r["entries"]:
                 out.append(f"{local(e['date']).strftime('%Y-%m-%d %H:%M')} | {e['title']} | {e['link']}")
-                if e["snippet"] and e["snippet"].lower() != e["title"].lower():
+                if e["snippet"] and e["snippet"].lower() != e["title"].lower() and not r["source"].get("titles_only"):
                     out.append(f"    {e['snippet']}")
 
     out += ["", "=" * 78, "ALREADY REPORTED (do not repeat a story unless something new happened)", "=" * 78]
