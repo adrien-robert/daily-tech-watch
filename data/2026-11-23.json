@@ -1,0 +1,150 @@
+{
+  "date": "2026-11-23",
+  "window": { "from": "2026-11-20T07:48+01:00", "to": "2026-11-23T07:46+01:00" },
+  "top": ["ghostscript-sandbox-escape", "quad9-france-cutoff", "riemann-proof-confirmed"],
+  "items": [
+    {
+      "id": "ghostscript-sandbox-escape",
+      "category": "wordpress",
+      "tag": "security",
+      "title": "Ghostscript sandbox escape reaches servers through WordPress upload forms",
+      "summary": "Security firm pwn.ai showed that CVE-2026-125396, a use-after-free in Ghostscript fixed in version 10.08.0 on 8 Sep, can run commands on a server via a crafted file sent to upload or preview features. Public upload forms in the Forminator and Essential Addons for Elementor plugins were among the demonstrated paths, and WordPress Core needs an account with upload rights, which Authors and above have. No attacks have been reported.",
+      "why": "Ask your hosts whether Ghostscript is at 10.08.0 or later, since several Linux distributions still shipped a vulnerable version. Updating WordPress does not replace this fix, and a copy of Ghostscript bundled in a container is not updated with the host.",
+      "url": "https://thehackernews.com/2026/11/researchers-demonstrate-ghostscript.html",
+      "source": "The Hacker News",
+      "published": "2026-11-22",
+      "verified": "page"
+    },
+    {
+      "id": "quad9-france-cutoff",
+      "category": "wider",
+      "tag": "deadline",
+      "title": "Quad9 stops answering DNS queries in France on 24 Nov",
+      "summary": "According to Numerama, Quad9 will stop responding to users in France on 24 Nov 2026, choosing to withdraw rather than block 58 sites under a court order. Anyone who set Quad9 as their DNS resolver and has no other one will lose access to websites.",
+      "why": "Check your office router, your machines and any client or hosting setup that uses Quad9 as its DNS, and switch to automatic DNS or another provider before tomorrow.",
+      "url": "https://www.numerama.com/tech/2379931-internet-cessera-de-fonctionner-sans-explication-attention-le-service-quad9-coupe-en-france-ce-mardi-verifiez-si-vous-lutilisez.html",
+      "source": "Numerama",
+      "published": "2026-11-22",
+      "verified": "page"
+    },
+    {
+      "id": "riemann-proof-confirmed",
+      "category": "wider",
+      "tag": "milestone",
+      "title": "Lean community confirms Claude-assisted proof of the Riemann hypothesis",
+      "summary": "Anthropic mathematician Levent Alpöge published on 20 Nov a proof of the Riemann hypothesis, found working with Claude, as 17 million lines of Lean code. On 22 Nov the Lean and Mathlib community said it has full confidence the proof is correct after dozens of independent checks.",
+      "why": "Nothing to do, but you should know: it is the strongest public evidence so far of what current AI models can do on research-level problems.",
+      "url": "https://the-decoder.com/lean-and-mathlib-community-officially-confirms-levent-alpoges-proof-of-the-riemann-hypothesis-is-correct/",
+      "source": "The Decoder",
+      "published": "2026-11-22",
+      "verified": "page"
+    },
+    {
+      "id": "entra-connect-health-breach",
+      "category": "wider",
+      "tag": "security",
+      "title": "Microsoft says attackers exploited a flaw in Entra Connect Health to read tenant data",
+      "summary": "Microsoft is notifying organizations that an API flaw in Entra Connect Health, introduced on 23 Jul and found on 9 Nov, was exploited to read tenant metadata including administrator email addresses. Microsoft fixed it server-side on 19 Nov and says no passwords, tokens or configuration changes were involved.",
+      "why": "If any client runs Microsoft 365 with Entra, expect targeted phishing aimed at their administrators, and make sure those accounts use phishing-resistant MFA.",
+      "url": "https://www.bleepingcomputer.com/news/security/microsoft-entra-connect-health-flaw-exploited-to-steal-tenant-data/",
+      "source": "BleepingComputer",
+      "published": "2026-11-21",
+      "verified": "page"
+    },
+    {
+      "id": "mailchimp-bending-spoons",
+      "category": "wider",
+      "tag": "new",
+      "title": "Bending Spoons buys Mailchimp from Intuit for $3.68B",
+      "summary": "Intuit is selling Mailchimp to Bending Spoons for $3.68B, about 90% cash and 10% stock, according to TechCrunch. Intuit bought it in 2021 for roughly $12B, and Bending Spoons also acquired AOL, Eventbrite, Airtable and Miro in the past year.",
+      "why": "If clients run newsletters on Mailchimp, watch for pricing or product changes after the sale, since Bending Spoons integrates the products it buys into its own systems.",
+      "url": "https://techcrunch.com/2026/11/20/bending-spoons-buys-mailchimp-for-3-68-billion/",
+      "source": "TechCrunch",
+      "published": "2026-11-20",
+      "verified": "page"
+    },
+    {
+      "id": "dragos-ai-inference-theft",
+      "category": "ai",
+      "tag": "security",
+      "title": "Dragos finds attackers stealing prompts at three AI inference providers",
+      "summary": "Dragos seeded about two million prompts with fake credentials from July to November and found three providers where attackers had been copying requests for months, some flagged Zero Data Retention. OpenRouter said on 22 Nov it removed the three providers and took 125 endpoints out of Zero Data Retention eligibility.",
+      "why": "Do not send real API keys, client credentials or private data in prompts through third-party gateways or cheap inference resellers, and rotate any key that went through one.",
+      "url": "https://thehackernews.com/2026/11/openrouter-drops-3-providers-after.html",
+      "source": "The Hacker News",
+      "published": "2026-11-22",
+      "verified": "page"
+    },
+    {
+      "id": "claude-code-2-1-330",
+      "category": "ai",
+      "tag": "update",
+      "title": "Claude Code 2.1.330 adds Enterprise Admin Console sign-in and built-in charts",
+      "summary": "Claude Code 2.1.330, dated 20 Nov, lets claude auth login sign in to organizations managed in Anthropic's Enterprise Admin Console and apply their settings. It also adds easel, a built-in mod that draws charts on request, which can be turned off in /config.",
+      "why": "Nothing to change for solo use. If you notice charts appearing in MCP metrics results, that is easel, and /config turns it off.",
+      "url": "https://code.claude.com/docs/en/changelog#2-1-330",
+      "source": "Claude Code changelog",
+      "published": "2026-11-20",
+      "verified": "page"
+    },
+    {
+      "id": "google-search-homepage-redesign",
+      "category": "webdev",
+      "tag": "update",
+      "title": "Google rolls out a search homepage with AI buttons and no search button",
+      "summary": "Google confirmed on 20 Nov that its redesigned desktop search page is now live. It drops the Google Search button, adds buttons for image generation, file analysis and Gemini brainstorming, and shows recent AI Mode threads in a sidebar for signed-in users.",
+      "why": "Nothing to do on client sites, but expect clients to ask about AI Mode and how it changes how their visitors reach them.",
+      "url": "https://arstechnica.com/ai/2026/11/googles-latest-search-page-redesign-drops-the-search-button-adds-ai-sidebar/",
+      "source": "Ars Technica",
+      "published": "2026-11-20",
+      "verified": "page"
+    },
+    {
+      "id": "php-8-6-release",
+      "category": "webdev",
+      "tag": "new",
+      "title": "PHP 8.6 released with stricter session security defaults",
+      "summary": "PHP 8.6 came out on Thursday 19 Nov alongside the patched 8.5.13, 8.4.28, 8.3.37 and 8.2.36. According to The Register, it tightens defaults for the session extension's Strict Mode, HttpOnly and SameSite settings.",
+      "why": "Test custom code and plugins that rely on session cookies before any host moves a site to 8.6. For now the priority is still the security releases of your current branch.",
+      "url": "https://www.theregister.com/devops/2026/11/20/php-86-things-are-gonna-get-a-lot-more-strict-around-here/5311486",
+      "source": "The Register",
+      "published": "2026-11-20",
+      "verified": "page"
+    }
+  ],
+  "actions": [
+    {
+      "id": "update-wordpress-7-1-5",
+      "title": "Update every client site to WordPress 7.1.5",
+      "detail": "The release fixes 20 security issues, including an unauthenticated flaw that could lead to remote code execution.",
+      "status": "open",
+      "opened": "2026-11-19",
+      "url": "https://wordpress.org/news/2026/11/wordpress-7-1-5-release/"
+    },
+    {
+      "id": "ask-hosts-php-update",
+      "title": "Ask hosts to update PHP to 8.5.13, 8.4.28, 8.3.37 or 8.2.36",
+      "detail": "Until then, turn off FastCGI connection reuse where it is on.",
+      "status": "open",
+      "opened": "2026-11-19",
+      "url": "https://patchstack.com/articles/php-november-2026-security-release-wordpress/"
+    },
+    {
+      "id": "ask-hosts-ghostscript",
+      "title": "Ask hosts to update Ghostscript to 10.08.0 or later",
+      "detail": "CVE-2026-125396 lets a crafted uploaded file run commands on servers that render uploads with Ghostscript.",
+      "status": "new",
+      "opened": "2026-11-23",
+      "url": "https://thehackernews.com/2026/11/researchers-demonstrate-ghostscript.html"
+    },
+    {
+      "id": "check-quad9-dns",
+      "title": "Check whether any router or machine uses Quad9 DNS before 24 Nov",
+      "detail": "Quad9 stops answering in France on 24 Nov 2026; switch to automatic DNS or another provider.",
+      "status": "new",
+      "opened": "2026-11-23",
+      "url": "https://www.numerama.com/tech/2379931-internet-cessera-de-fonctionner-sans-explication-attention-le-service-quad9-coupe-en-france-ce-mardi-verifiez-si-vous-lutilisez.html"
+    }
+  ],
+  "run": { "sources_ok": 54, "sources_total": 55, "failed": ["CSS-Tricks"], "searches": 6, "pages_opened": 20 }
+}
