@@ -1,0 +1,175 @@
+{
+  "date": "2026-11-24",
+  "window": { "from": "2026-11-23T07:46+01:00", "to": "2026-11-24T07:47+01:00" },
+  "top": ["claude-ship", "wp-random-redirect", "wp-connect-backdoor"],
+  "items": [
+    {
+      "id": "nvidia-huang-reinstated",
+      "category": "wider",
+      "tag": "milestone",
+      "title": "Nvidia reinstates Jensen Huang as CEO and chairman 11 days after he resigned",
+      "summary": "Nvidia's board voted on 23 Nov to bring Huang back, effective immediately, citing input from senior US government officials that his return poses no national security risk. Investigations into the affair and the export-control allegations are still open.",
+      "why": "Nothing to do, but it is the story the industry will be discussing today; Huang is due to testify in the Senate next week according to TechCrunch.",
+      "url": "https://arstechnica.com/ai/2026/11/jensen-huang-reinstated-as-nvidia-ceo-board-chair/",
+      "source": "Ars Technica",
+      "published": "2026-11-23",
+      "verified": "page"
+    },
+    {
+      "id": "crowdstrike-zscaler",
+      "category": "wider",
+      "tag": "milestone",
+      "title": "CrowdStrike agrees to buy Zscaler in a $43.9 billion all-stock deal",
+      "summary": "The companies announced the deal on 23 Nov. It combines CrowdStrike's endpoint protection with Zscaler's zero-trust platform, is subject to regulatory approval and is expected to close around this time next year.",
+      "why": "Nothing to do now. Worth knowing if a client uses either vendor, since products and contracts may change over the next year.",
+      "url": "https://techcrunch.com/2026/11/23/crowdstrike-to-acquire-zscaler-for-44-billion/",
+      "source": "TechCrunch",
+      "published": "2026-11-23",
+      "verified": "page"
+    },
+    {
+      "id": "amazon-decart",
+      "category": "wider",
+      "tag": "milestone",
+      "title": "Amazon buys Decart's AI optimization technology in a reported $7.5 billion deal",
+      "summary": "Amazon will acquire the Decart Optimization Stack, which helps AI models run efficiently on Nvidia, Amazon and Google hardware, along with Decart's founding team and researchers. TechCrunch ties the deal to Amazon's plan to sell Trainium chips.",
+      "why": "Nothing to do. It shows the race to cut inference costs, which is what eventually lowers the price of the AI tools you use.",
+      "url": "https://techcrunch.com/2026/11/23/amazon-snaps-up-decarts-ai-optimization-tech-for-7-5b-as-it-prepares-to-sell-trainium-chips/",
+      "source": "TechCrunch",
+      "published": "2026-11-23",
+      "verified": "page"
+    },
+    {
+      "id": "ladybird-alpha",
+      "category": "wider",
+      "tag": "new",
+      "title": "Ladybird, the independent browser engine, ships its first alpha",
+      "summary": "Ladybird announced its alpha on 23 Nov: an engine built from scratch, not a fork, distributed as a rolling channel with automatic updates. The team warns some sites will not work and makes no security promises yet.",
+      "why": "Not for client work yet. If you want to see how your sites render in a third, non-Chromium, non-WebKit engine, it is now easy to try.",
+      "url": "https://ladybird.org/posts/alpha/",
+      "source": "Ladybird",
+      "published": "2026-11-23",
+      "verified": "page"
+    },
+    {
+      "id": "claude-ship",
+      "category": "ai",
+      "tag": "new",
+      "title": "Anthropic launches Claude Ship, with agents that fix and approve pull requests",
+      "summary": "Claude Ship bundles Code Review (generally available) with two beta agents: PR Steward, which fixes failing CI, merge conflicts and review feedback, and Claude Approvals, which approves changes under a policy written in the repository. It is rolling out to Team and Enterprise plans for GitHub repositories.",
+      "why": "It needs a Team or Enterprise plan, so it only matters if you move to one. Anthropic advises starting in observe-only mode on a single repository, a sensible way to test it on a client project.",
+      "url": "https://techcrunch.com/2026/11/23/anthropic-launches-claude-ship-letting-ai-agents-review-fix-and-approve-code-changes/",
+      "source": "TechCrunch",
+      "published": "2026-11-23",
+      "verified": "page"
+    },
+    {
+      "id": "claude-opus-4-5-deprecation",
+      "category": "ai",
+      "tag": "breaking",
+      "title": "Claude Opus 4.5 is deprecated and leaves the API on 22 January 2027",
+      "summary": "Anthropic announced on 23 Nov the deprecation of claude-opus-4-5-20251101 and claude-opus-4-5, with retirement on the Claude API scheduled for 22 Jan 2027. It recommends migrating to Claude Opus 5.5.",
+      "why": "If any script, n8n workflow or plugin of yours pins that model name, switch it before January.",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "source": "Claude Platform release notes",
+      "published": "2026-11-23",
+      "verified": "page"
+    },
+    {
+      "id": "gpt-6-2-sol-chat",
+      "category": "ai",
+      "tag": "update",
+      "title": "OpenAI makes GPT-6.2 Sol the default model in ChatGPT's chat tab",
+      "summary": "The rollout began on 23 Nov for Plus, Pro, Business and Enterprise users. OpenAI's own tests show image understanding at 71.7 percent against 47.4 for GPT-6, according to The Decoder.",
+      "why": "Nothing to do. Clients who use ChatGPT will notice the change in their chat tab.",
+      "url": "https://the-decoder.com/openai-updates-chatgpt-to-handle-complex-everyday-questions-web-searches-and-images-more-reliably/",
+      "source": "The Decoder",
+      "published": "2026-11-23",
+      "verified": "page"
+    },
+    {
+      "id": "wp-random-redirect",
+      "category": "wordpress",
+      "tag": "important",
+      "title": "WordPress 7.2 will ship the /random/ redirect switched on by default",
+      "summary": "According to The Repository, core has no plans to make the endpoint opt-in before the final release on 8 Dec, despite developer pushback. Sites can turn it off with the wp_enable_random_content_redirect filter.",
+      "why": "Decide before 8 Dec whether client sites should expose it. Disabling it is one line in an mu-plugin: add_filter( 'wp_enable_random_content_redirect', '__return_false' );",
+      "url": "https://www.therepository.email/wordpress-7-2-will-keep-random-redirects-enabled-by-default-despite-pushback",
+      "source": "The Repository",
+      "published": "2026-11-24",
+      "verified": "page"
+    },
+    {
+      "id": "wp-php-8-6",
+      "category": "wordpress",
+      "tag": "update",
+      "title": "WordPress 7.2 is fully compatible with PHP 8.6, minimum PHP stays at 7.4",
+      "summary": "The core team said on 23 Nov that all known PHP 8.6 incompatibilities in core are fixed, as of Beta 5. WordPress 7.2 does not change the minimum supported PHP version.",
+      "why": "Core is ready, but your plugins and themes are not covered. Test them on PHP 8.6 in staging before you move any client to it.",
+      "url": "https://make.wordpress.org/core/2026/11/23/wordpress-and-php-8-6/",
+      "source": "Make WordPress Core",
+      "published": "2026-11-23",
+      "verified": "page"
+    },
+    {
+      "id": "wp-connect-backdoor",
+      "category": "wordpress",
+      "tag": "security",
+      "title": "Compromised developer account backdoors six WP connect plugins, stopped by a release hold",
+      "summary": "Wordfence reports that a compromised developer account was used to push a remote-control backdoor into six WP connect plugins, including Air WP Sync and WP Sync for Notion. WordPress.org's release hold blocked it.",
+      "why": "None of these are in your stack, but check client sites for any WP connect plugin and read the Wordfence post before updating them.",
+      "url": "https://www.wordfence.com/blog/2026/11/supply-chain-compromise-backdoors-six-wp-connect-plugins-blocked-by-wordpress-orgs-release-hold/",
+      "source": "Wordfence",
+      "published": "2026-11-23",
+      "verified": "feed"
+    },
+    {
+      "id": "google-back-button-faq",
+      "category": "webdev",
+      "tag": "update",
+      "title": "Google says its back button hijacking policy covers visits from social media too",
+      "summary": "A new FAQ in Google's spam policies, added on 23 Nov, says the policy applies whenever the hijacking happens in a browser, not only on visits from Search. Sites can keep using ad platform code.",
+      "why": "Check that client popups, exit-intent scripts and landing pages do not alter the browser history, whatever the traffic source.",
+      "url": "https://www.searchenginejournal.com/google-back-button-hijacking-policy-social-visits/598592/",
+      "source": "Search Engine Journal",
+      "published": "2026-11-23",
+      "verified": "page"
+    }
+  ],
+  "actions": [
+    {
+      "id": "check-quad9-dns",
+      "title": "Check whether any router or machine uses Quad9 DNS before 24 Nov",
+      "detail": "Quad9 stops answering in France on 24 Nov 2026; switch to automatic DNS or another provider.",
+      "status": "open",
+      "opened": "2026-11-23",
+      "url": "https://www.numerama.com/tech/2379931-internet-cessera-de-fonctionner-sans-explication-attention-le-service-quad9-coupe-en-france-ce-mardi-verifiez-si-vous-lutilisez.html"
+    },
+    {
+      "id": "ask-hosts-ghostscript",
+      "title": "Ask hosts to update Ghostscript to 10.08.0 or later",
+      "detail": "CVE-2026-125396 lets a crafted uploaded file run commands on servers that render uploads with Ghostscript.",
+      "status": "open",
+      "opened": "2026-11-23",
+      "url": "https://thehackernews.com/2026/11/researchers-demonstrate-ghostscript.html"
+    },
+    {
+      "id": "update-wordpress-7-1-5",
+      "title": "Update every client site to WordPress 7.1.5",
+      "detail": "The release fixes 20 security issues, including an unauthenticated flaw that could lead to remote code execution.",
+      "status": "open",
+      "opened": "2026-11-19",
+      "url": "https://wordpress.org/news/2026/11/wordpress-7-1-5-release/"
+    },
+    {
+      "id": "ask-hosts-php-update",
+      "title": "Ask hosts to update PHP to 8.5.13, 8.4.28, 8.3.37 or 8.2.36",
+      "detail": "Until then, turn off FastCGI connection reuse where it is on.",
+      "status": "open",
+      "opened": "2026-11-19",
+      "url": "https://patchstack.com/articles/php-november-2026-security-release-wordpress/"
+    }
+  ],
+  "quick_win": "Add the wp_enable_random_content_redirect filter to an mu-plugin on one staging site and confirm /random/ stops redirecting, so you can roll it out before 7.2 ships on 8 Dec.",
+  "run": { "sources_ok": 55, "sources_total": 55, "failed": [], "searches": 6, "pages_opened": 19 }
+}
