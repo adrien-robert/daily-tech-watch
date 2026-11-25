@@ -1,0 +1,163 @@
+{
+  "date": "2026-11-25",
+  "window": { "from": "2026-11-24T07:47+01:00", "to": "2026-11-25T07:46+01:00" },
+  "top": ["google-december-core-update", "wp-7-2-rc3", "mcp-tasks-elicitation-ga"],
+  "items": [
+    {
+      "id": "google-december-core-update",
+      "category": "webdev",
+      "tag": "important",
+      "title": "Google pre-announces a December 2026 core update, hours after finishing November's",
+      "summary": "Google posted the December 2026 core update on its Search Status Dashboard on 24 Nov, saying it will roll out sometime in December. It focuses on ranking relevant content, including for longer and more complex questions, and on personalised results. The November 2026 core update was declared complete the same day.",
+      "why": "Note the baseline rankings and traffic of client sites now, so you can tell November's effects from December's. Avoid judging a site's SEO work until both updates have settled.",
+      "url": "https://www.searchenginejournal.com/google-december-2026-core-update/598760/",
+      "source": "Search Engine Journal",
+      "published": "2026-11-24",
+      "verified": "page"
+    },
+    {
+      "id": "google-ranking-advance-notice",
+      "category": "webdev",
+      "tag": "new",
+      "title": "Google documents advance notice for ranking updates and a feedback route in Search Console",
+      "summary": "A new Ranking section on Search Central says Google will give advance notice of significant ranking updates and actionable policy changes on the Search Status Dashboard. Verified site owners can send feedback on an update through Search Console, and sites serving UK users that were manually removed from the index can appeal from 17 Dec.",
+      "why": "The Search Status Dashboard has an RSS feed, so you can follow it to get warning before client rankings move. The feedback form needs a verified owner, so check you are verified on client properties.",
+      "url": "https://www.searchenginejournal.com/google-documents-advance-notice-for-significant-ranking-updates/598773/",
+      "source": "Search Engine Journal",
+      "published": "2026-11-24",
+      "verified": "page"
+    },
+    {
+      "id": "wp-7-2-rc3",
+      "category": "wordpress",
+      "tag": "update",
+      "title": "WordPress 7.2 Release Candidate 3 is out, final release scheduled for 8 December",
+      "summary": "RC3 was published on 24 Nov. There was no separate RC2 announcement because the changes from WordPress 7.1.5 were applied to 7.2 RC2 at the same time. The final release is scheduled for 8 Dec 2026.",
+      "why": "Test your main Bricks, ACF, WPML and SEOPress setups on a staging copy before 8 Dec, so you know which plugins to hold back on client sites.",
+      "url": "https://wordpress.org/news/2026/11/wordpress-7-2-release-candidate-3/",
+      "source": "WordPress News",
+      "published": "2026-11-24",
+      "verified": "page"
+    },
+    {
+      "id": "wp-7-2-core-abilities",
+      "category": "claude-wp",
+      "tag": "tool",
+      "title": "WordPress 7.2 adds three read-only core abilities for content, users and settings",
+      "summary": "A dev note from 24 Nov lists core/content-query, core/users-query and core/settings-get, which add to the three informational abilities from WordPress 6.9. Content and user queries take filters, fields and pagination, and return a WP_Error if the input is invalid or the user lacks permission. More read and write abilities are planned for later releases.",
+      "why": "These give AI agents a standard, permission-checked way to read a site's posts, users and settings without a custom plugin. They are worth trying on staging once 7.2 ships.",
+      "url": "https://make.wordpress.org/core/2026/11/24/core-abilities-for-content-users-and-settings-in-wordpress-7-2/",
+      "source": "Make WordPress Core",
+      "published": "2026-11-24",
+      "verified": "page"
+    },
+    {
+      "id": "mcp-tasks-elicitation-ga",
+      "category": "ai",
+      "tag": "update",
+      "title": "MCP's Tasks and Elicitation reach general availability as the protocol passes 700 million monthly downloads",
+      "summary": "On the protocol's second anniversary, Anthropic reported more than 700 million monthly MCP SDK downloads and over 10,000 MCP connectors for Claude, according to The Decoder. Tasks let a server run a long job in the background, and Elicitation lets a running process pause to ask the user for missing details. Both reached general availability after a public test in October.",
+      "why": "MCP servers you use or build, including WordPress ones, can now run long jobs and ask for missing input instead of failing. Expect new versions of those servers to start using both.",
+      "url": "https://the-decoder.com/anthropic-tops-700-million-monthly-mcp-sdk-downloads-and-expands-the-protocol-for-more-autonomous-ai-agents/",
+      "source": "The Decoder",
+      "published": "2026-11-24",
+      "verified": "page"
+    },
+    {
+      "id": "claude-code-2-1-332",
+      "category": "ai",
+      "tag": "update",
+      "title": "Claude Code 2.1.332 adds skills from MCP servers and a hook that can block a skill's shell commands",
+      "summary": "Version 2.1.332, dated 25 Nov, adds skills served by MCP servers in beta, shown as server:skill in the / menu. It also adds a PreSkillShellCommand hook event that can refuse a skill's or command's inline shell commands as it loads. On 2.1.331 and older, a settings file naming that event opens a dialog at start.",
+      "why": "An MCP server can now ship its own skills, so a WordPress or Bricks MCP could bring ready-made workflows. If you share settings across machines, update them together to avoid the startup dialog.",
+      "url": "https://code.claude.com/docs/en/changelog#2-1-332",
+      "source": "Claude Code changelog",
+      "published": "2026-11-25",
+      "verified": "page"
+    },
+    {
+      "id": "claude-artifacts-desktop-apps",
+      "category": "ai",
+      "tag": "new",
+      "title": "Anthropic lets Claude Artifacts be installed as standalone Mac and Windows apps, in beta",
+      "summary": "Artifacts built in chat can now be kept in the dock as desktop apps, which requires the latest Claude app for macOS or Windows. The apps can use OS APIs, connectors and Claude itself, for example to add menu bar items or send notifications. A free account is enough, according to The Decoder.",
+      "why": "A quick way to turn a small internal tool, such as a client checklist or a content-brief helper, into an app without writing code. Treat it as beta.",
+      "url": "https://the-decoder.com/anthropic-turns-claude-artifacts-into-standalone-desktop-apps-for-macos-and-windows/",
+      "source": "The Decoder",
+      "published": "2026-11-24",
+      "verified": "page"
+    },
+    {
+      "id": "anthropic-shares-below-ipo",
+      "category": "wider",
+      "tag": "milestone",
+      "title": "Anthropic shares fall below the $83 IPO price less than a week after listing",
+      "summary": "Anthropic traded as low as $76 on 24 Nov, down nearly 12% from Monday's close and below its $83 IPO price. It had debuted on Nasdaq at $111.50 a share less than a week earlier. Nvidia also fell more than 7% by midday, giving back part of Monday's gain after Jensen Huang's reinstatement, according to TechCrunch.",
+      "why": "Nothing changes for your use of Claude today. It is a sign of how public markets are valuing AI companies, which can affect pricing and plans over time.",
+      "url": "https://techcrunch.com/2026/11/24/anthropic-shares-fall-below-ipo-price-a-worrying-sign-for-ai-startups/",
+      "source": "TechCrunch",
+      "published": "2026-11-24",
+      "verified": "page"
+    },
+    {
+      "id": "huawei-guilty",
+      "category": "wider",
+      "tag": "milestone",
+      "title": "A US jury finds Huawei guilty on 10 of 12 counts, including trade secret theft",
+      "summary": "A federal jury in New York found Huawei guilty of 10 of 12 criminal counts, including money laundering, violating US sanctions, bank fraud, wire fraud and conspiracy to defraud the US. It was acquitted of racketeering conspiracy and obstruction of justice. Sentencing is set for 14 Sep 2027, and Huawei says it will appeal.",
+      "why": "Nothing to do. It is the outcome of a case running since the 2018 indictment, and the sentencing date is far off.",
+      "url": "https://www.theverge.com/tech/1041820/huawei-guilty-trade-secrets-trial",
+      "source": "The Verge",
+      "published": "2026-11-24",
+      "verified": "page"
+    },
+    {
+      "id": "rackspace-spot-shutdown",
+      "category": "wider",
+      "tag": "security",
+      "title": "Rackspace shuts down its Spot cloud after a breach exposed customer Kubernetes secrets",
+      "summary": "Attackers used compromised credentials on 17 Nov to reach Rackspace Spot, where they could read Kubernetes Secrets and files on storage volumes. Rackspace will discontinue the service on 8 Dec 2026 at 5 PM Central Time and tells customers to treat tokens, kubeconfigs and Secrets as compromised. It says it has found no sign of access to its core systems.",
+      "why": "Only relevant if a client or tool of yours runs on Rackspace Spot; if so, rotate every credential and migrate before 8 Dec. Otherwise, nothing to do.",
+      "url": "https://www.bleepingcomputer.com/news/security/rackspace-shuts-down-spot-cloud-platform-after-security-breach/",
+      "source": "BleepingComputer",
+      "published": "2026-11-24",
+      "verified": "page"
+    }
+  ],
+  "actions": [
+    {
+      "id": "check-quad9-dns",
+      "title": "Check whether any router or machine uses Quad9 DNS before 24 Nov",
+      "detail": "Quad9 stops answering in France on 24 Nov 2026; switch to automatic DNS or another provider.",
+      "status": "open",
+      "opened": "2026-11-23",
+      "url": "https://www.numerama.com/tech/2379931-internet-cessera-de-fonctionner-sans-explication-attention-le-service-quad9-coupe-en-france-ce-mardi-verifiez-si-vous-lutilisez.html"
+    },
+    {
+      "id": "ask-hosts-ghostscript",
+      "title": "Ask hosts to update Ghostscript to 10.08.0 or later",
+      "detail": "CVE-2026-125396 lets a crafted uploaded file run commands on servers that render uploads with Ghostscript.",
+      "status": "open",
+      "opened": "2026-11-23",
+      "url": "https://thehackernews.com/2026/11/researchers-demonstrate-ghostscript.html"
+    },
+    {
+      "id": "update-wordpress-7-1-5",
+      "title": "Update every client site to WordPress 7.1.5",
+      "detail": "The release fixes 20 security issues, including an unauthenticated flaw that could lead to remote code execution.",
+      "status": "open",
+      "opened": "2026-11-19",
+      "url": "https://wordpress.org/news/2026/11/wordpress-7-1-5-release/"
+    },
+    {
+      "id": "ask-hosts-php-update",
+      "title": "Ask hosts to update PHP to 8.5.13, 8.4.28, 8.3.37 or 8.2.36",
+      "detail": "Until then, turn off FastCGI connection reuse where it is on.",
+      "status": "open",
+      "opened": "2026-11-19",
+      "url": "https://patchstack.com/articles/php-november-2026-security-release-wordpress/"
+    }
+  ],
+  "quick_win": "Spin up a staging copy of one client site and run `wp core update --version=7.2-RC3` to check your plugin stack before the 8 Dec release.",
+  "run": { "sources_ok": 55, "sources_total": 55, "failed": [], "searches": 10, "pages_opened": 24 }
+}
