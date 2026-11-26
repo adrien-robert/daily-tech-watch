@@ -1,0 +1,120 @@
+{
+  "date": "2026-11-26",
+  "window": { "from": "2026-11-25T07:46+01:00", "to": "2026-11-26T07:46+01:00" },
+  "top": ["1password-github-breach", "drupal-install-rce-exploited", "google-pageburst-crawler"],
+  "items": [
+    {
+      "id": "1password-github-breach",
+      "category": "wider",
+      "tag": "security",
+      "title": "1Password says an attacker used a hijacked GitHub account to steal customer records",
+      "summary": "1Password disclosed on 25 Nov that an employee's GitHub account was compromised, used to access private source code and push malicious code to backend services that downloaded account records. Names, email addresses and some invitation and recovery tokens were taken; vault contents and the keys protecting them were not accessed.",
+      "why": "If you or clients use 1Password, no password change is required, but expect phishing that mentions invitations or account recovery and ignore any you did not request.",
+      "url": "https://1password.com/blog/update-on-nov-2026-security-incident",
+      "source": "1Password",
+      "published": "2026-11-25",
+      "verified": "page"
+    },
+    {
+      "id": "drupal-install-rce-exploited",
+      "category": "wider",
+      "tag": "security",
+      "title": "Drupal installer flaw is exploited in the wild and added to CISA's exploited list",
+      "summary": "Drupal says CVE-2026-132165, which lets an anonymous user abuse install.php to reinstall a site and gain remote code execution, was exploited on live sites from 19 Nov. CISA added it to its Known Exploited Vulnerabilities catalog on 24 Nov.",
+      "why": "Not WordPress, but any Drupal site you host or inherit needs the latest Drupal release; until then, block /core/install.php at the web server.",
+      "url": "https://www.bleepingcomputer.com/news/security/hackers-now-exploit-critical-drupal-rce-flaw-to-hijack-sites/",
+      "source": "BleepingComputer",
+      "published": "2026-11-25",
+      "verified": "page"
+    },
+    {
+      "id": "pan-os-php2shell-fragnesia",
+      "category": "wider",
+      "tag": "security",
+      "title": "Palo Alto confirms PAN-OS firewalls are hit by the PHP2Shell and Fragnesia attack chain",
+      "summary": "Palo Alto Networks said on 25 Nov that CVE-2026-46300 (Fragnesia, a Linux kernel flaw) is exploited against PAN-OS devices whose management interface is exposed to the internet. Attackers chain it with the PHP2Shell flaws CVE-2026-109618 and CVE-2026-109619, and fixes exist for PAN-OS 10.2, 11.1, 11.2, 12.1 and 12.2.",
+      "why": "Relevant only if a client runs a Palo Alto firewall; the general lesson is that PHP remote-code flaws are being chained with local root bugs, so keep host PHP and kernels current.",
+      "url": "https://www.bleepingcomputer.com/news/security/palo-alto-networks-warns-of-fragnesia-flaw-exploited-in-pan-os-attacks/",
+      "source": "BleepingComputer",
+      "published": "2026-11-25",
+      "verified": "page"
+    },
+    {
+      "id": "sp-nvidia-downgrade-review",
+      "category": "wider",
+      "tag": "important",
+      "title": "S&P puts Nvidia's credit rating under review after Jensen Huang's ouster and return",
+      "summary": "S&P Global Ratings is considering cutting Nvidia from AA to AA- over weak executive oversight, lack of succession planning and key-man risk. It expects to finish the review within 90 days.",
+      "why": "Nothing to do, but a downgrade could make financing costlier for the AI infrastructure companies Nvidia backstops.",
+      "url": "https://techcrunch.com/2026/11/25/sp-considers-nvidia-credit-downgrade-over-governance-and-key-man-risks/",
+      "source": "TechCrunch",
+      "published": "2026-11-25",
+      "verified": "page"
+    },
+    {
+      "id": "chatgpt-chat-work-merge",
+      "category": "ai",
+      "tag": "update",
+      "title": "OpenAI starts merging ChatGPT Chat and Work with one shared usage meter",
+      "summary": "OpenAI began rolling out the merged experience to a small group of Pro subscribers on 25 Nov, and says a small fraction of its heaviest users may hit limits sooner. Instant-model conversations stay unlimited, and shared limits are due more broadly in December, per its support page.",
+      "why": "A useful comparison point if you weigh ChatGPT against Claude for client work; nothing to change on your side.",
+      "url": "https://techcrunch.com/2026/11/25/openai-says-heavy-chatgpt-users-may-hit-limits-sooner-as-it-merges-chat-and-work/",
+      "source": "TechCrunch",
+      "published": "2026-11-25",
+      "verified": "page"
+    },
+    {
+      "id": "openai-private-inference",
+      "category": "ai",
+      "tag": "new",
+      "title": "OpenAI pilots Private Inference, which keeps business queries out of its own reach",
+      "summary": "Sam Altman said OpenAI is piloting Private Inference with its first enterprise customers. Queries run on isolated hardware whose security can be independently verified, so OpenAI cannot read the data; Google is pursuing a similar approach with Private AI Compute, per The Decoder.",
+      "why": "If a client hesitates to send sensitive content to an AI tool, this kind of option may become an answer, but it is still a pilot for business customers.",
+      "url": "https://the-decoder.com/openai-wants-companies-to-trust-it-with-sensitive-work-by-promising-not-to-look-at-their-data/",
+      "source": "The Decoder",
+      "published": "2026-11-25",
+      "verified": "page"
+    },
+    {
+      "id": "wp-revision-diff-limits",
+      "category": "wordpress",
+      "tag": "update",
+      "title": "WordPress core adds limits so revision comparisons of huge posts stop timing out",
+      "summary": "A core dev note from 25 Nov says comparing revisions of a very large post could take minutes or run out of memory; a one-line 200 KB table took 48 seconds. Past new limits the diff still shows every line but skips word-level highlighting, and the limits can be raised through wp_text_diff() arguments or the `revision_text_diff_options` filter.",
+      "why": "Heavy pages built with large data tables or imported content will stop freezing the revisions screen; raise the limits only if a client needs the finer diff.",
+      "url": "https://make.wordpress.org/core/2026/11/25/revision-diffs-now-stop-before-they-time-out/",
+      "source": "Make WordPress Core",
+      "published": "2026-11-25",
+      "verified": "page"
+    },
+    {
+      "id": "google-pageburst-crawler",
+      "category": "webdev",
+      "tag": "important",
+      "title": "Google documents pageburst, a Google Ads crawler that ignores robots.txt",
+      "summary": "Google added 12 existing user agents to its crawler docs on 23 Nov, including pageburst, which renders pages for Google Ads quality and landing-page safety and ignores robots.txt. Its two strings look like ordinary browsers and do not contain \"Googlebot\".",
+      "why": "Bot rules or firewall filters keyed on \"Googlebot\" will not catch it; if you run ads for clients, do not block it, and verify requests by Google's published IP ranges.",
+      "url": "https://www.searchenginejournal.com/google-adds-pageburst-11-other-existing-bots-to-its-crawler-docs/599120/",
+      "source": "Search Engine Journal",
+      "published": "2026-11-26",
+      "verified": "page"
+    },
+    {
+      "id": "firefox-161",
+      "category": "webdev",
+      "tag": "new",
+      "title": "Firefox 161 adds per-site VPN rules and a one-click clear-data flame button",
+      "summary": "Firefox 161, dated 24 Nov, lets users set sites on which the built-in VPN is always on or always off. It also adds a flame button in the toolbar that clears session data in one click, rolling out gradually.",
+      "why": "Nothing to change in your sites; the flame button is handy when testing in a clean browser state.",
+      "url": "https://next.ink/brief-article/firefox-161-active-son-vpn-site-par-site-et-simplifie-leffacement-de-lhistorique/",
+      "source": "Next",
+      "published": "2026-11-25",
+      "verified": "page"
+    }
+  ],
+  "actions": [
+    {"id": "ask-hosts-ghostscript", "title": "Ask hosts to update Ghostscript to 10.08.0 or later", "detail": "CVE-2026-125396 lets a crafted uploaded file run commands on servers that render uploads with Ghostscript.", "status": "open", "opened": "2026-11-23", "url": "https://thehackernews.com/2026/11/researchers-demonstrate-ghostscript.html"},
+    {"id": "update-wordpress-7-1-5", "title": "Update every client site to WordPress 7.1.5", "detail": "The release fixes 20 security issues, including an unauthenticated flaw that could lead to remote code execution.", "status": "open", "opened": "2026-11-19", "url": "https://wordpress.org/news/2026/11/wordpress-7-1-5-release/"}
+  ],
+  "run": { "sources_ok": 55, "sources_total": 55, "failed": [], "searches": 5, "pages_opened": 22 }
+}
