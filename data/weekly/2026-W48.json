@@ -1,0 +1,92 @@
+{
+  "week": "2026-W48",
+  "from": "2026-11-23",
+  "to": "2026-11-27",
+  "summary": "WordPress security dominated the week: the 7.1.5 patch release, a Ghostscript flaw reachable through upload forms, and a plugin backdoor that WordPress.org stopped before it reached sites. WordPress 7.2 is now in its last release-candidate stretch, with final release set for 8 Dec. Outside your stack, AI stayed in the headlines, from a Claude-assisted Riemann proof to a rough first week on the stock market for Anthropic.",
+  "stories": [
+    {
+      "id": "patching-week-wp-ghostscript",
+      "title": "A patching week: WordPress 7.1.5, PHP and Ghostscript",
+      "what": "WordPress 7.1.5 shipped on 18 Nov with a long list of security fixes, including an unauthenticated privilege escalation through Template Part block attributes that could lead to remote code execution. PHP released patched versions on 19 Nov. On 22 Nov pwn.ai showed a Ghostscript flaw (CVE-2026-125396, fixed in 10.08.0) that can run commands on a server through crafted uploads, including public forms in the Forminator and Essential Addons for Elementor plugins.",
+      "now": "As of 27 Nov, the 7.1.5 release post is unchanged on the key points: it recommends updating immediately and says backports to older branches ship as they become ready. The Ghostscript report still says no attacks have been reported.",
+      "now_url": "https://wordpress.org/news/2026/11/wordpress-7-1-5-release/",
+      "why": "Updating WordPress is only part of the job: PHP and Ghostscript sit at host level, so ask your hosts and check they are done on every client site.",
+      "items": ["2026-11-23/ghostscript-sandbox-escape", "2026-11-23/php-8-6-release"]
+    },
+    {
+      "id": "plugin-backdoor-release-hold",
+      "title": "A plugin backdoor is stopped by WordPress.org's release hold",
+      "what": "On 22 Nov an attacker used a developer's own WordPress.org account to push backdoored releases of six WP connect plugins, including Air WP Sync and WP Sync for Notion. Wordfence rated it 9.8 (critical). The releases never reached sites: they were held by the six-hour delay on plugin updates and blocked by WordPress.org's automatic check.",
+      "now": "As of 27 Nov, The Repository reports that the Plugins Team says Protect the Shire has blocked more than 100 releases with severe security issues since September, and that all six plugins were closed on WordPress.org the same evening.",
+      "now_url": "https://www.therepository.email/protect-the-shire-has-blocked-more-than-100-plugin-releases-with-severe-security-issues-since-september",
+      "why": "None of the six plugins is in your stack, but the safeguard only covers plugins hosted on WordPress.org. Keep a close eye on auto-updates for plugins sold elsewhere and keep backups current.",
+      "items": ["2026-11-24/wp-connect-backdoor", "2026-11-27/protect-the-shire-100-blocked"]
+    },
+    {
+      "id": "wordpress-7-2-final-stretch",
+      "title": "WordPress 7.2 heads for 8 Dec, with /random/ switched on",
+      "what": "WordPress 7.2 reached Release Candidate 3 on 24 Nov, and core confirmed it is compatible with PHP 8.6 while keeping the minimum at PHP 7.4. The release adds three read-only core abilities for content, users and settings. The /random/ redirect will ship on by default despite developer pushback.",
+      "now": "As of 24 Nov, the RC3 announcement still gives 8 Dec 2026 as the release date and says RC3 includes performance work on the random-content redirect for larger sites.",
+      "now_url": "https://wordpress.org/news/2026/11/wordpress-7-2-release-candidate-3/",
+      "why": "You have about ten days to test your Bricks, ACF, WPML and SEOPress setups on staging, and to decide whether client sites should expose /random/ (the `wp_enable_random_content_redirect` filter turns it off).",
+      "items": ["2026-11-24/wp-random-redirect", "2026-11-24/wp-php-8-6", "2026-11-25/wp-7-2-rc3", "2026-11-25/wp-7-2-core-abilities"]
+    },
+    {
+      "id": "riemann-proof",
+      "title": "A Claude-assisted proof of the Riemann hypothesis is confirmed",
+      "what": "Levent Alpöge published a proof on 20 Nov as 17 million lines of Lean code, found working with Claude. On 22 Nov the Lean and Mathlib community said it has full confidence the proof is correct, after dozens of independent checks.",
+      "now": "As of 22 Nov, The Decoder reports the confirmation stands, and that forecasters had expected this milestone around 2035.",
+      "now_url": "https://the-decoder.com/lean-and-mathlib-community-officially-confirms-levent-alpoges-proof-of-the-riemann-hypothesis-is-correct/",
+      "why": "Nothing to do, but it is the week's strongest evidence of what current AI models can do on research-level problems, and clients will ask about it.",
+      "items": ["2026-11-23/riemann-proof-confirmed"]
+    }
+  ],
+  "actions": [
+    {
+      "title": "Update every client site to WordPress 7.1.5",
+      "detail": "The release fixes many security issues, including an unauthenticated flaw that could lead to remote code execution.",
+      "opened": "2026-11-23",
+      "url": "https://wordpress.org/news/2026/11/wordpress-7-1-5-release/"
+    },
+    {
+      "title": "Ask hosts to update Ghostscript to 10.08.0 or later",
+      "detail": "CVE-2026-125396 lets a crafted uploaded file run commands on servers that render uploads with Ghostscript.",
+      "opened": "2026-11-23",
+      "url": "https://thehackernews.com/2026/11/researchers-demonstrate-ghostscript.html"
+    },
+    {
+      "title": "Ask hosts to update PHP to 8.5.13, 8.4.28, 8.3.37 or 8.2.36",
+      "detail": "Until then, turn off FastCGI connection reuse where it is on.",
+      "opened": "2026-11-23",
+      "url": "https://patchstack.com/articles/php-november-2026-security-release-wordpress/"
+    },
+    {
+      "title": "Test client sites on WordPress 7.2 RC3 before 8 Dec",
+      "detail": "Decide at the same time whether to turn off the /random/ redirect.",
+      "opened": "2026-11-24",
+      "url": "https://wordpress.org/news/2026/11/wordpress-7-2-release-candidate-3/"
+    }
+  ],
+  "missed": [],
+  "ahead": [
+    {
+      "date": "2026-12-08",
+      "title": "WordPress 7.2 release",
+      "detail": "Final release after RC3, which was published on 24 Nov.",
+      "url": "https://wordpress.org/news/2026/11/wordpress-7-2-release-candidate-3/"
+    },
+    {
+      "date": "2026-12-31",
+      "title": "PHP 8.2 security support ends",
+      "detail": "PHP 8.4 active support ends the same day, according to the supported-versions table.",
+      "url": "https://www.php.net/supported-versions.php"
+    },
+    {
+      "date": "2027-01-22",
+      "title": "Claude Opus 4.5 retires on the Claude API",
+      "detail": "Anthropic recommends migrating to Claude Opus 5.5.",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview#claude-opus-4-5-deprecation"
+    }
+  ],
+  "run": { "searches": 2, "pages_opened": 10 }
+}
